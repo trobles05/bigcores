@@ -29,7 +29,6 @@
     align-items: center; 
   }
   
-  /* Centraliza as faixas uma sobre a outra */
   .faixa {
     position: absolute;
     top: 50%;

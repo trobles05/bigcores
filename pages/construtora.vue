@@ -1,15 +1,9 @@
 <template>
-    <div>
-      <ConstrutoraHeroConstrutora />
-      <ConstrutoraFaixaDesconto />
-      <ConstrutoraBeneficiosConstrutora />
-      
-      </div>
-  </template>
-  
-  <script setup>
-  </script>
-
-  <style>
- 
-  </style>
+  <div>
+    <ConstrutoraHeroConstrutora />
+    <ConstrutoraFaixaDesconto />
+    <ConstrutoraExclusividadeConstrutora /> 
+    <ConstrutoraPorQueEscolher />
+    
+    </div>
+</template>

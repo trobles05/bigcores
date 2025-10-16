@@ -13,6 +13,15 @@
   --cor-verde: #00BB2D; 
   --cor-verde-escuro: #25d3664d;
   
+  --degrade-azul: linear-gradient(
+    to right,
+    #0E556B 6%,
+    #37B5DB 42%,
+    #68DCFF 50%,
+    #058DB6 68%,
+    #0E556B 87%
+  );
+
   --font-principal: "Poppins", Arial, sans-serif;
   --font-secundaria: Arial, Helvetica, sans-serif;
   --regular: 400;
