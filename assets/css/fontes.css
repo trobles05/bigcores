@@ -1,0 +1,25 @@
+/* Fontes */
+@font-face {
+  font-family: "Poppins";
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/poppins-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-weight: 700; /* Bold */
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/poppins-bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Arial";
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/arial.woff") format("woff");
+}
+

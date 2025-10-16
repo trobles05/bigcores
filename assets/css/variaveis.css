@@ -1,0 +1,28 @@
+:root {
+  --cor-preto: #161616;
+  --cor-branco: #ffffff;
+  --cor-branco-escuro: #d9d9d9;
+  --cor-azul-escuro: #223359;
+  --cor-azul-marinho: #0069AE;
+  --cor-azul-claro: #058DB6;
+  --cor-azul-bb: #ABC3F8;
+  --cor-laranja: #FF6B00;
+  --cor-vermelho: #CD0A1A;
+  --cor-cinza-claro: #F5F5F5;
+  --cor-cinza-escuro: #333333;
+  --cor-verde: #00BB2D; 
+  
+  --font-principal: "Poppins", Arial, sans-serif;
+  --font-secundaria: Arial, Helvetica, sans-serif;
+  --regular: 400;
+  --bold: 700;
+
+  --f0: clamp(0.6rem, calc(0.5rem + 0.25vw), 0.8rem);
+  --f1: clamp(0.8rem, calc(0.7rem + 0.25vw), 1rem);
+  --f2: clamp(1rem, calc(0.8rem + 0.5vw), 1.2rem);
+  --f3: clamp(1.2rem, calc(1rem + 0.5vw), 1.5rem);
+  --f4: clamp(1.5rem, calc(1.2rem + 0.75vw), 2rem);
+  --f5: clamp(2rem, calc(1.5rem + 1.25vw), 2.5rem);
+  --f6: clamp(2.5rem, calc(1.8rem + 2vw), 3.5rem);
+  --f7: clamp(3.5rem, calc(2rem + 4vw), 5.5rem);
+}

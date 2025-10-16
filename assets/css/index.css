@@ -1,0 +1,10 @@
+@import url("./variaveis.css");
+@import url("./fontes.css");
+@import url("./normalizar.css");
+
+
+body {
+    font-family: var(--font-principal);
+    font-weight: var(--regular);
+  }
+  
