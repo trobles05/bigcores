@@ -8,7 +8,7 @@
 
     <div class="header__menu">
       <nav>
-        <NuxtLink to="/exclusividade">Exclusividade</NuxtLink>
+        <NuxtLink to="/contrutora/exclusividade-construtora#secaoexclusividade">Exclusividade</NuxtLink>
         <NuxtLink to="/big-cores">Big Cores</NuxtLink>
         <NuxtLink to="/contato">Contato</NuxtLink>
       </nav>

@@ -7,4 +7,12 @@ body {
     font-family: var(--font-principal);
     font-weight: var(--regular);
   }
+  ::selection {
+    background-color: var(--cor-azul-escuro); /* Cor do fundo da seleção */
+    color: var(--cor-branco); /* Cor do texto dentro da seleção */
+  }
   
+  ::-moz-selection { /* Para compatibilidade com Firefox */
+    background-color: var(--cor-laranja);
+    color: var(--cor-branco);
+  }

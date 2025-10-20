@@ -70,7 +70,6 @@
 <script setup>
 import iconEconomia from "~/assets/images/porcentagemIcone.png";
 import iconLogistica from "~/assets/images/presenteIcone.png";
-import iconProcesso from "~/assets/images/presenteIcone.png";
 import iconSuporte from "~/assets/images/presenteIcone.png";
 import iconQualidade from "~/assets/images/presenteIcone.png";
 import iconAtendimento from "~/assets/images/presenteIcone.png";
@@ -78,32 +77,43 @@ import iconAtendimento from "~/assets/images/presenteIcone.png";
 
 <style scoped>
 .exclusividade-section {
-  padding: 4rem 0 4rem 120px;
-  background-color: var(--cor-branco);
+  padding: 4rem 0 6rem 120px;
+  background-color: var(--cor-branco); 
   overflow: hidden;
+  position: relative;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
+}
+.section-titulo {
+  font-size: var(--f5);
+  color: var(--cor-azul-escuro); 
+  font-weight: var(--bold); 
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-.section-titulo {
-  position: relative;
-  font-size: var(--f5 );
-  font-weight: var(--bold);
-  color: var(--cor-azul-escuro);
-  margin-bottom: 1rem;
-  display: inline-block;
-  padding-bottom: 10px;
+.section-titulo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 38%;
+  max-width: 250px;
+  height: 4px; 
+  background-color: var(--cor-laranja); 
+  z-index: 1;
 }
 
 .section-subtitulo {
   font-size: var(--f2);
-  color: var(--cor-preto);
-  opacity: 0.8;
-  margin-bottom: 3.5rem;
+  color: var(--cor-prto); 
+  opacity: 0.9;
+  margin: 2rem;
+  line-height: 1.5;
 }
 
 .exclusividade-grid {
@@ -116,7 +126,6 @@ import iconAtendimento from "~/assets/images/presenteIcone.png";
   padding-bottom: 1.5rem;
 }
 
-/* Sombras laterais */
 .exclusividade-grid::before,
 .exclusividade-grid::after {
   content: "";
@@ -129,8 +138,8 @@ import iconAtendimento from "~/assets/images/presenteIcone.png";
 }
 
 .exclusividade-grid::-webkit-scrollbar {
-  width: 10px; 
-  height: 8px;
+  height: 6px;
+  width: 6px;
 }
 .exclusividade-grid::-webkit-scrollbar-thumb {
   background: var(--degrade-azul);
@@ -146,7 +155,7 @@ import iconAtendimento from "~/assets/images/presenteIcone.png";
   background-color: var(--cor-branco);
   padding: 2rem 1.5rem;
   border-radius: 26px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   text-align: left;
   border: 1px solid var(--cor-cinza-claro);
   scroll-snap-align: start;
