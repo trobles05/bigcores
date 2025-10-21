@@ -1,40 +1,70 @@
 <template>
   <header class="header">
     <div class="header__logo">
-      <NuxtLink to="/">
+      <a href="#" @click.prevent="scrollToTop" aria-label="Voltar ao topo">
         <img :src="logo" alt="Logo completa da Big Cores" />
-      </NuxtLink>
+      </a>
     </div>
 
     <div class="header__menu">
       <nav>
-        <NuxtLink to="/contrutora/exclusividade-construtora#secaoexclusividade">Exclusividade</NuxtLink>
-        <NuxtLink to="/big-cores">Big Cores</NuxtLink>
-        <NuxtLink to="/contato">Contato</NuxtLink>
+        <NuxtLink 
+          v-for="link in navLinks" 
+          :key="link.path" 
+          :to="link.path"
+        >
+          {{ link.text }}
+        </NuxtLink>
       </nav>
     </div>
 
     <div class="header__botoes">
-  <a 
-    href="https://wa.me/5541992433140?text=Ol%C3%A1!%20Tenho%20interesse%20no%20produto%20de%20vocês."
-    target="_blank" 
-    rel="noopener noreferrer"
-    class="botao-whatsapp"
-  >
-    <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
-    <span>Atendimento</span>
-  </a>
-  <NuxtLink to="/nossa-loja" class="botao-loja">Loja Online</NuxtLink>
-</div>
+      <a 
+        href="https://wa.me/5541992433140?text=Tudo%20bem?%20No%20que%20posso%20ajudar%20você"
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="botao-whatsapp"
+      >
+        <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
+        <span>Atendimento</span>
+      </a>
+      <a 
+        href="https://www.bigcorestintas.com.br/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="botao-loja"
+      >
+        Nossa loja
+      </a>
+    </div>
   </header>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import logo from "~/assets/images/logoCompleta.svg";
 import whatsappIcon from "~/assets/images/whatsappIcone.png";
+
+defineProps({
+  navLinks: {
+    type: Array, 
+    required: true,
+    default: () => [] 
+  }
+});
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth' 
+  });
+}
 </script>
 
 <style scoped>
+.header__logo a {
+  cursor: pointer;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -53,18 +83,16 @@ import whatsappIcon from "~/assets/images/whatsappIcone.png";
 .header__logo img {
   height: 40px;
 }
-
 nav a {
   position: relative;
   color: var(--cor-branco);
   text-decoration: none;
-  margin-left: 1.5rem;
-  font-size: var(--f2);
+  margin-left: 0.5rem;
+  font-size: var(--f3);
   font-weight: var(--regular);
   padding: 0 10px 6px 0;
   font-family: var(--font-secundaria);
 }
-
 nav a::after {
   content: "";
   position: absolute;
@@ -75,20 +103,18 @@ nav a::after {
   background: var(--cor-laranja);
   transition: width 0.3s ease-in-out;
 }
-
 nav a:hover::after {
   width: 90%;
 }
-
 .header__botoes {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-
 .botao-whatsapp {
   position: relative;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 0.5rem;
   color: var(--cor-branco);
@@ -108,12 +134,10 @@ nav a:hover::after {
   font-weight: var(--bold);
   font-size: var(--f2);
 }
-
 .botao-whatsapp span {
   position: relative;
   padding-bottom: 5px; 
 }
-
 .botao-whatsapp span::after {
   content: '';
   position: absolute;
@@ -124,11 +148,9 @@ nav a:hover::after {
   background: var(--cor-verde);
   transition: width 0.3s ease-in-out;
 }
-
 .botao-whatsapp:hover span::after {
   width: 100%; 
 }
-
 .botao-whatsapp img {
   width: 24px;
 }
@@ -143,7 +165,6 @@ nav a:hover::after {
   transition: background-color 0.3s;
   margin-left: 16px;
 }
-
 .botao-loja:hover {
   background-color: var(--cor-azul-escuro);
   border: solid 1px var(--cor-azul-bb);

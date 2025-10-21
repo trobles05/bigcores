@@ -1,5 +1,5 @@
 <template>
-    <section id="secaoporque" class="porque-escolher-section">
+    <section class="porque-escolher-section">
       <div class="container">
         <div class="title-capsule">
           <h2>POR QUE ESCOLHER A BIG CORES TINTAS?</h2>

@@ -1,5 +1,5 @@
 <template>
-  <section class="exclusividade-section">
+  <section id="secaoexclusividade" class="exclusividade-section">
     <div class="container">
       <h2 class="section-titulo">EXCLUSIVIDADE PARA GRANDES PROJETOS</h2>
       <p class="section-subtitulo">
@@ -7,91 +7,117 @@
       </p>
     </div>
 
-    <div class="exclusividade-grid">
-      <div class="exclusividade-card">
-        <img :src="iconEconomia" alt="Ícone de Porcentagem" class="card-icon" />
-        <h3 class="card-titulo">Economia Significativa</h3>
-        <p class="card-descricao">
-          Descontos que podem chegar a 40% em grandes volumes, reduzindo
-          significativamente seus custos.
-        </p>
-      </div>
-
-      <div class="exclusividade-card">
-        <img
-          :src="iconQualidade"
-          alt="Ícone de Selo de Qualidade"
-          class="card-icon"
-        />
-        <h3 class="card-titulo">Logística Eficiente</h3>
-        <p class="card-descricao">
-          Entrega direta da fábrica para sua obra, com agendamento flexível
-          conforme suas necessidades.
-        </p>
-      </div>
-
-      <div class="exclusividade-card">
-        <img :src="iconLogistica" alt="Ícone de Caminhão" class="card-icon" />
-        <h3 class="card-titulo">Processo Simplificado</h3>
-        <p class="card-descricao">
-          Faturamento direto da AkzoNobel para obras novas e repintura.
-        </p>
-      </div>
-
-      <div class="exclusividade-card">
-        <img
-          :src="iconSuporte"
-          alt="Ícone de Capacete de Obra"
-          class="card-icon"
-        />
-        <h3 class="card-titulo">Suporte Técnico Dedicado</h3>
-        <p class="card-descricao">
-          Conte com nossa equipe de especialistas para auxiliar na especificação
-          de produtos e suporte total para os desafios da sua obra.
-        </p>
-      </div>
-
-      <div class="exclusividade-card">
-        <img
-          :src="iconAtendimento"
-          alt="Ícone de Atendimento"
-          class="card-icon"
-        />
-        <h3 class="card-titulo">Qualidade que Valoriza</h3>
-        <p class="card-descricao">
-          Garanta um acabamento superior com a marca líder de mercado. A
-          qualidade Coral eleva a percepção de valor do seu empreendimento.
-        </p>
+    <div
+      class="exclusividade-scroll"
+      ref="scrollContainer"
+      @mousedown="startDrag"
+      @mousemove="onDrag"
+      @mouseup="stopDrag"
+      @mouseleave="stopDrag"
+      @touchstart="startDrag"
+      @touchmove="onDrag"
+      @touchend="stopDrag"
+    >
+      <div
+        v-for="(card, index) in cards"
+        :key="index"
+        class="exclusividade-card"
+      >
+        <img :src="card.icon" :alt="card.alt" class="card-icon" />
+        <h3 class="card-titulo">{{ card.titulo }}</h3>
+        <p class="card-descricao">{{ card.descricao }}</p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import iconEconomia from "~/assets/images/porcentagemIcone.png";
-import iconLogistica from "~/assets/images/presenteIcone.png";
-import iconSuporte from "~/assets/images/presenteIcone.png";
-import iconQualidade from "~/assets/images/presenteIcone.png";
-import iconAtendimento from "~/assets/images/presenteIcone.png";
+import iconLogistica from "~/assets/images/processoIcone.png";
+import iconSuporte from "~/assets/images/suporteIcone.png";
+import iconQualidade from "~/assets/images/logisticaIcone.png";
+import iconAtendimento from "~/assets/images/qualidadeIcone.png";
+
+const cards = [
+  {
+    icon: iconEconomia,
+    alt: "Ícone de Porcentagem",
+    titulo: "Economia Significativa",
+    descricao:
+      "Descontos que podem chegar a 40% em grandes volumes, reduzindo significativamente seus custos.",
+  },
+  {
+    icon: iconQualidade,
+    alt: "Ícone de Selo de Qualidade",
+    titulo: "Logística Eficiente",
+    descricao:
+      "Entrega direta da fábrica para sua obra, com agendamento flexível conforme suas necessidades.",
+  },
+  {
+    icon: iconLogistica,
+    alt: "Ícone de Caminhão",
+    titulo: "Processo Simplificado",
+    descricao: "Faturamento direto da AkzoNobel para obras novas e repintura.",
+  },
+  {
+    icon: iconSuporte,
+    alt: "Ícone de Capacete de Obra",
+    titulo: "Suporte Técnico Dedicado",
+    descricao:
+      "Conte com nossa equipe de especialistas para auxiliar na especificação de produtos e suporte total para os desafios da sua obra.",
+  },
+  {
+    icon: iconAtendimento,
+    alt: "Ícone de Atendimento",
+    titulo: "Qualidade que Valoriza",
+    descricao:
+      "Garanta um acabamento superior com a marca líder de mercado. A qualidade Coral eleva a percepção de valor do seu empreendimento.",
+  },
+];
+
+// comportamento de "arrastar para rolar"
+const scrollContainer = ref(null);
+let isDown = false;
+let startX;
+let scrollLeft;
+
+function startDrag(e) {
+  isDown = true;
+  startX = e.pageX || e.touches[0].pageX;
+  scrollLeft = scrollContainer.value.scrollLeft;
+}
+
+function onDrag(e) {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX || e.touches[0].pageX;
+  const walk = (x - startX) * 1.2; // sensibilidade do arraste
+  scrollContainer.value.scrollLeft = scrollLeft - walk;
+}
+
+function stopDrag() {
+  isDown = false;
+}
 </script>
 
 <style scoped>
 .exclusividade-section {
-  padding: 4rem 0 6rem 120px;
-  background-color: var(--cor-branco); 
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #f9fafc 0%, #ffffff 100%);
   overflow: hidden;
-  position: relative;
 }
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   text-align: left;
 }
+
 .section-titulo {
   font-size: var(--f5);
-  color: var(--cor-azul-escuro); 
-  font-weight: var(--bold); 
+  color: var(--cor-azul-escuro);
+  font-weight: var(--bold);
   position: relative;
   padding-bottom: 0.5rem;
 }
@@ -101,92 +127,89 @@ import iconAtendimento from "~/assets/images/presenteIcone.png";
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 38%;
-  max-width: 250px;
-  height: 4px; 
-  background-color: var(--cor-laranja); 
-  z-index: 1;
+  width: 120px;
+  height: 4px;
+  background-color: var(--cor-laranja);
 }
 
 .section-subtitulo {
   font-size: var(--f2);
-  color: var(--cor-prto); 
-  opacity: 0.9;
-  margin: 2rem;
+  color: var(--cor-preto);
+  opacity: 0.8;
+  margin-top: 1rem;
   line-height: 1.5;
 }
 
-.exclusividade-grid {
+.exclusividade-scroll {
   display: flex;
-  gap: 60px;
+  gap: 40px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  position: relative;
-  padding-bottom: 1.5rem;
+  cursor: grab;
+  padding: 3rem 4rem;
+  user-select: none;
+  scrollbar-width: none;
+  margin-left: 120px;
+  padding: 3rem 2rem 3rem 0;
 }
 
-.exclusividade-grid::before,
-.exclusividade-grid::after {
-  content: "";
-  position: sticky;
-  top: 0;
-  width: 50px;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.exclusividade-grid::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-.exclusividade-grid::-webkit-scrollbar-thumb {
-  background: var(--degrade-azul);
-  border-radius: 26px;
-}
-.exclusividade-grid::-webkit-scrollbar-track {
-  background: var(--cor-cinza-claro);
+.exclusividade-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .exclusividade-card {
-  flex-shrink: 0;
-  width: 340px;
-  background-color: var(--cor-branco);
-  padding: 2rem 1.5rem;
-  border-radius: 26px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  flex: 0 0 320px;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
   text-align: left;
-  border: 1px solid var(--cor-cinza-claro);
-  scroll-snap-align: start;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.exclusividade-card:hover {
+  transform: scale(1.05) rotate3d(1, 1, 0, 3deg);
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
 }
 
 .card-icon {
-  height: 32px;
-  margin-bottom: 1rem;
+  height: 40px;
+  margin-bottom: 1.5rem;
 }
+
 .card-titulo {
-  position: relative;
   font-size: var(--f2);
   font-weight: var(--bold);
   color: var(--cor-azul-escuro);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  position: relative;
 }
+
 .card-titulo::after {
   content: "";
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: -8px;
   width: 70px;
   height: 3px;
   background-color: var(--cor-laranja);
 }
+
 .card-descricao {
   font-size: var(--f1);
-  line-height: 1.6;
   color: var(--cor-preto);
   opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+  .exclusividade-scroll {
+    padding: 2rem 1rem;
+    gap: 20px;
+  }
+  .exclusividade-card {
+    flex: 0 0 85%;
+  }
 }
 </style>
