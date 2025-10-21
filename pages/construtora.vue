@@ -20,7 +20,6 @@ const linksDaConstrutora = ref([
   { text: 'Exclusividade', path: '/construtora#exclusividade' },
   { text: 'Big Cores', path: '/construtora#bigcores' },
   { text: 'Endereço', path: '/endereco' },
-  { text: 'Sobre Nós', path: '/sobre-nos' },
 ]);
 
 const linksDeInformacoes = ref([

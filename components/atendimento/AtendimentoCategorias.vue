@@ -24,7 +24,7 @@
               <div class="slide-text" :key="currentItem.title">
                 <h3 class="slide-title">{{ currentItem.title }}</h3>
                 <p class="slide-description">{{ currentItem.description }}</p>
-                <NuxtLink :to="currentItem.link" class="slide-button">Ver Produto</NuxtLink>
+                <NuxtLink :to="currentItem.link"  target="_blank" class="slide-button">Ver Produto</NuxtLink>
               </div>
             </Transition>
 
@@ -54,13 +54,13 @@ const slides = ref([
     title: 'Linha Residencial',
     description: 'Ampla variedade de tintas para ambientes internos e externos, incluindo opções decorativas e impermeabilizantes.',
     icon: casaIcone,
-    link: '/residencial'
+    link: 'https://www.bigcorestintas.com.br/categorias/tintas-17399234'
   },
   {
     title: 'Linha Automotivo',
     description: 'Linha dedicada para o seu veículo, com produtos para preparação, pintura e polimento de alta qualidade.',
     icon: carroIcone,
-    link: '/automotivo'
+    link: 'https://www.bigcorestintas.com.br/prod,catid,383738,tintas-automotivas'
   },
   {
     title: 'Linha Industrial',

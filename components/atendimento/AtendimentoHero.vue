@@ -35,13 +35,13 @@
   <script setup>
   import bannerLoja from '~/assets/images/bannerLoja.png';
   import whatsappIcone from '~/assets/images/whatsappIcone.png';
-  import logisticaIcone from '~/assets/images/logisticaIcone.png';
+  import logisticaIcone from '~/assets/images/logistica2Icone.png';
   </script>
   
   <style scoped>
   .hero-section {
     width: 100%;
-    padding: 120px 120px 80px 120px;
+    padding: 120px 120px 120px 120px;
   }
   
   .hero-container {

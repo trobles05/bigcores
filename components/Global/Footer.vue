@@ -43,7 +43,12 @@
           <h3>Informações</h3>
           <ul>
             <li v-for="link in informacoesLinks" :key="link.path">
-              <NuxtLink :to="link.path">{{ link.text }}</NuxtLink>
+              <template v-if="isExternal(link.path)">
+                <a :href="link.path" target="_blank" rel="noopener noreferrer">{{ link.text }}</a>
+              </template>
+              <template v-else>
+                <NuxtLink :to="link.path">{{ link.text }}</NuxtLink>
+              </template>
             </li>
           </ul>
         </div>
@@ -94,6 +99,9 @@ const scrollToTop = () => {
     behavior: 'smooth'
   });
 }
+
+// Detecta se um caminho é externo (URL absoluta)
+const isExternal = (path) => /^https?:\/\//.test(path)
 </script>
 
 <style scoped>
