@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  ssr: false, // Desabilita SSR, gera SPA
+  ssr: false, // modo SPA, ideal para HostGator
   css: [
     '~/assets/css/variaveis.css',
     '~/assets/css/normalizar.css',
@@ -11,18 +11,17 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      crawler: false, // evita erros do crawler
+      crawler: false,
       routes: [
         '/', 
+        '/construtora', 
         '/atendimento', 
         '/endereco', 
-        '/sobre-nos', 
-        '/construtora', 
-        '/quem-somos' // inclua todas as suas páginas
+        '/sobre-nos'
       ]
     }
   },
   app: {
-    baseURL: '/' // importante para hospedagem em subpastas, se houver ajuste aqui
+    baseURL: '/' // mantém assim para subdomínio (importante!)
   }
 })
