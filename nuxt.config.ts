@@ -22,6 +22,16 @@ export default defineNuxtConfig({
     }
   },
   app: {
-    baseURL: '/' // mantém assim para subdomínio (importante!)
+    baseURL: '/', // mantém assim para subdomínio (importante!)
+    
+    // --- CÓDIGO DO FAVICON ADICIONADO AQUI ---
+    head: {
+      link: [
+        // Certifique-se de que o nome do arquivo "logo-big-cores.svg" 
+        // está correto e que ele está na pasta "public/"
+        { rel: 'icon', type: 'image/svg+xml', href: '/Blogo.svg' }
+      ]
+    }
+    // --- FIM DA ADIÇÃO ---
   }
 })
