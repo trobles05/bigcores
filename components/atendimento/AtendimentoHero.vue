@@ -44,7 +44,7 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
 .hero-section {
   width: 100%;
   padding: 4.16vw 8.33vw;
-  margin-top: 90px;
+  margin-top: 60px;
 }
 
 .hero-container {

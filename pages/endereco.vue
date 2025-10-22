@@ -102,57 +102,71 @@ import filial6Img from '~/assets/images/filia6Loja.png'
 import localIcone from '~/assets/images/local2Icone.png'
 import whatsappIcone from '~/assets/images/whatsappIcone.png'
 
+// URL base do Google Maps para buscas
+const mapsBaseUrl = 'https://www.google.com/maps/search/?api=1&query='
+// URL base do WhatsApp
+const whatsappBaseUrl = 'https://wa.me/5541992433140' // (Usei o número dos seus outros componentes)
+
 const lojas = ref([
-  {
-    title: 'MATRIZ',
-    address: 'Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210',
-    image: matrizImg,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  },
-  {
-    title: 'FILIAL I',
-    address: 'Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540',
-    image: filial1Img,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  },
-  {
-    title: 'FILIAL II',
-    address: 'Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000',
-    image: filial2Img,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  },
-  {
-    title: 'FILIAL III',
-    address: 'Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350',
-    image: filial3Img,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  },
-  {
-    title: 'FILIAL IV',
-    address: 'R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170',
-    image: filial4Img,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  },
-  {
-    title: 'FILIAL V',
-    address: 'Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000',
-    image: filial5Img,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  },
-  {
-    title: 'FILIAL VI',
-    address: 'Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000',
-    image: filial6Img,
-    googleMapsLink: '#',
-    whatsappLink: '#'
-  }
+ {
+ title: 'MATRIZ',
+ address: 'Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210',
+ image: matrizImg,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}Rua+Almirante+Alexandrino,+1823,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-210`,
+ whatsappLink: whatsappBaseUrl
+ },
+ {
+ title: 'FILIAL I',
+ address: 'Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540',
+ image: filial1Img,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}Rua+Joinville,+2767,+S%C3%A3o+Pedro+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83020-540`,
+ whatsappLink: whatsappBaseUrl
+ },
+ {
+ title: 'FILIAL II',
+ address: 'Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000',
+ image: filial2Img,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}Av.+Senador+Salgado+Filho,+6367,+Uberaba+-+Curitiba+-+PR,+81580-000`,
+ whatsappLink: whatsappBaseUrl
+ },
+ {
+ title: 'FILIAL III',
+ address: 'Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350',
+ image: filial3Img,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}Av.+Rui+Barbosa,+5820,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-350`,
+ whatsappLink: whatsappBaseUrl
+ },
+{
+ title: 'FILIAL IV',
+ address: 'R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170',
+ image: filial4Img,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}R.+Pastor+Carlos+Frank,+617+(esquina+com+S%C3%ADtio+Cercado),+Boqueir%C3%A3o+-+Curitiba+-+PR,+81650-170`,
+ whatsappLink: whatsappBaseUrl
+ },
+ {
+ title: 'FILIAL V',
+ address: 'Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000',
+ image: filial5Img,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}Av.+Wenceslau+Braz,+2510,+Lindoia+-+Curitiba+-+PR,+81010-000`,
+ whatsappLink: whatsappBaseUrl
+ },
+ {
+ title: 'FILIAL VI',
+ address: 'Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000',
+ image: filial6Img,
+    // --- CORRIGIDO ---
+ googleMapsLink: `${mapsBaseUrl}Rodovia+da+Uva,+1184,+Ro%C3%A7a+Grande+-+Colombo+-+PR,+83402-000`,
+ whatsappLink: whatsappBaseUrl
+ }
 ])
+
+// (O resto do seu script continua exatamente igual)
 
 const currentIndex = ref(0)
 const totalLojas = lojas.value.length
@@ -161,27 +175,27 @@ const transitionNameIcon = ref('icon-next')
 const transitionNameText = ref('text-next')
 
 const nextSlide = () => {
-  transitionNameIcon.value = 'icon-next'
-  transitionNameText.value = 'text-next'
-  currentIndex.value = (currentIndex.value + 1) % totalLojas
+ transitionNameIcon.value = 'icon-next'
+ transitionNameText.value = 'text-next'
+ currentIndex.value = (currentIndex.value + 1) % totalLojas
 }
 
 const prevSlide = () => {
-  transitionNameIcon.value = 'icon-prev'
-  transitionNameText.value = 'text-prev'
-  currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas
+ transitionNameIcon.value = 'icon-prev'
+ transitionNameText.value = 'text-prev'
+ currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas
 }
 
 const currentLoja = computed(() => lojas.value[currentIndex.value])
 
 const prevLoja = computed(() => {
-  const nextIndex = (currentIndex.value + 1) % totalLojas
-  return lojas.value[nextIndex]
+ const nextIndex = (currentIndex.value + 1) % totalLojas
+ return lojas.value[nextIndex]
 })
 
 const nextLoja = computed(() => {
-  const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas
-  return lojas.value[prevIndex]
+ const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas
+ return lojas.value[prevIndex]
 })
 </script>
 
