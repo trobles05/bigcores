@@ -46,7 +46,7 @@
   <style scoped>
   .porque-escolher-section {
     background-color: var(--cor-cinza-escuro);
-    padding: 0 2rem 8rem 6rem;
+    padding: 0 2rem 10rem 6rem;
   }
   .container {
     max-width: 900px;
@@ -92,7 +92,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around; 
-    gap: 4rem;
+    gap: 6rem;
   }
   
   .benefit-card {

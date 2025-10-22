@@ -1,64 +1,388 @@
 <template>
-  <section class="endereco">
-    <div class="container">
-      <h1>Nossa Localização</h1>
-      <p>
-        Venha nos visitar em nossa loja física. Estamos localizados em um local de fácil acesso
-        com estacionamento disponível para nossos clientes.
-      </p>
-      
-      <div class="endereco-info">
-        <h2>Endereço</h2>
-        <p>Rua Exemplo, 123 - Centro<br>
-        Curitiba - PR, 80000-000</p>
-        
-        <h2>Horário de Funcionamento</h2>
-        <p>Segunda a Sexta: 8h às 18h<br>
-        Sábado: 8h às 12h<br>
-        Domingo: Fechado</p>
+  <section class="lojas-section">
+    <div class="seletor-wrapper">
+
+      <!-- Ícone anterior -->
+      <div class="nav-icon-wrapper prev-icon" @click="prevSlide">
+        <Transition name="fade" mode="out-in">
+          <img
+            :src="prevLoja.image"
+            :key="prevLoja.title"
+            alt="Loja anterior"
+            class="loja-preview-img"
+          />
+        </Transition>
       </div>
+
+      <!-- Card principal -->
+      <div class="slide-card-wrapper">
+        <div class="slide-card">
+          <div class="slide-content">
+
+            <!-- Ícone central com setas -->
+            <Transition :name="transitionNameIcon" mode="out-in">
+              <div class="slide-icon-cluster" :key="currentLoja.title">
+                <div class="nav-arrow" @click="prevSlide">&lt;</div>
+                <img
+                  :src="currentLoja.image"
+                  :alt="currentLoja.title"
+                  class="slide-icon-main"
+                />
+                <div class="nav-arrow" @click="nextSlide">&gt;</div>
+              </div>
+            </Transition>
+
+            <!-- Texto e botões -->
+            <Transition :name="transitionNameText" mode="out-in">
+              <div class="slide-text" :key="currentLoja.title">
+                <h3 class="slide-title">{{ currentLoja.title }}</h3>
+                <p class="slide-description">{{ currentLoja.address }}</p>
+
+                <div class="button-group">
+                  <NuxtLink
+                    :to="currentLoja.googleMapsLink"
+                    target="_blank"
+                    class="slide-button"
+                  >
+                    <img
+                      :src="localIcone"
+                      alt="Ícone de endereço"
+                      class="button-icon"
+                    />
+                    Endereço
+                  </NuxtLink>
+
+                  <NuxtLink
+                    :to="currentLoja.whatsappLink"
+                    target="_blank"
+                    class="slide-button whatsapp-button"
+                  >
+                    <img
+                      :src="whatsappIcone"
+                      alt="Ícone do WhatsApp"
+                      class="button-icon"
+                    />
+                    WhatsApp
+                  </NuxtLink>
+                </div>
+              </div>
+            </Transition>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Ícone próximo -->
+      <div class="nav-icon-wrapper next-icon" @click="nextSlide">
+        <Transition name="fade" mode="out-in">
+          <img
+            :src="nextLoja.image"
+            :key="nextLoja.title"
+            alt="Próxima loja"
+            class="loja-preview-img"
+          />
+        </Transition>
+      </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
-// Página estática provisória
+import { ref, computed } from 'vue'
+
+import matrizImg from '~/assets/images/filia1Loja.png'
+import filial1Img from '~/assets/images/filia1Loja.png'
+import filial2Img from '~/assets/images/filia2Loja.png'
+import filial3Img from '~/assets/images/filia3Loja.png'
+import filial4Img from '~/assets/images/filia4Loja.png'
+import filial5Img from '~/assets/images/filia5Loja.png'
+import filial6Img from '~/assets/images/filia6Loja.png'
+
+import localIcone from '~/assets/images/local2Icone.png'
+import whatsappIcone from '~/assets/images/whatsappIcone.png'
+
+const lojas = ref([
+  {
+    title: 'MATRIZ',
+    address: 'Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210',
+    image: matrizImg,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  },
+  {
+    title: 'FILIAL I',
+    address: 'Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540',
+    image: filial1Img,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  },
+  {
+    title: 'FILIAL II',
+    address: 'Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000',
+    image: filial2Img,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  },
+  {
+    title: 'FILIAL III',
+    address: 'Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350',
+    image: filial3Img,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  },
+  {
+    title: 'FILIAL IV',
+    address: 'R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170',
+    image: filial4Img,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  },
+  {
+    title: 'FILIAL V',
+    address: 'Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000',
+    image: filial5Img,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  },
+  {
+    title: 'FILIAL VI',
+    address: 'Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000',
+    image: filial6Img,
+    googleMapsLink: '#',
+    whatsappLink: '#'
+  }
+])
+
+const currentIndex = ref(0)
+const totalLojas = lojas.value.length
+
+const transitionNameIcon = ref('icon-next')
+const transitionNameText = ref('text-next')
+
+const nextSlide = () => {
+  transitionNameIcon.value = 'icon-next'
+  transitionNameText.value = 'text-next'
+  currentIndex.value = (currentIndex.value + 1) % totalLojas
+}
+
+const prevSlide = () => {
+  transitionNameIcon.value = 'icon-prev'
+  transitionNameText.value = 'text-prev'
+  currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas
+}
+
+const currentLoja = computed(() => lojas.value[currentIndex.value])
+
+const prevLoja = computed(() => {
+  const nextIndex = (currentIndex.value + 1) % totalLojas
+  return lojas.value[nextIndex]
+})
+
+const nextLoja = computed(() => {
+  const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas
+  return lojas.value[prevIndex]
+})
 </script>
 
 <style scoped>
-.endereco {
-  padding: 6rem 1rem;
+.lojas-section {
+  width: 100%;
+  padding: 100px 40px;
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-.container {
-  max-width: 1200px;
+.seletor-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
-h1 {
-  font-family: var(--font-primaria);
-  font-size: var(--f5);
-  margin-bottom: 1rem;
+.nav-icon-wrapper {
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.nav-icon-wrapper:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.nav-icon-wrapper img.loja-preview-img {
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.prev-icon {
+  justify-self: end;
+}
+.next-icon {
+  display: none;
 }
 
-h2 {
-  font-family: var(--font-primaria);
-  font-size: var(--f3);
-  margin: 2rem 0 1rem 0;
+.slide-card-wrapper {
+  grid-column: 2 / 3;
+  width: 100%;
+  max-width: 1140px;
+}
+
+.slide-card {
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.slide-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+}
+
+.slide-icon-cluster {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.nav-arrow {
+  font-size: var(--f6);
+  font-weight: bold;
+  color: var(--cor-laranja);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s;
+}
+.nav-arrow:hover {
+  transform: scale(1.2);
+}
+
+.slide-icon-main {
+  width: 400px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.slide-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 50%;
+}
+
+.slide-title {
+  font-size: var(--f6);
+  font-weight: var(--bold);
   color: var(--cor-azul-escuro);
+  margin: 0 0 16px 0;
 }
 
-p {
-  font-family: var(--font-secundaria);
-  font-size: var(--f2);
+.slide-description {
+  font-size: 0.95rem;
   color: var(--cor-cinza-escuro);
+  margin: 0;
   line-height: 1.6;
 }
 
-.endereco-info {
-  margin-top: 2rem;
-  padding: 2rem;
-  background-color: var(--cor-cinza-claro);
-  border-radius: 8px;
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 26px;
+}
+
+.slide-button {
+  background-color: var(--cor-laranja);
+  color: var(--cor-branco);
+  padding: 0.8rem 1.2rem;
+  border-radius: 26px;
+  text-decoration: none;
+  font-weight: var(--regular);
+  font-size: var(--f1);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.slide-button:hover {
+  background-color: #ff8000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.4);
+}
+
+.button-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* === ANIMAÇÕES === */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Ícones */
+.icon-next-enter-active,
+.icon-next-leave-active,
+.icon-prev-enter-active,
+.icon-prev-leave-active {
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.icon-next-enter-from {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.9);
+}
+.icon-next-leave-to {
+  opacity: 0;
+  transform: translateX(60px) scale(0.9);
+}
+.icon-prev-enter-from {
+  opacity: 0;
+  transform: translateX(60px) scale(0.9);
+}
+.icon-prev-leave-to {
+  opacity: 0;
+  transform: translateX(-60px) scale(0.9);
+}
+
+/* Texto */
+.text-next-enter-active,
+.text-next-leave-active,
+.text-prev-enter-active,
+.text-prev-leave-active {
+  transition: all 0.45s ease-in-out;
+}
+.text-next-enter-from {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+.text-next-leave-to {
+  opacity: 0;
+  transform: translateX(40px);
+}
+.text-prev-enter-from {
+  opacity: 0;
+  transform: translateX(40px);
+}
+.text-prev-leave-to {
+  opacity: 0;
+  transform: translateX(-40px);
 }
 </style>

@@ -4,10 +4,19 @@
         <div class="texto-scrolling">
           <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
           <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
         </div>
       </div>
       <div class="faixa faixa-2">
         <div class="texto-scrolling">
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
+          <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
           <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
           <span> • DESCONTO DE ATÉ 40% COM FATURAMENTO DIRETO DE FÁBRICA</span>
         </div>

@@ -92,7 +92,7 @@ function onDrag(e) {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX || e.touches[0].pageX;
-  const walk = (x - startX) * 1.2; // sensibilidade do arraste
+  const walk = (x - startX) * 1.2; 
   scrollContainer.value.scrollLeft = scrollLeft - walk;
 }
 
@@ -104,7 +104,7 @@ function stopDrag() {
 <style scoped>
 .exclusividade-section {
   padding: 5rem 0;
-  background: linear-gradient(180deg, #f9fafc 0%, #ffffff 100%);
+  background: linear-gradient(143deg, #f9fafc 30%, #ffffff 100%);
   overflow: hidden;
 }
 
@@ -135,18 +135,17 @@ function stopDrag() {
 .section-subtitulo {
   font-size: var(--f2);
   color: var(--cor-preto);
-  opacity: 0.8;
   margin-top: 1rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .exclusividade-scroll {
   display: flex;
-  gap: 40px;
+  gap: 80px;
   overflow-x: auto;
   scroll-behavior: smooth;
   cursor: grab;
-  padding: 3rem 4rem;
+  padding: 6rem 4rem;
   user-select: none;
   scrollbar-width: none;
   margin-left: 120px;
@@ -159,8 +158,8 @@ function stopDrag() {
 
 .exclusividade-card {
   flex: 0 0 320px;
-  background: #fff;
-  border-radius: 24px;
+  background: var(--cor-branco);
+  border-radius: 26px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
   padding: 2rem;
   text-align: left;
