@@ -110,7 +110,7 @@ function stopDrag() {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto 2rem;
+  margin: 0 120px ;
   text-align: left;
 }
 
@@ -201,14 +201,54 @@ function stopDrag() {
   line-height: 1.6;
 }
 
-/* ===== Responsividade ===== */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
+  /* 1. Remove a margem lateral de 120px do container */
+  .container {
+    margin: 0 1.5rem;
+    padding: 0; /* Garante que não haja padding extra */
+  }
+
+  /* 2. Ajusta o título */
+  .section-titulo {
+    font-size: var(--f4);
+  }
+
+  /* 3. Ajusta o carrossel */
   .exclusividade-scroll {
-    padding: 2rem 1rem;
+    /* Remove a margem esquerda de 120px e adiciona padding */
+    margin-left: 0;
+    padding: 2rem 1.5rem; /* Padding para ver o início e fim */
     gap: 20px;
   }
+
+  /* 4. Faz os cards ocuparem mais espaço */
   .exclusividade-card {
-    flex: 0 0 85%;
+    flex: 0 0 80%; /* Card ocupa 80% da tela */
   }
+}
+
+@media (max-width: 480px) {
+  /* 1. Ajusta o container para telas mínimas */
+  .container {
+    margin: 0 1rem;
+  }
+  
+  /* 2. Aplica a propriedade de coluna do outro componente */
+  .exclusividade-scroll {
+    flex-direction: column; /* Empilha os cards */
+    align-items: center;  /* Centraliza os cards na vertical */
+    overflow-x: hidden;   /* Desliga o scroll horizontal */
+    cursor: default;      /* Remove o cursor 'grab' */
+    
+    padding: 2rem 0; /* Padding vertical, sem horizontal */
+    gap: 1.5rem;
+  }
+
+  /* 3. Ajusta o card para o layout vertical */
+  .exclusividade-card {
+    flex-basis: auto; /* Reseta o tamanho flex */
+    width: 90%;     /* O card ocupa 90% da largura do container */
+  }
+
 }
 </style>

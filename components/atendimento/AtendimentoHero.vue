@@ -157,17 +157,6 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
     overflow: visible; 
   }
 
-  .hero-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); 
-    border-radius: 20px; /* Arredonda o overlay */
-    z-index: 1; 
-  }
 
   .hero-image {
     border-radius: 20px; 
@@ -193,8 +182,13 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
   }
 
   .hero-button {
-    padding: 12px 20px;
+    padding: 10px 16px;
     font-size: var(--f1); 
+    justify-content: center;
+  }
+  
+  .whatsapp-icon{
+    width: 18px;
   }
 
   .bottom-banner {
@@ -216,6 +210,87 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
 
   .logistica-icon {
     width: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-section {
+    padding: 1.5rem 1rem;
+    margin-top: 20px;
+  }
+
+  /* --- CORREÇÃO PRINCIPAL AQUI --- */
+  .hero-container {
+    /* O container se torna o card azul */
+    background-color: var(--cor-azul-escuro);
+    border-radius: 16px;
+    padding: 1.5rem 1rem; /* Adiciona o padding aqui */
+    
+    /* Reseta o aspect-ratio para a altura ser automática */
+    aspect-ratio: auto; 
+    overflow: visible; /* Garante que o banner de baixo apareça */
+  }
+
+  /* Esconde os elementos que não precisamos mais */
+  .hero-container::before,
+  .hero-image {
+    display: none;
+  }
+
+  .hero-content {
+    /* Reseta o padding (foi para o container) */
+    padding: 0; 
+    /* Reseta a altura para ser automática */
+    height: auto; 
+    
+    /* Mantém a centralização */
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  /* --- FIM DA CORREÇÃO --- */
+
+  .hero-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    margin-bottom: 0.875rem;
+  }
+
+  .hero-button {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    gap: 6px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .whatsapp-icon {
+    width: 16px;
+  }
+
+  /* O banner de baixo continua funcionando */
+  .bottom-banner {
+    width: 92%;
+    padding: 0.625rem 0.75rem;
+    border-radius: 16px;
+    bottom: -25px;
+    gap: 0.375rem;
+  }
+
+  .bottom-banner span {
+    font-size: 0.625rem;
+    line-height: 1.3;
+  }
+
+  .logistica-icon {
+    width: 20px;
   }
 }
 </style>

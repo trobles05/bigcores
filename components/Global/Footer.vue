@@ -256,5 +256,14 @@ const isExternal = (path) => /^https?:\/\//.test(path);
   .footer-copyright {
     line-height: 1.8;
   }
+
+
+@media (max-width: 600px){
+  .cta-section {
+  margin-top: -12vw;
+}
+}
+
+
 }
 </style>

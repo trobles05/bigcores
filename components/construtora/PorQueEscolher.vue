@@ -136,4 +136,81 @@
     color: var(--cor-preto);
     line-height: 1.5;
   }
+
+  @media (max-width: 1000px) {
+  /* 1. Ajusta o padding da seção e o título */
+  .porque-escolher-section {
+    padding: 4rem 1.5rem; /* Padding mais simples */
+  }
+  .title-capsule {
+    margin-top: 0; /* Remove o margin-top negativo */
+    margin-bottom: 3rem;
+  }
+  .title-capsule h2 {
+    font-size: var(--f2); /* Reduz um pouco o título */
+  }
+
+  /* 2. Ajusta o grid (ainda 2 colunas) */
+  .content-grid {
+    gap: 2rem; /* Reduz o gap horizontal */
+  }
+  .grid-column {
+    gap: 3rem; /* Reduz o gap vertical */
+  }
+
+  /* 3. AJUSTA AS LINHAS LARANJAS */
+  .benefit-card::before {
+    width: 1rem; /* Metade do novo gap (2rem) */
+  }
+  .grid-column:first-child .benefit-card::before {
+    right: -1rem; /* = -width */
+  }
+  .grid-column:last-child .benefit-card::before {
+    left: -1rem; /* = -width */
+  }
+
+  /* 4. Ajusta os cards */
+  .benefit-card {
+    padding: 1.25rem;
+  }
+  .benefit-card h4 {
+    font-size: var(--f2);
+  }
+  .benefit-card p {
+    font-size: var(--f1);
+  }
+}
+
+/*
+* ===============================================
+* @MEDIA QUERY PARA RESPONSIVO (320px)
+* (Muda para coluna única)
+* ===============================================
+*/
+@media (max-width: 380px) {
+  /* 1. Ajusta padding para telas bem pequenas */
+  .porque-escolher-section {
+    padding: 5rem 1rem;
+  }
+
+  .content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;/* Espaço entre os cards empilhados */
+  }
+
+  /* 3. ESCONDE TODAS AS LINHAS LARANJAS */
+  .content-grid::before {
+    display: none; /* Esconde linha vertical */
+  }
+  .benefit-card::before {
+    display: none; /* Esconde linhas horizontais */
+  }
+  
+  /* 4. Centraliza o conteúdo dos cards */
+  .benefit-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+}
   </style>

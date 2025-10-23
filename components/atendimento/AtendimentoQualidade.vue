@@ -213,7 +213,7 @@ import iconSolucoes from '~/assets/images/palhetaIcone.png';
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 380px) {
   /* 1. Ajusta o padding para telas bem pequenas */
   .porque-escolher-section {
     padding: 3rem 1rem;

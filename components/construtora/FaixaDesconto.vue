@@ -79,5 +79,36 @@
       transform: translateX(-50%);
     }
   }
+  @media (max-width: 1000px) {
+  .faixa-desconto-section {
+    height: 170px; 
+  }
+
+  .faixa {
+    height: 45px;
+    padding: 0.6rem 0;
+    font-size: var(--f1); 
+    width: 150%;
+  }
+  .texto-scrolling {
+    gap: 80px; 
+  }
+}
+@media (max-width: 480px) {
+  .faixa-desconto-section {
+    height: 80px;
+  }
+
+  .faixa {
+    height: 35px;
+    padding: 0.5rem 0;
+    font-size: var(--f0); 
+    width: 180%;
+  }
+
+  .texto-scrolling {
+    gap: 50px;
+  }
+}
   </style>
   
