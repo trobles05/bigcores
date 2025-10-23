@@ -4,12 +4,14 @@
     <AtendimentoFaixaInfo />
     <AtendimentoCategorias />
     <AtendimentoQualidade />
+    <AtendimentoAvaiacoes />
   </div>
 </template>
 
 <script setup>
 
 import { ref } from 'vue';
+import AtendimentoAvaiacoes from '~/components/atendimento/AtendimentoAvaiacoes.vue';
 import { useLinkState } from '~/composables/useLinkState'
 
 const { setPageLinks } = useLinkState()

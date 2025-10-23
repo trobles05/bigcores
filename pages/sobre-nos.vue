@@ -46,7 +46,7 @@
               <div class="visual-bg"></div>
               <div class="visual-card">
                 <div class="visual-content">
-                  <img :src="matrizIcone" alt="Matriz Big Cores" class="matriz-image" />
+                  <img :src="matrizValores" alt="Matriz Big Cores" class="matriz-image" />
                 </div>
               </div>
             </div>
@@ -145,121 +145,125 @@
   </template>
   
   <script setup>
-  import { ref, onMounted, onUnmounted, computed } from 'vue';
-  import bannerSobreNos from '~/assets/images/bannerSobre-nos.png';
-  import matrizValores from '~/assets/images/matrizLoja.png';
-  import iconeEstudo from '~/assets/images/logisticaIcone.png';
-  import iconeMeme from '~/assets/images/logisticaIcone.png';
-  import iconeVariavel from '~/assets/images/logisticaIcone.png';
-  import iconeAtendimento from '~/assets/images/logisticaIcone.png';
-  import iconeAlvo from '~/assets/images/logisticaIcone.png';
-  
-  const scrollY = ref(0);
-  const hoveredStat = ref(null);
-  const hoveredValor = ref(null);
-  
-  const historiaSection = ref(null);
-  const statsSection = ref(null);
-  const timelineSection = ref(null);
-  const valoresSection = ref(null);
-  const compromissoSection = ref(null);
-  
-  const isVisible = ref({
-    historia: false,
-    stats: false,
-    timeline: false,
-    valores: false,
-    compromisso: false
-  });
-  
-  const counters = ref({
-    anos: 0,
-    lojas: 0,
-    clientes: 0
-  });
-  
-  const displayCounters = computed(() => counters.value);
-  
-  const timeline = [
-    { year: '1995', title: 'Fundação', desc: 'Nascemos em São José dos Pinhais com o sonho de revolucionar o mercado de tintas' },
-    { year: '2000', title: 'Expansão', desc: 'Abrimos nossa segunda loja e ampliamos o portfólio de produtos' },
-    { year: '2010', title: 'Consolidação', desc: 'Chegamos a 4 lojas e nos tornamos referência regional' },
-    { year: '2020', title: 'Modernização', desc: 'Investimento em tecnologia e capacitação contínua da equipe' },
-    { year: '2025', title: 'Hoje', desc: '7 lojas, mais de 100 mil clientes satisfeitos e crescendo sempre' }
-  ];
-  
-  const valores = [
-    { image: iconeValor, title: 'Ética', desc: 'Agimos com transparência e honestidade em todas as nossas relações' },
-    { image: iconeValor, title: 'Respeito', desc: 'Valorizamos cada pessoa que faz parte da nossa jornada' },
-    { image: iconeValor, title: 'Excelência', desc: 'Buscamos sempre superar expectativas e entregar o melhor' },
-    { image: iconeValor, title: 'Responsabilidade', desc: 'Comprometidos com nossos clientes, equipe e comunidade' },
-    { image: iconeValor, title: 'Inovação', desc: 'Evoluímos constantemente para melhor atender você' },
-    { image: iconeValor, title: 'Qualidade', desc: 'Oferecemos apenas produtos e serviços de alta performance' }
-  ];
-  
-  const handleScroll = () => {
-    scrollY.value = window.scrollY;
-  };
-  
-  const animateCounters = () => {
-    const duration = 2000;
-    const steps = 60;
-    const increment = duration / steps;
-  
-    let step = 0;
-    const timer = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      
-      counters.value = {
-        anos: Math.floor(28 * progress),
-        lojas: Math.floor(7 * progress),
-        clientes: Math.floor(100000 * progress)
-      };
-  
-      if (step >= steps) clearInterval(timer);
-    }, increment);
-  };
-  
-  onMounted(() => {
-    window.addEventListener('scroll', handleScroll);
-  
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === historiaSection.value) {
-            isVisible.value.historia = entry.isIntersecting;
-          }
-          if (entry.target === statsSection.value && entry.isIntersecting && counters.value.anos === 0) {
-            isVisible.value.stats = true;
-            animateCounters();
-          }
-          if (entry.target === timelineSection.value) {
-            isVisible.value.timeline = entry.isIntersecting;
-          }
-          if (entry.target === valoresSection.value) {
-            isVisible.value.valores = entry.isIntersecting;
-          }
-          if (entry.target === compromissoSection.value) {
-            isVisible.value.compromisso = entry.isIntersecting;
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-  
-    if (historiaSection.value) observer.observe(historiaSection.value);
-    if (statsSection.value) observer.observe(statsSection.value);
-    if (timelineSection.value) observer.observe(timelineSection.value);
-    if (valoresSection.value) observer.observe(valoresSection.value);
-    if (compromissoSection.value) observer.observe(compromissoSection.value);
-  });
-  
-  onUnmounted(() => {
-    window.removeEventListener('scroll', handleScroll);
-  });
-  </script>
-  
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import bannerSobreNos from '~/assets/images/bannerSobre-nos.png';
+import matrizValores from '~/assets/images/matrizLoja.png';
+
+// --- NOVAS IMPORTAÇÕES DE ÍCONES ---
+// (Verifique se os nomes dos arquivos e extensões (.png, .svg, etc.) estão corretos)
+import alvo from '~/assets/images/alvo.png';
+import parceriaIcone from '~/assets/images/parceriaIcone.png';
+import selequalidade from '~/assets/images/trofel.png';
+import grafico from '~/assets/images/grafico.png';
+import suporteIcone from '~/assets/images/suporteIcone.png';
+import acessoriaIcone from '~/assets/images/acessoriaIcone.png';
+
+const scrollY = ref(0);
+const hoveredStat = ref(null);
+const hoveredValor = ref(null);
+
+const historiaSection = ref(null);
+const statsSection = ref(null);
+const timelineSection = ref(null);
+const valoresSection = ref(null);
+const compromissoSection = ref(null);
+
+const isVisible = ref({
+  historia: false,
+  stats: false,
+  timeline: false,
+  valores: false,
+  compromisso: false
+});
+
+const counters = ref({
+  anos: 0,
+  lojas: 0,
+  clientes: 0
+});
+
+const displayCounters = computed(() => counters.value);
+
+const timeline = [
+  { year: '1995', title: 'Fundação', desc: 'Nascemos em São José dos Pinhais com o sonho de revolucionar o mercado de tintas' },
+  { year: '2000', title: 'Expansão', desc: 'Abrimos nossa segunda loja e ampliamos o portfólio de produtos' },
+  { year: '2010', title: 'Consolidação', desc: 'Chegamos a 4 lojas e nos tornamos referência regional' },
+  { year: '2020', title: 'Modernização', desc: 'Investimento em tecnologia e capacitação contínua da equipe' },
+  { year: '2025', title: 'Hoje', desc: '7 lojas, mais de 100 mil clientes satisfeitos e crescendo sempre' }
+];
+
+// --- CONST VALORES ATUALIZADA ---
+const valores = [
+  { image: alvo, title: 'Ética', desc: 'Agimos com transparência e honestidade em todas as nossas relações' },
+  { image: parceriaIcone, title: 'Respeito', desc: 'Valorizamos cada pessoa que faz parte da nossa jornada' },
+  { image: selequalidade, title: 'Excelência', desc: 'Buscamos sempre superar expectativas e entregar o melhor' },
+  { image: grafico, title: 'Responsabilidade', desc: 'Comprometidos com nossos clientes, equipe e comunidade' },
+  { image: suporteIcone, title: 'Inovação', desc: 'Evoluímos constantemente para melhor atender você' },
+  { image: acessoriaIcone, title: 'Qualidade', desc: 'Oferecemos apenas produtos e serviços de alta performance' }
+];
+
+const handleScroll = () => {
+  scrollY.value = window.scrollY;
+};
+
+const animateCounters = () => {
+  const duration = 2000;
+  const steps = 60;
+  const increment = duration / steps;
+
+  let step = 0;
+  const timer = setInterval(() => {
+    step++;
+    const progress = step / steps;
+    
+    counters.value = {
+      anos: Math.floor(28 * progress),
+      lojas: Math.floor(7 * progress),
+      clientes: Math.floor(100000 * progress)
+    };
+
+    if (step >= steps) clearInterval(timer);
+  }, increment);
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === historiaSection.value) {
+          isVisible.value.historia = entry.isIntersecting;
+        }
+        if (entry.target === statsSection.value && entry.isIntersecting && counters.value.anos === 0) {
+          isVisible.value.stats = true;
+          animateCounters();
+        }
+        if (entry.target === timelineSection.value) {
+          isVisible.value.timeline = entry.isIntersecting;
+        }
+        if (entry.target === valoresSection.value) {
+          isVisible.value.valores = entry.isIntersecting;
+        }
+        if (entry.target === compromissoSection.value) {
+          isVisible.value.compromisso = entry.isIntersecting;
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  if (historiaSection.value) observer.observe(historiaSection.value);
+  if (statsSection.value) observer.observe(statsSection.value);
+  if (timelineSection.value) observer.observe(timelineSection.value);
+  if (valoresSection.value) observer.observe(valoresSection.value);
+  if (compromissoSection.value) observer.observe(compromissoSection.value);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+</script>
   <style scoped>
   .quem-somos {
  background: linear-gradient(to bottom, #f9fafb, #ffffff);
