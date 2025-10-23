@@ -1,25 +1,27 @@
 <template>
   <div>
-    <ConstrutoraHeroConstrutora />
-    <ConstrutoraFaixaDesconto />
-    <ConstrutoraExclusividadeConstrutora id="exclusividade" /> 
-    <ConstrutoraPorQueEscolher id="bigcores" />
-    </div>
+    <HeroConstrutora />
+    <FaixaDesconto />
+    <ExclusividadeConstrutora id="exclusividade" />
+    <PorQueEscolher id="bigcores" />
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-// 1. Importe o "mensageiro"
-import { useLinkState } from '~/composables/useLinkState'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue';
+import { useLinkState } from '~/composables/useLinkState';
+import HeroConstrutora from '~/components/construtora/HeroConstrutora.vue';
+import FaixaDesconto from '~/components/construtora/FaixaDesconto.vue';
+import ExclusividadeConstrutora from '~/components/construtora/ExclusividadeConstrutora.vue';
+import PorQueEscolher from '~/components/construtora/PorQueEscolher.vue';
 
-// 2. Pegue a FUNÇÃO de definir os links
-const { setPageLinks } = useLinkState()
+const { setPageLinks } = useLinkState();
 
-// 3. Defina suas listas de links (como antes)
 const linksDaConstrutora = ref([
   { text: 'Exclusividade', path: '/construtora#exclusividade' },
   { text: 'Big Cores', path: '/construtora#bigcores' },
   { text: 'Endereço', path: '/endereco' },
+  { text: 'Sobre Nós', path: '/sobre-nos' }
 ]);
 
 const linksDeInformacoes = ref([
@@ -36,10 +38,18 @@ const linksDeAtendimento = ref([
   { text: 'Endereço', path: '/endereco' }
 ]);
 
-setPageLinks({
-  nav: linksDaConstrutora.value,       
-  atalhos: linksDaConstrutora.value,    
-  info: linksDeInformacoes.value,       
-  atendimento: linksDeAtendimento.value 
+onMounted(() => {
+  nextTick(() => {
+    setPageLinks({
+      nav: linksDaConstrutora.value,
+      atalhos: linksDaConstrutora.value,
+      info: linksDeInformacoes.value,
+      atendimento: linksDeAtendimento.value
+    });
+  });
+});
+
+onUnmounted(() => {
+  setPageLinks({ nav: [], atalhos: [], info: [], atendimento: [] });
 });
 </script>

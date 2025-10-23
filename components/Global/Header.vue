@@ -8,56 +8,88 @@
 
     <div class="header__menu">
       <nav>
-        <NuxtLink 
-          v-for="link in navLinks" 
-          :key="link.path" 
-          :to="link.path"
-        >
+        <NuxtLink v-for="link in navLinks" :key="link.path" :to="link.path">
           {{ link.text }}
         </NuxtLink>
       </nav>
     </div>
 
     <div class="header__botoes">
-      <a 
+      <a
         href="https://wa.me/5541992433140?text=Tudo%20bem?%20No%20que%20posso%20ajudar%20você"
-        target="_blank" 
+        target="_blank"
         rel="noopener noreferrer"
         class="botao-whatsapp"
       >
         <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
         <span>Atendimento</span>
       </a>
-      <a 
-        href="https://www.bigcorestintas.com.br/" 
-        target="_blank" 
+      <a
+        href="https://www.bigcorestintas.com.br/"
+        target="_blank"
         rel="noopener noreferrer"
         class="botao-loja"
       >
         Nossa loja
       </a>
+      
+      <button 
+        class="header__hamburger" 
+        @click="toggleMobileMenu"
+        :class="{ 'is-active': isMobileMenuOpen }"
+        aria-label="Abrir menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <div 
+    class="mobile-menu"
+    :class="{ 'is-open': isMobileMenuOpen }"
+  >
+    <nav>
+      <NuxtLink 
+        v-for="link in navLinks" 
+        :key="link.path" 
+        :to="link.path"
+        @click="toggleMobileMenu" >
+        {{ link.text }}
+      </NuxtLink>
+    </nav>
+  </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import logo from "~/assets/images/logoCompleta.svg";
 import whatsappIcon from "~/assets/images/whatsappIcone.png";
 
+const router = useRouter();
+const route = useRoute();
+
 defineProps({
   navLinks: {
-    type: Array, 
+    type: Array,
     required: true,
-    default: () => [] 
-  }
+    default: () => [],
+  },
 });
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth' 
-  });
-}
+  router.push(route.path);
+};
+
+// --- Lógica do Menu Mobile Adicionada ---
+const isMobileMenuOpen = ref(false);
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+// --- Fim da Lógica ---
 </script>
 
 <style scoped>
@@ -78,11 +110,20 @@ const scrollToTop = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
+
 .header__logo img {
   height: 40px;
 }
+
+.header__menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 nav a {
   position: relative;
   color: var(--cor-branco);
@@ -93,6 +134,7 @@ nav a {
   padding: 0 10px 6px 0;
   font-family: var(--font-secundaria);
 }
+
 nav a::after {
   content: "";
   position: absolute;
@@ -103,14 +145,17 @@ nav a::after {
   background: var(--cor-laranja);
   transition: width 0.3s ease-in-out;
 }
+
 nav a:hover::after {
   width: 90%;
 }
+
 .header__botoes {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
+
 .botao-whatsapp {
   position: relative;
   display: flex;
@@ -122,22 +167,14 @@ nav a:hover::after {
   font-weight: var(--bold);
   font-size: var(--f2);
   padding: 0.5rem 1rem;
-}
-.botao-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
   border-radius: 5px;
-  color: var(--cor-branco);
-  text-decoration: none;
-  font-weight: var(--bold);
-  font-size: var(--f2);
 }
+
 .botao-whatsapp span {
   position: relative;
-  padding-bottom: 5px; 
+  padding-bottom: 5px;
 }
+
 .botao-whatsapp span::after {
   content: '';
   position: absolute;
@@ -148,12 +185,15 @@ nav a:hover::after {
   background: var(--cor-verde);
   transition: width 0.3s ease-in-out;
 }
+
 .botao-whatsapp:hover span::after {
-  width: 100%; 
+  width: 100%;
 }
+
 .botao-whatsapp img {
   width: 24px;
 }
+
 .botao-loja {
   background: var(--cor-azul-bb);
   color: var(--cor-azul-escuro);
@@ -163,11 +203,13 @@ nav a:hover::after {
   font-weight: var(--bold);
   font-size: var(--f2);
   transition: background-color 0.3s;
-  margin-left: 16px;
+  margin-left: 6px;
 }
+
 .botao-loja:hover {
   background-color: var(--cor-azul-escuro);
   border: solid 1px var(--cor-azul-bb);
   color: var(--cor-branco-escuro);
 }
+
 </style>

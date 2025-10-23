@@ -1,8 +1,6 @@
 <template>
   <section class="lojas-section">
     <div class="seletor-wrapper">
-
-      <!-- Ícone anterior -->
       <div class="nav-icon-wrapper prev-icon" @click="prevSlide">
         <Transition name="fade" mode="out-in">
           <img
@@ -14,25 +12,21 @@
         </Transition>
       </div>
 
-      <!-- Card principal -->
       <div class="slide-card-wrapper">
         <div class="slide-card">
           <div class="slide-content">
-
-            <!-- Ícone central com setas -->
             <Transition :name="transitionNameIcon" mode="out-in">
               <div class="slide-icon-cluster" :key="currentLoja.title">
-                <div class="nav-arrow" @click="prevSlide">&lt;</div>
+                <div class="nav-arrow" @click="prevSlide"><</div>
                 <img
                   :src="currentLoja.image"
                   :alt="currentLoja.title"
                   class="slide-icon-main"
                 />
-                <div class="nav-arrow" @click="nextSlide">&gt;</div>
+                <div class="nav-arrow" @click="nextSlide">></div>
               </div>
             </Transition>
 
-            <!-- Texto e botões -->
             <Transition :name="transitionNameText" mode="out-in">
               <div class="slide-text" :key="currentLoja.title">
                 <h3 class="slide-title">{{ currentLoja.title }}</h3>
@@ -67,12 +61,10 @@
                 </div>
               </div>
             </Transition>
-
           </div>
         </div>
       </div>
 
-      <!-- Ícone próximo -->
       <div class="nav-icon-wrapper next-icon" @click="nextSlide">
         <Transition name="fade" mode="out-in">
           <img
@@ -83,13 +75,13 @@
           />
         </Transition>
       </div>
-
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { useLinkState } from '~/composables/useLinkState'
 
 import matrizImg from '~/assets/images/filia1Loja.png'
 import filial1Img from '~/assets/images/filia1Loja.png'
@@ -98,75 +90,91 @@ import filial3Img from '~/assets/images/filia3Loja.png'
 import filial4Img from '~/assets/images/filia4Loja.png'
 import filial5Img from '~/assets/images/filia5Loja.png'
 import filial6Img from '~/assets/images/filia6Loja.png'
-
 import localIcone from '~/assets/images/local2Icone.png'
 import whatsappIcone from '~/assets/images/whatsappIcone.png'
 
-// URL base do Google Maps para buscas
-const mapsBaseUrl = 'https://www.google.com/maps/search/?api=1&query='
-// URL base do WhatsApp
-const whatsappBaseUrl = 'https://wa.me/5541992433140' // (Usei o número dos seus outros componentes)
+const { setPageLinks } = useLinkState()
 
-const lojas = ref([
- {
- title: 'MATRIZ',
- address: 'Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210',
- image: matrizImg,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}Rua+Almirante+Alexandrino,+1823,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-210`,
- whatsappLink: whatsappBaseUrl
- },
- {
- title: 'FILIAL I',
- address: 'Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540',
- image: filial1Img,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}Rua+Joinville,+2767,+S%C3%A3o+Pedro+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83020-540`,
- whatsappLink: whatsappBaseUrl
- },
- {
- title: 'FILIAL II',
- address: 'Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000',
- image: filial2Img,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}Av.+Senador+Salgado+Filho,+6367,+Uberaba+-+Curitiba+-+PR,+81580-000`,
- whatsappLink: whatsappBaseUrl
- },
- {
- title: 'FILIAL III',
- address: 'Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350',
- image: filial3Img,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}Av.+Rui+Barbosa,+5820,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-350`,
- whatsappLink: whatsappBaseUrl
- },
-{
- title: 'FILIAL IV',
- address: 'R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170',
- image: filial4Img,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}R.+Pastor+Carlos+Frank,+617+(esquina+com+S%C3%ADtio+Cercado),+Boqueir%C3%A3o+-+Curitiba+-+PR,+81650-170`,
- whatsappLink: whatsappBaseUrl
- },
- {
- title: 'FILIAL V',
- address: 'Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000',
- image: filial5Img,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}Av.+Wenceslau+Braz,+2510,+Lindoia+-+Curitiba+-+PR,+81010-000`,
- whatsappLink: whatsappBaseUrl
- },
- {
- title: 'FILIAL VI',
- address: 'Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000',
- image: filial6Img,
-    // --- CORRIGIDO ---
- googleMapsLink: `${mapsBaseUrl}Rodovia+da+Uva,+1184,+Ro%C3%A7a+Grande+-+Colombo+-+PR,+83402-000`,
- whatsappLink: whatsappBaseUrl
- }
+const linksDaPagina = ref([
+  { text: 'Sobre Nós', path: '/sobre-nos' },
+  { text: 'Atendimento ao cliente', path: '/atendimento' },
+  { text: 'Atendimento a emrpesa', path: '/construtora' }
 ])
 
-// (O resto do seu script continua exatamente igual)
+onMounted(() => {
+  nextTick(() => {
+    setPageLinks({
+      nav: linksDaPagina.value,
+      atalhos: linksDaPagina.value,
+      info: [],
+      atendimento: []
+    })
+  })
+})
+
+onUnmounted(() => {
+  setPageLinks({ nav: [], atalhos: [], info: [], atendimento: [] })
+})
+
+const mapsBaseUrl = 'https://www.google.com/maps/search/?api=1&query='
+const whatsappBaseUrl = 'https://wa.me/5541992433140'
+
+const lojas = ref([
+  {
+    title: 'MATRIZ',
+    address:
+      'Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210',
+    image: matrizImg,
+    googleMapsLink: `${mapsBaseUrl}Rua+Almirante+Alexandrino,+1823,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-210`,
+    whatsappLink: whatsappBaseUrl
+  },
+  {
+    title: 'FILIAL I',
+    address:
+      'Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540',
+    image: filial1Img,
+    googleMapsLink: `${mapsBaseUrl}Rua+Joinville,+2767,+S%C3%A3o+Pedro+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83020-540`,
+    whatsappLink: whatsappBaseUrl
+  },
+  {
+    title: 'FILIAL II',
+    address:
+      'Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000',
+    image: filial2Img,
+    googleMapsLink: `${mapsBaseUrl}Av.+Senador+Salgado+Filho,+6367,+Uberaba+-+Curitiba+-+PR,+81580-000`,
+    whatsappLink: whatsappBaseUrl
+  },
+  {
+    title: 'FILIAL III',
+    address:
+      'Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350',
+    image: filial3Img,
+    googleMapsLink: `${mapsBaseUrl}Av.+Rui+Barbosa,+5820,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-350`,
+    whatsappLink: whatsappBaseUrl
+  },
+  {
+    title: 'FILIAL IV',
+    address:
+      'R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170',
+    image: filial4Img,
+    googleMapsLink: `${mapsBaseUrl}R.+Pastor+Carlos+Frank,+617+(esquina+com+S%C3%ADtio+Cercado),+Boqueir%C3%A3o+-+Curitiba+-+PR,+81650-170`,
+    whatsappLink: whatsappBaseUrl
+  },
+  {
+    title: 'FILIAL V',
+    address: 'Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000',
+    image: filial5Img,
+    googleMapsLink: `${mapsBaseUrl}Av.+Wenceslau+Braz,+2510,+Lindoia+-+Curitiba+-+PR,+81010-000`,
+    whatsappLink: whatsappBaseUrl
+  },
+  {
+    title: 'FILIAL VI',
+    address: 'Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000',
+    image: filial6Img,
+    googleMapsLink: `${mapsBaseUrl}Rodovia+da+Uva,+1184,+Ro%C3%A7a+Grande+-+Colombo+-+PR,+83402-000`,
+    whatsappLink: whatsappBaseUrl
+  }
+])
 
 const currentIndex = ref(0)
 const totalLojas = lojas.value.length
@@ -175,27 +183,27 @@ const transitionNameIcon = ref('icon-next')
 const transitionNameText = ref('text-next')
 
 const nextSlide = () => {
- transitionNameIcon.value = 'icon-next'
- transitionNameText.value = 'text-next'
- currentIndex.value = (currentIndex.value + 1) % totalLojas
+  transitionNameIcon.value = 'icon-next'
+  transitionNameText.value = 'text-next'
+  currentIndex.value = (currentIndex.value + 1) % totalLojas
 }
 
 const prevSlide = () => {
- transitionNameIcon.value = 'icon-prev'
- transitionNameText.value = 'text-prev'
- currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas
+  transitionNameIcon.value = 'icon-prev'
+  transitionNameText.value = 'text-prev'
+  currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas
 }
 
 const currentLoja = computed(() => lojas.value[currentIndex.value])
 
 const prevLoja = computed(() => {
- const nextIndex = (currentIndex.value + 1) % totalLojas
- return lojas.value[nextIndex]
+  const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas
+  return lojas.value[prevIndex]
 })
 
 const nextLoja = computed(() => {
- const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas
- return lojas.value[prevIndex]
+  const nextIndex = (currentIndex.value + 1) % totalLojas
+  return lojas.value[nextIndex]
 })
 </script>
 
@@ -214,7 +222,7 @@ const nextLoja = computed(() => {
   align-items: center;
   gap: 20px;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 64px auto;
 }
 
 .nav-icon-wrapper {
@@ -342,7 +350,6 @@ const nextLoja = computed(() => {
   object-fit: contain;
 }
 
-/* === ANIMAÇÕES === */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.4s ease-in-out;
@@ -352,7 +359,6 @@ const nextLoja = computed(() => {
   opacity: 0;
 }
 
-/* Ícones */
 .icon-next-enter-active,
 .icon-next-leave-active,
 .icon-prev-enter-active,
@@ -376,7 +382,6 @@ const nextLoja = computed(() => {
   transform: translateX(-60px) scale(0.9);
 }
 
-/* Texto */
 .text-next-enter-active,
 .text-next-leave-active,
 .text-prev-enter-active,
