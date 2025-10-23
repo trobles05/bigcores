@@ -155,4 +155,94 @@ import iconSolucoes from '~/assets/images/palhetaIcone.png';
   color: var(--cor-cinza-escuro); /* Cor do texto da print */
   line-height: 1.5;
 }
+
+@media (max-width: 1000px) {
+  /* 1. Ajusta o padding da seção */
+  .porque-escolher-section {
+    padding: 4rem 1.5rem; /* Menos padding lateral */
+  }
+
+  /* 2. Ajusta as fontes do header */
+  .section-header h2 {
+    font-size: var(--f4);
+  }
+  .section-header p {
+    font-size: var(--f2);
+  }
+
+  /* 3. Ajusta o grid para telas menores */
+  .content-grid {
+    /* Mantém o grid de 2 colunas, mas reduz o 'gap' central */
+    gap: 2rem; 
+  }
+
+  /* 4. Ajusta o gap vertical entre os cards */
+  .grid-column {
+    gap: 2rem; /* Reduz o espaço vertical */
+  }
+
+  /* 5. AJUSTA AS LINHAS LARANJAS HORIZONTAIS */
+  .benefit-card::before {
+    /* A linha deve ter metade do 'gap' do .content-grid */
+    width: 1rem; /* Metade de 2rem */
+  }
+  .grid-column:first-child .benefit-card::before {
+    /* O 'right' deve ser igual à largura da linha */
+    right: -1rem;
+  }
+  .grid-column:last-child .benefit-card::before {
+    /* O 'left' deve ser igual à largura da linha */
+    left: -1rem;
+  }
+  
+  /* 6. Ajusta o padding e fontes dos cards */
+  .benefit-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  .card-icon {
+    height: 28px;
+    margin-bottom: 0.5rem;
+  }
+  .benefit-card h4 {
+    font-size: var(--f2);
+  }
+  .benefit-card p {
+    font-size: var(--f1);
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 320px) {
+  /* 1. Ajusta o padding para telas bem pequenas */
+  .porque-escolher-section {
+    padding: 3rem 1rem;
+  }
+
+  /* 2. Desativa o layout de grid e vira uma coluna */
+  .content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Espaço entre os cards empilhados */
+  }
+
+  /* 3. ESCONDE TODAS AS LINHAS LARANJAS */
+
+  /* Esconde a linha vertical central */
+  .content-grid::before {
+    display: none;
+  }
+
+  /* Esconde as linhas horizontais de cada card */
+  .benefit-card::before {
+    display: none;
+  }
+  
+  /* 4. Centraliza o conteúdo dos cards */
+  .benefit-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+}
+
 </style>

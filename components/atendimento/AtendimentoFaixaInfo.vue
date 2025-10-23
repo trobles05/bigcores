@@ -207,6 +207,7 @@ onUnmounted(() => {
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   max-width: 100%;
+
 }
 
 .stats-card {
@@ -344,5 +345,88 @@ onUnmounted(() => {
   90%  { height: 0; background-color: #CD0A1A; }
   91.5%, 93.5% { height: 80px; background-color: #CD0A1A; }
   95%, 100% { height: 0; background-color: #CD0A1A; }
+}
+
+@media (max-width: 1200px) {
+  /* 1. Transforma o stats-wrapper em um carrossel horizontal */
+  .stats-wrapper {
+    display: flex; /* Muda de grid para flex */
+    overflow-x: auto; /* Habilita o scroll horizontal */
+    scroll-behavior: smooth;
+    cursor: grab;
+    user-select: none; /* Melhora a experiência de "arrastar" */
+    gap: 20px; /* Espaçamento entre os cards */
+
+    /* * AJUSTE DA MARGEM/PADDING:
+     * O padding do .wrapper-section no desktop é 160px.
+     * Usamos -160px de margem para "puxar" o scroll para as bordas.
+     * Usamos 160px de padding (left/right) para "empurrar" 
+     * o primeiro card de volta ao alinhamento.
+    */
+    margin: 0 10px; 
+    padding: 1.5rem 10px; /* 1.5rem top/bottom, 160px left/right */
+
+    /* Esconde a barra de scroll */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Esconde a barra de scroll no Chrome, Safari, etc. */
+  .stats-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 2. Ajusta os cards de estatísticas para o carrossel */
+  .stats-card {
+    flex-shrink: 0; /* Impede que os cards encolham */
+    width: 180px; /* Define uma largura fixa */
+    max-width: none; /* Remove o max-width do desktop */
+    justify-self: auto; /* Remove a propriedade de grid */
+    padding: 1.5rem;
+  }
+
+  .stats-label {
+    font-size: var(--f1); /* Fonte menor para caber */
+  }
+}
+
+/*
+* ===============================================
+* @MEDIA QUERY PARA RESPONSIVO (1000px)
+* ===============================================
+*/
+@media (max-width: 1000px) {
+  /* 1. Ajusta o padding principal da seção */
+  .wrapper-section {
+    padding: 4rem 1.5rem; /* Padding horizontal passa a ser 1.5rem */
+  }
+
+  /* 2. Empilha os cards de informação */
+  .info-wrapper {
+    grid-template-columns: 1fr; /* Muda de 2 colunas para 1 */
+    gap: 20px;
+  }
+
+  /* 3. Ajusta o padding e fontes dos info-cards */
+  .info-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .info-title {
+    font-size: var(--f3); /* Reduz um pouco a fonte do título */
+  }
+
+  .info-subtitle {
+    font-size: var(--f1); /* Garante que o subtítulo seja legível */
+  }
+
+  /* 4. Ajusta o carrossel para o novo padding */
+  .stats-wrapper {
+    /* * AQUI ESTÁ A CORREÇÃO PRINCIPAL:
+     * 1. REMOVIDO o 'justify-content: center;' que causava o bug.
+     * 2. Ajustado o margin/padding para o novo padding da tela (1.5rem).
+    */
+    margin: 0 -1.5rem;  /* Puxa para as bordas (1.5rem) */
+    padding: 1.5rem;     /* Empurra o conteúdo de volta (1.5rem em todos os lados) */
+  }
 }
 </style>

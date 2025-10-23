@@ -290,4 +290,58 @@ const nextItem = computed(() => {
   transform: translateX(-40px);
 }
 
+@media (max-width: 1000px) {
+  .categorias-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .seletor-wrapper {
+    display: block;
+  }
+
+  .nav-icon-wrapper.prev-icon,
+  .nav-icon-wrapper.next-icon {
+    display: none; 
+  }
+
+  .slide-card-wrapper {
+    grid-column: auto;
+    max-width: 100%;
+  }
+
+  .slide-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .slide-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .slide-text {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide-icon-main {
+    width: 180px;
+  }
+
+  .slide-icon-cluster {
+    gap: 1.5rem;
+  }
+
+  .slide-title {
+    font-size: var(--f4);
+  }
+
+  .slide-description {
+    font-size: var(--f2);
+  }
+
+  .slide-button {
+    font-size: var(--f2);
+  }
+}
 </style>

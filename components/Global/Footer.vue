@@ -3,22 +3,24 @@
     <section class="cta-section">
       <div class="container cta-content">
         <h2>NÃO PAGUE MAIS POR TINTAS DE QUALIDADE!</h2>
-        <p>Solicite agora mesmo seu orçamento com desconto especial para profissionais.</p>
-        <a 
-        href="https://wa.me/5541992433140?text=Tudo%20bem?%20No%20que%20posso%20ajudar%20você"
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="cta-button"
-      >
-        <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
-        <span>Fale com um atendente</span>
-      </a>
+        <p>
+          Solicite agora mesmo seu orçamento com desconto especial para
+          profissionais.
+        </p>
+        <a
+          href="https://wa.me/5541992433140?text=Tudo%20bem?%20No%20que%20posso%20ajudar%20você"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-button"
+        >
+          <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
+          <span>Fale com um atendente</span>
+        </a>
       </div>
     </section>
 
     <footer id="contato" class="footer">
       <div class="container footer-grid">
-        
         <div class="footer-column">
           <img :src="logo" alt="Big Cores Tintas" class="footer-logo" />
           <div class="social-icons">
@@ -44,7 +46,12 @@
           <ul>
             <li v-for="link in informacoesLinks" :key="link.path">
               <template v-if="isExternal(link.path)">
-                <a :href="link.path" target="_blank" rel="noopener noreferrer">{{ link.text }}</a>
+                <a
+                  :href="link.path"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >{{ link.text }}</a
+                >
               </template>
               <template v-else>
                 <NuxtLink :to="link.path">{{ link.text }}</NuxtLink>
@@ -64,7 +71,10 @@
       </div>
 
       <div class="footer-copyright">
-        <p>Copyright © 2025 Big Cores Tintas CNPJ 04.281.757/0001-90 - Todos os Direitos Reservados.</p>
+        <p>
+          Copyright © 2025 Big Cores Tintas CNPJ 04.281.757/0001-90 - Todos os
+          Direitos Reservados.
+        </p>
       </div>
     </footer>
   </div>
@@ -72,36 +82,36 @@
 
 <script setup>
 // Imports de imagens (iguais)
-import logo from '~/assets/images/logoCompleta.svg';
-import whatsappIcon from '~/assets/images/whatsappIcone.png';
-import instagramIcon from '~/assets/images/instagramIcone.png';
-import facebookIcon from '~/assets/images/facebookIcone.png';
+import logo from "~/assets/images/logoCompleta.svg";
+import whatsappIcon from "~/assets/images/whatsappIcone.png";
+import instagramIcon from "~/assets/images/instagramIcone.png";
+import facebookIcon from "~/assets/images/facebookIcone.png";
 
 // 1. Definição das PROPS para os links
 defineProps({
   atalhosLinks: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   informacoesLinks: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
   atendimentoLinks: {
     type: Array,
-    default: () => []
-  }
+    default: () => [],
+  },
 });
 
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: "smooth",
   });
-}
+};
 
 // Detecta se um caminho é externo (URL absoluta)
-const isExternal = (path) => /^https?:\/\//.test(path)
+const isExternal = (path) => /^https?:\/\//.test(path);
 </script>
 
 <style scoped>
@@ -113,7 +123,7 @@ const isExternal = (path) => /^https?:\/\//.test(path)
   text-align: center;
   padding: 8rem 1rem 4rem 1rem;
   margin-top: -5vw;
-  clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%)
+  clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
 }
 
 .cta-content h2 {
@@ -155,7 +165,7 @@ const isExternal = (path) => /^https?:\/\//.test(path)
 .footer {
   background-color: var(--cor-azul-escuro);
   color: var(--cor-cinza-claro);
-  padding: 120px 120px 10px 120px;
+  padding: 120px;
   border-top: 1px solid var(--cor-cinza-claro);
 }
 
@@ -195,12 +205,11 @@ const isExternal = (path) => /^https?:\/\//.test(path)
   text-decoration: none;
   transition: color 0.2s ease-in-out;
   padding-bottom: 4px;
-  /* Adicionado cursor pointer para o <a> do Voltar ao Topo */
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .footer-column ul a::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   bottom: 0;
@@ -237,5 +246,15 @@ const isExternal = (path) => /^https?:\/\//.test(path)
   padding: 1rem;
   font-size: var(--f0);
   border-top: 1px solid var(--cor-branco-escuro);
+}
+
+@media (max-width: 1400px) {
+  .footer {
+    padding: 60px ;
+  }
+
+  .footer-copyright {
+    line-height: 1.8;
+  }
 }
 </style>

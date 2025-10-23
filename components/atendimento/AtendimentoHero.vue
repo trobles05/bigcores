@@ -39,7 +39,6 @@ import whatsappIcone from '~/assets/images/whatsappIcone.png';
 import logisticaIcone from '~/assets/images/logistica2Icone.png';
 </script>
 
-
 <style scoped>
 .hero-section {
   width: 100%;
@@ -52,7 +51,7 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
   width: 100%;
   aspect-ratio: 1200 / 600;
   border-radius: 26px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .hero-image {
@@ -76,22 +75,21 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
   height: 100%;
   padding: 5%;
   color: var(--cor-branco);
-  max-width: 70%;
+  max-width: 700px;
   box-sizing: border-box;
 }
 
 .hero-title {
-  font-size: clamp(2rem, var(--f5), 4vw);
+  font-size:  var(--f5);
   font-weight: var(--bold);
   margin-bottom: 28px;
   line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, var(--f3), 1.5vw);
+  font-size:  var(--f3);
   line-height: 1.6;
   margin-bottom: 36px;
-  max-width: 800px;
   opacity: 0.95;
 }
 
@@ -122,11 +120,9 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
 }
 
 .bottom-banner {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
   border-radius: 26px;
   background-color: var(--cor-azul-escuro);
   color: var(--cor-branco);
@@ -134,9 +130,10 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  z-index: 2;
+  gap: 0.5rem;
   box-sizing: border-box;
+  z-index: 2;
+  text-align: center;
 }
 
 .logistica-icon {
@@ -151,22 +148,74 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
 
 @media (max-width: 1000px) {
   .hero-section {
-    padding: 2rem;
-    margin-top: 70px;
+    padding: 2rem 1.5rem; 
+    margin-top: 30px; 
   }
 
   .hero-container {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
+    overflow: visible; 
+  }
+
+  .hero-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    border-radius: 20px; /* Arredonda o overlay */
+    z-index: 1; 
+  }
+
+  .hero-image {
+    border-radius: 20px; 
   }
   
   .hero-content {
     max-width: 100%;
     align-items: center;
     text-align: center;
+    padding: 8% 5%; 
+  }
+
+  .hero-title {
+    font-size: var(--f4);
+    line-height: 1.3;
+    margin-bottom: 1rem; 
+  }
+
+  .hero-subtitle {
+    font-size: var(--f1);
+    line-height: 1.5;
+    margin-bottom: 1rem; 
+  }
+
+  .hero-button {
+    padding: 12px 20px;
+    font-size: var(--f1); 
   }
 
   .bottom-banner {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
     width: 90%;
+    padding: 0.8rem 1rem;
+    border-radius: 20px;
+    bottom: -30px; 
+  }
+
+  .bottom-banner span {
+    font-size: var(--f1); 
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .logistica-icon {
+    width: 24px;
   }
 }
 </style>

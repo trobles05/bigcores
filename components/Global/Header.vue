@@ -211,5 +211,130 @@ nav a:hover::after {
   border: solid 1px var(--cor-azul-bb);
   color: var(--cor-branco-escuro);
 }
+.header__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
 
+.header__hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--cor-branco);
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.header__hamburger.is-active span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+.header__hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+.header__hamburger.is-active span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none; 
+  position: fixed;
+  top: 70px; 
+  left: 0;
+  width: 100%;
+  height: 100% ;
+  background-color: var(--cor-azul-escuro);
+  z-index: 1000;
+  padding: 2rem;
+  box-sizing: border-box;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.mobile-menu nav a {
+  font-size: var(--f4); 
+  font-weight: var(--bold);
+  color: var(--cor-branco);
+  text-decoration: none;
+  padding: 10px 0;
+}
+.mobile-menu nav a:hover {
+  color: var(--cor-laranja);
+}
+
+@media (max-width: 1400px) {
+
+  nav a {
+  margin-left: 4px;
+  font-size: var(--f2);
+}
+
+  .botao-whatsapp span {
+    display: none;
+  }
+
+  .botao-whatsapp {
+    gap: 0;
+    padding: 0.5rem; 
+  }
+  
+  .botao-whatsapp span::after {
+    display: none;
+  }
+  .botao-whatsapp:hover span::after {
+    width: 0;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  .header__menu {
+    display: none;
+  }
+  .header__hamburger {
+    display: flex;
+  }
+  
+  .mobile-menu {
+    display: block;
+  }
+
+  .botao-whatsapp span {
+    display: none; 
+  }
+
+  .botao-whatsapp {
+    gap: 0;
+    padding: 0.5rem;
+  }
+  
+  .botao-whatsapp span::after {
+    display: none;
+  }
+  .botao-whatsapp:hover span::after {
+    width: 0;
+  }
+}
 </style>
