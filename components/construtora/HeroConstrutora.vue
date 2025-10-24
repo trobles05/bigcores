@@ -149,44 +149,44 @@ import whatsappIcon from "~/assets/images/whatsappIcone.png";
 }
 @media (max-width: 1000px) {
   .hero-section {
-    padding: 4rem 1.5rem; 
-    margin-top: 30px; 
+    padding: 4rem 1.5rem;
+    margin-top: 30px;
   }
 
   .hero-container {
     aspect-ratio: 4 / 3;
-    overflow: hidden; 
+    overflow: hidden;
   }
 
   .hero-image {
-    border-radius: 20px; 
+    border-radius: 20px;
   }
-  
+
   .hero-content {
     max-width: 100%;
     align-items: center;
     text-align: center;
-    padding: 8% 5%; 
+    padding: 8% 5%;
   }
 
   .hero-title {
     font-size: var(--f2);
     line-height: 1.3;
-    margin-bottom: 6px; 
+    margin-bottom: 6px;
   }
 
   .hero-subtitle {
     font-size: var(--f1);
     line-height: 1.5;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
   }
 
   .hero-button {
     padding: 8px 12px;
-    font-size: var(--f1); 
+    font-size: var(--f1);
     justify-content: center;
   }
-  .whatsapp-icon{
+  .whatsapp-icon {
     width: 18px;
   }
 }

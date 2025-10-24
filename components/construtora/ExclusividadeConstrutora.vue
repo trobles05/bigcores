@@ -76,7 +76,6 @@ const cards = [
   },
 ];
 
-// comportamento de "arrastar para rolar"
 const scrollContainer = ref(null);
 let isDown = false;
 let startX;
@@ -92,7 +91,7 @@ function onDrag(e) {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX || e.touches[0].pageX;
-  const walk = (x - startX) * 1.2; 
+  const walk = (x - startX) * 1.2;
   scrollContainer.value.scrollLeft = scrollLeft - walk;
 }
 
@@ -110,7 +109,7 @@ function stopDrag() {
 
 .container {
   max-width: 1200px;
-  margin: 0 120px ;
+  margin: 0 120px;
   text-align: left;
 }
 
@@ -201,54 +200,56 @@ function stopDrag() {
   line-height: 1.6;
 }
 
-@media (max-width: 1000px) {
-  /* 1. Remove a margem lateral de 120px do container */
-  .container {
-    margin: 0 1.5rem;
-    padding: 0; /* Garante que não haja padding extra */
+@media (hover: none) {
+  .exclusividade-card:hover {
+    transform: none;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
   }
 
-  /* 2. Ajusta o título */
+  .exclusividade-scroll {
+    cursor: default;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    margin: 0 1.5rem;
+    padding: 0;
+  }
+
   .section-titulo {
     font-size: var(--f4);
   }
 
-  /* 3. Ajusta o carrossel */
   .exclusividade-scroll {
-    /* Remove a margem esquerda de 120px e adiciona padding */
     margin-left: 0;
-    padding: 2rem 1.5rem; /* Padding para ver o início e fim */
+    padding: 2rem 1.5rem;
     gap: 20px;
   }
 
-  /* 4. Faz os cards ocuparem mais espaço */
   .exclusividade-card {
-    flex: 0 0 80%; /* Card ocupa 80% da tela */
+    flex: 0 0 80%;
   }
 }
 
 @media (max-width: 480px) {
-  /* 1. Ajusta o container para telas mínimas */
   .container {
     margin: 0 1rem;
   }
-  
-  /* 2. Aplica a propriedade de coluna do outro componente */
+
   .exclusividade-scroll {
-    flex-direction: column; /* Empilha os cards */
-    align-items: center;  /* Centraliza os cards na vertical */
-    overflow-x: hidden;   /* Desliga o scroll horizontal */
-    cursor: default;      /* Remove o cursor 'grab' */
-    
-    padding: 2rem 0; /* Padding vertical, sem horizontal */
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    cursor: default;
+
+    padding: 2rem 0;
     gap: 1.5rem;
   }
 
-  /* 3. Ajusta o card para o layout vertical */
   .exclusividade-card {
-    flex-basis: auto; /* Reseta o tamanho flex */
-    width: 90%;     /* O card ocupa 90% da largura do container */
+    flex-basis: auto;
+    width: 90%;
   }
-
 }
 </style>

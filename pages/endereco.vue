@@ -80,26 +80,26 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
-import { useLinkState } from '~/composables/useLinkState'
+import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
+import { useLinkState } from "~/composables/useLinkState";
 
-import matrizImg from '~/assets/images/filia1Loja.png'
-import filial1Img from '~/assets/images/filia1Loja.png'
-import filial2Img from '~/assets/images/filia2Loja.png'
-import filial3Img from '~/assets/images/filia3Loja.png'
-import filial4Img from '~/assets/images/filia4Loja.png'
-import filial5Img from '~/assets/images/filia5Loja.png'
-import filial6Img from '~/assets/images/filia6Loja.png'
-import localIcone from '~/assets/images/local2Icone.png'
-import whatsappIcone from '~/assets/images/whatsappIcone.png'
+import matrizImg from "~/assets/images/matrizLoja.png";
+import filial1Img from "~/assets/images/filia1Loja.png";
+import filial2Img from "~/assets/images/filia2Loja.png";
+import filial3Img from "~/assets/images/filia3Loja.png";
+import filial4Img from "~/assets/images/filia4Loja.png";
+import filial5Img from "~/assets/images/filia5Loja.png";
+import filial6Img from "~/assets/images/filia6Loja.png";
+import localIcone from "~/assets/images/local2Icone.png";
+import whatsappIcone from "~/assets/images/whatsappIcone.png";
 
-const { setPageLinks } = useLinkState()
+const { setPageLinks } = useLinkState();
 
 const linksDaPagina = ref([
-  { text: 'Sobre Nós', path: '/sobre-nos' },
-  { text: 'Atendimento ao cliente', path: '/atendimento' },
-  { text: 'Atendimento a emrpesa', path: '/construtora' }
-])
+  { text: "Sobre Nós", path: "/sobre-nos" },
+  { text: "Atendimento ao cliente", path: "/atendimento" },
+  { text: "Atendimento a emrpesa", path: "/construtora" },
+]);
 
 onMounted(() => {
   nextTick(() => {
@@ -107,104 +107,104 @@ onMounted(() => {
       nav: linksDaPagina.value,
       atalhos: linksDaPagina.value,
       info: [],
-      atendimento: []
-    })
-  })
-})
+      atendimento: [],
+    });
+  });
+});
 
 onUnmounted(() => {
-  setPageLinks({ nav: [], atalhos: [], info: [], atendimento: [] })
-})
+  setPageLinks({ nav: [], atalhos: [], info: [], atendimento: [] });
+});
 
-const mapsBaseUrl = 'https://www.google.com/maps/search/?api=1&query='
-const whatsappBaseUrl = 'https://wa.me/5541992433140'
+const mapsBaseUrl = "https://www.google.com/maps/search/?api=1&query=";
+const whatsappBaseUrl = "https://wa.me/5541992433140";
 
 const lojas = ref([
   {
-    title: 'MATRIZ',
+    title: "MATRIZ",
     address:
-      'Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210',
+      "Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210",
     image: matrizImg,
     googleMapsLink: `${mapsBaseUrl}Rua+Almirante+Alexandrino,+1823,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-210`,
-    whatsappLink: whatsappBaseUrl
+    whatsappLink: whatsappBaseUrl,
   },
   {
-    title: 'FILIAL I',
+    title: "FILIAL I",
     address:
-      'Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540',
+      "Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540",
     image: filial1Img,
     googleMapsLink: `${mapsBaseUrl}Rua+Joinville,+2767,+S%C3%A3o+Pedro+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83020-540`,
-    whatsappLink: whatsappBaseUrl
+    whatsappLink: whatsappBaseUrl,
   },
   {
-    title: 'FILIAL II',
+    title: "FILIAL II",
     address:
-      'Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000',
+      "Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000",
     image: filial2Img,
     googleMapsLink: `${mapsBaseUrl}Av.+Senador+Salgado+Filho,+6367,+Uberaba+-+Curitiba+-+PR,+81580-000`,
-    whatsappLink: whatsappBaseUrl
+    whatsappLink: whatsappBaseUrl,
   },
   {
-    title: 'FILIAL III',
+    title: "FILIAL III",
     address:
-      'Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350',
+      "Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350",
     image: filial3Img,
     googleMapsLink: `${mapsBaseUrl}Av.+Rui+Barbosa,+5820,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-350`,
-    whatsappLink: whatsappBaseUrl
+    whatsappLink: whatsappBaseUrl,
   },
   {
-    title: 'FILIAL IV',
+    title: "FILIAL IV",
     address:
-      'R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170',
+      "R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170",
     image: filial4Img,
     googleMapsLink: `${mapsBaseUrl}R.+Pastor+Carlos+Frank,+617+(esquina+com+S%C3%ADtio+Cercado),+Boqueir%C3%A3o+-+Curitiba+-+PR,+81650-170`,
-    whatsappLink: whatsappBaseUrl
+    whatsappLink: whatsappBaseUrl,
   },
   {
-    title: 'FILIAL V',
-    address: 'Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000',
+    title: "FILIAL V",
+    address: "Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000",
     image: filial5Img,
     googleMapsLink: `${mapsBaseUrl}Av.+Wenceslau+Braz,+2510,+Lindoia+-+Curitiba+-+PR,+81010-000`,
-    whatsappLink: whatsappBaseUrl
+    whatsappLink: whatsappBaseUrl,
   },
   {
-    title: 'FILIAL VI',
-    address: 'Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000',
+    title: "FILIAL VI",
+    address: "Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000",
     image: filial6Img,
     googleMapsLink: `${mapsBaseUrl}Rodovia+da+Uva,+1184,+Ro%C3%A7a+Grande+-+Colombo+-+PR,+83402-000`,
-    whatsappLink: whatsappBaseUrl
-  }
-])
+    whatsappLink: whatsappBaseUrl,
+  },
+]);
 
-const currentIndex = ref(0)
-const totalLojas = lojas.value.length
+const currentIndex = ref(0);
+const totalLojas = lojas.value.length;
 
-const transitionNameIcon = ref('icon-next')
-const transitionNameText = ref('text-next')
+const transitionNameIcon = ref("icon-next");
+const transitionNameText = ref("text-next");
 
 const nextSlide = () => {
-  transitionNameIcon.value = 'icon-next'
-  transitionNameText.value = 'text-next'
-  currentIndex.value = (currentIndex.value + 1) % totalLojas
-}
+  transitionNameIcon.value = "icon-next";
+  transitionNameText.value = "text-next";
+  currentIndex.value = (currentIndex.value + 1) % totalLojas;
+};
 
 const prevSlide = () => {
-  transitionNameIcon.value = 'icon-prev'
-  transitionNameText.value = 'text-prev'
-  currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas
-}
+  transitionNameIcon.value = "icon-prev";
+  transitionNameText.value = "text-prev";
+  currentIndex.value = (currentIndex.value - 1 + totalLojas) % totalLojas;
+};
 
-const currentLoja = computed(() => lojas.value[currentIndex.value])
+const currentLoja = computed(() => lojas.value[currentIndex.value]);
 
 const prevLoja = computed(() => {
-  const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas
-  return lojas.value[prevIndex]
-})
+  const prevIndex = (currentIndex.value - 1 + totalLojas) % totalLojas;
+  return lojas.value[prevIndex];
+});
 
 const nextLoja = computed(() => {
-  const nextIndex = (currentIndex.value + 1) % totalLojas
-  return lojas.value[nextIndex]
-})
+  const nextIndex = (currentIndex.value + 1) % totalLojas;
+  return lojas.value[nextIndex];
+});
 </script>
 
 <style scoped>
@@ -255,7 +255,7 @@ const nextLoja = computed(() => {
 }
 
 .slide-card {
-  background: #ffffff;
+  background: var(--cor-branco);
   border-radius: 26px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   padding: 2.5rem 2rem;
@@ -267,7 +267,7 @@ const nextLoja = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6rem;
+  gap: 4rem;
 }
 
 .slide-icon-cluster {
@@ -403,5 +403,79 @@ const nextLoja = computed(() => {
 .text-prev-leave-to {
   opacity: 0;
   transform: translateX(-40px);
+}
+@media (max-width: 1000px) {
+  .lojas-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .seletor-wrapper {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .nav-icon-wrapper.prev-icon,
+  .nav-icon-wrapper.next-icon {
+    display: none;
+  }
+
+  .slide-card-wrapper {
+    grid-column: auto;
+    max-width: 100%;
+  }
+
+  .slide-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .slide-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .slide-icon-cluster {
+    gap: 0.5rem;
+  }
+
+  .slide-text {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide-icon-main {
+    width: 70%;
+  }
+
+  .slide-title {
+    font-size: var(--f4);
+  }
+
+  .slide-description {
+    font-size: var(--f2);
+  }
+
+  .button-group {
+    justify-content: center;
+  }
+
+  .slide-button {
+    font-size: var(--f2);
+  }
+  .text-next-enter-from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  .text-next-leave-to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  .text-prev-enter-from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  .text-prev-leave-to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
 }
 </style>

@@ -4,7 +4,7 @@
 
     <NuxtPage />
 
-    <Footer 
+    <Footer
       :atalhosLinks="atalhosLinks"
       :informacoesLinks="informacoesLinks"
       :atendimentoLinks="atendimentoLinks"
@@ -13,9 +13,10 @@
 </template>
 
 <script setup>
-import { useLinkState } from '~/composables/useLinkState'
-import Header from '~/components/global/Header.vue'
-import Footer from '~/components/global/Footer.vue'
+import { useLinkState } from "~/composables/useLinkState";
+import Header from "~/components/global/Header.vue";
+import Footer from "~/components/global/Footer.vue";
 
-const { navLinks, atalhosLinks, informacoesLinks, atendimentoLinks } = useLinkState()
+const { navLinks, atalhosLinks, informacoesLinks, atendimentoLinks } =
+  useLinkState();
 </script>

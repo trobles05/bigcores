@@ -1,95 +1,110 @@
 <template>
   <section class="categorias-section">
     <div class="seletor-wrapper">
-
       <div class="nav-icon-wrapper prev-icon" @click="prevSlide">
         <Transition name="fade" mode="out-in">
-          <img :src="prevItem.icon" :key="prevItem.title" alt="Categoria anterior" />
+          <img
+            :src="prevItem.icon"
+            :key="prevItem.title"
+            alt="Categoria anterior"
+          />
         </Transition>
       </div>
 
       <div class="slide-card-wrapper">
         <div class="slide-card">
           <div class="slide-content">
-            
             <Transition :name="transitionNameIcon" mode="out-in">
               <div class="slide-icon-cluster" :key="currentItem.title">
                 <div class="nav-arrow" @click="prevSlide">&lt;</div>
-                <img :src="currentItem.icon" :alt="currentItem.title" class="slide-icon-main" />
+                <img
+                  :src="currentItem.icon"
+                  :alt="currentItem.title"
+                  class="slide-icon-main"
+                />
                 <div class="nav-arrow" @click="nextSlide">&gt;</div>
               </div>
             </Transition>
-            
+
             <Transition :name="transitionNameText" mode="out-in">
               <div class="slide-text" :key="currentItem.title">
                 <h3 class="slide-title">{{ currentItem.title }}</h3>
                 <p class="slide-description">{{ currentItem.description }}</p>
-                <NuxtLink :to="currentItem.link"  target="_blank" class="slide-button">Ver Produto</NuxtLink>
+                <NuxtLink
+                  :to="currentItem.link"
+                  target="_blank"
+                  class="slide-button"
+                  >Ver Produto</NuxtLink
+                >
               </div>
             </Transition>
-
           </div>
         </div>
       </div>
 
       <div class="nav-icon-wrapper next-icon" @click="nextSlide">
         <Transition name="fade" mode="out-in">
-          <img :src="nextItem.icon" :key="nextItem.title" alt="Próxima categoria" />
+          <img
+            :src="nextItem.icon"
+            :key="nextItem.title"
+            alt="Próxima categoria"
+          />
         </Transition>
       </div>
-
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
-import casaIcone from '~/assets/images/homeIcone.svg';
-import carroIcone from '~/assets/images/carIcone.svg';
-import fabricaIcone from '~/assets/images/industriaIcone.svg';
+import casaIcone from "~/assets/images/homeIcone.svg";
+import carroIcone from "~/assets/images/carIcone.svg";
+import fabricaIcone from "~/assets/images/industriaIcone.svg";
 
 const slides = ref([
   {
-    title: 'Linha Residencial',
-    description: 'Ampla variedade de tintas para ambientes internos e externos, incluindo opções decorativas e impermeabilizantes.',
+    title: "Linha Residencial",
+    description:
+      "Ampla variedade de tintas para ambientes internos e externos, incluindo opções decorativas e impermeabilizantes.",
     icon: casaIcone,
-    link: 'https://www.bigcorestintas.com.br/categorias/tintas-17399234'
+    link: "https://www.bigcorestintas.com.br/categorias/tintas-17399234",
   },
   {
-    title: 'Linha Automotivo',
-    description: 'Linha dedicada para o seu veículo, com produtos para preparação, pintura e polimento de alta qualidade.',
+    title: "Linha Automotivo",
+    description:
+      "Linha dedicada para o seu veículo, com produtos para preparação, pintura e polimento de alta qualidade.",
     icon: carroIcone,
-    link: 'https://www.bigcorestintas.com.br/prod,catid,383738,tintas-automotivas'
+    link: "https://www.bigcorestintas.com.br/prod,catid,383738,tintas-automotivas",
   },
   {
-    title: 'Linha Industrial',
-    description: 'Soluções técnicas de alto desempenho para a proteção contra corrosão de superfícies industriais e frotas.',
+    title: "Linha Industrial",
+    description:
+      "Soluções técnicas de alto desempenho para a proteção contra corrosão de superfícies industriais e frotas.",
     icon: fabricaIcone,
-    link: '/industrial'
-  }
+    link: "/industrial",
+  },
 ]);
 
 const currentIndex = ref(0);
 const totalSlides = slides.value.length;
 
-const transitionNameIcon = ref('icon-next');
-const transitionNameText = ref('text-next');
+const transitionNameIcon = ref("icon-next");
+const transitionNameText = ref("text-next");
 
 const nextSlide = () => {
-  transitionNameIcon.value = 'icon-next';
-  transitionNameText.value = 'text-next';
+  transitionNameIcon.value = "icon-next";
+  transitionNameText.value = "text-next";
   currentIndex.value = (currentIndex.value + 1) % totalSlides;
 };
 const prevSlide = () => {
-  transitionNameIcon.value = 'icon-prev';
-  transitionNameText.value = 'text-prev';
+  transitionNameIcon.value = "icon-prev";
+  transitionNameText.value = "text-prev";
   currentIndex.value = (currentIndex.value - 1 + totalSlides) % totalSlides;
 };
 
 const currentItem = computed(() => slides.value[currentIndex.value]);
 
-// 🔧 Correção da lógica dos ícones laterais
 const prevItem = computed(() => {
   const nextIndex = (currentIndex.value + 1) % totalSlides;
   return slides.value[nextIndex];
@@ -134,16 +149,16 @@ const nextItem = computed(() => {
   object-fit: contain;
 }
 .prev-icon {
-  justify-self: end; 
+  justify-self: end;
 }
 .next-icon {
-  display: none; 
+  display: none;
 }
 
 .slide-card-wrapper {
   grid-column: 2 / 3;
   width: 100%;
-  max-width: 1140px; 
+  max-width: 1140px;
 }
 
 .slide-card {
@@ -153,14 +168,14 @@ const nextItem = computed(() => {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   padding: 2.5rem 2rem;
   box-sizing: border-box;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .slide-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:16rem;
+  gap: 16rem;
 }
 
 .slide-icon-cluster {
@@ -191,7 +206,7 @@ const nextItem = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  text-align: left; 
+  text-align: left;
   max-width: 60%;
 }
 
@@ -220,12 +235,11 @@ const nextItem = computed(() => {
   transition: background-color 0.3s;
 }
 .slide-button:hover {
-  background-color: #ff8000; 
+  background-color: #ff8000;
   transform: translateY(-1.5px);
-  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.3); 
+  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.3);
 }
 
-/* --- ANIMAÇÕES  --- */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.4s ease-in-out;
@@ -235,7 +249,6 @@ const nextItem = computed(() => {
   opacity: 0;
 }
 
-/* --- ÍCONES --- */
 .icon-next-enter-active,
 .icon-next-leave-active,
 .icon-prev-enter-active,
@@ -243,7 +256,6 @@ const nextItem = computed(() => {
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Quando clica pra direita → tudo desliza pra direita */
 .icon-next-enter-from {
   opacity: 0;
   transform: translateX(-60px) scale(0.9);
@@ -253,7 +265,6 @@ const nextItem = computed(() => {
   transform: translateX(60px) scale(0.9);
 }
 
-/* Quando clica pra esquerda → tudo desliza pra esquerda */
 .icon-prev-enter-from {
   opacity: 0;
   transform: translateX(60px) scale(0.9);
@@ -263,7 +274,6 @@ const nextItem = computed(() => {
   transform: translateX(-60px) scale(0.9);
 }
 
-/* --- TEXTO --- */
 .text-next-enter-active,
 .text-next-leave-active,
 .text-prev-enter-active,
@@ -271,7 +281,6 @@ const nextItem = computed(() => {
   transition: all 0.45s ease-in-out;
 }
 
-/* Movimento acompanha o botão clicado */
 .text-next-enter-from {
   opacity: 0;
   transform: translateX(-40px);
@@ -301,7 +310,7 @@ const nextItem = computed(() => {
 
   .nav-icon-wrapper.prev-icon,
   .nav-icon-wrapper.next-icon {
-    display: none; 
+    display: none;
   }
 
   .slide-card-wrapper {
@@ -342,6 +351,22 @@ const nextItem = computed(() => {
 
   .slide-button {
     font-size: var(--f2);
+  }
+  .text-next-enter-from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  .text-next-leave-to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  .text-prev-enter-from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  .text-prev-leave-to {
+    opacity: 0;
+    transform: translateX(40px);
   }
 }
 </style>

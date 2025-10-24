@@ -81,13 +81,11 @@
 </template>
 
 <script setup>
-// Imports de imagens (iguais)
 import logo from "~/assets/images/logoCompleta.svg";
 import whatsappIcon from "~/assets/images/whatsappIcone.png";
 import instagramIcon from "~/assets/images/instagramIcone.png";
 import facebookIcon from "~/assets/images/facebookIcone.png";
 
-// 1. Definição das PROPS para os links
 defineProps({
   atalhosLinks: {
     type: Array,
@@ -110,7 +108,6 @@ const scrollToTop = () => {
   });
 };
 
-// Detecta se um caminho é externo (URL absoluta)
 const isExternal = (path) => /^https?:\/\//.test(path);
 </script>
 
@@ -250,20 +247,17 @@ const isExternal = (path) => /^https?:\/\//.test(path);
 
 @media (max-width: 1400px) {
   .footer {
-    padding: 60px ;
+    padding: 60px;
   }
 
   .footer-copyright {
     line-height: 1.8;
   }
 
-
-@media (max-width: 600px){
-  .cta-section {
-  margin-top: -12vw;
-}
-}
-
-
+  @media (max-width: 600px) {
+    .cta-section {
+      margin-top: -12vw;
+    }
+  }
 }
 </style>

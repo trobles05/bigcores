@@ -32,9 +32,9 @@
       >
         Nossa loja
       </a>
-      
-      <button 
-        class="header__hamburger" 
+
+      <button
+        class="header__hamburger"
         @click="toggleMobileMenu"
         :class="{ 'is-active': isMobileMenuOpen }"
         aria-label="Abrir menu"
@@ -46,16 +46,14 @@
     </div>
   </header>
 
-  <div 
-    class="mobile-menu"
-    :class="{ 'is-open': isMobileMenuOpen }"
-  >
+  <div class="mobile-menu" :class="{ 'is-open': isMobileMenuOpen }">
     <nav>
-      <NuxtLink 
-        v-for="link in navLinks" 
-        :key="link.path" 
+      <NuxtLink
+        v-for="link in navLinks"
+        :key="link.path"
         :to="link.path"
-        @click="toggleMobileMenu" >
+        @click="toggleMobileMenu"
+      >
         {{ link.text }}
       </NuxtLink>
     </nav>
@@ -80,18 +78,16 @@ defineProps({
 });
 
 const scrollToTop = () => {
-  router.push(route.path);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  isMobileMenuOpen.value = false;
 };
 
-// --- Lógica do Menu Mobile Adicionada ---
 const isMobileMenuOpen = ref(false);
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
-// --- Fim da Lógica ---
 </script>
-
 <style scoped>
 .header__logo a {
   cursor: pointer;
@@ -176,7 +172,7 @@ nav a:hover::after {
 }
 
 .botao-whatsapp span::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -244,14 +240,14 @@ nav a:hover::after {
 }
 
 .mobile-menu {
-  display: none; 
+  display: none;
   position: fixed;
-  top: 70px; 
+  top: 70px;
   left: 0;
   width: 100%;
-  height: 100% ;
+  height: 100%;
   background-color: var(--cor-azul-escuro);
-  z-index: 1000;
+  z-index: 999;
   padding: 2rem;
   box-sizing: border-box;
   transform: translateX(100%);
@@ -270,7 +266,7 @@ nav a:hover::after {
 }
 
 .mobile-menu nav a {
-  font-size: var(--f4); 
+  font-size: var(--f4);
   font-weight: var(--bold);
   color: var(--cor-branco);
   text-decoration: none;
@@ -281,11 +277,10 @@ nav a:hover::after {
 }
 
 @media (max-width: 1400px) {
-
   nav a {
-  margin-left: 4px;
-  font-size: var(--f2);
-}
+    margin-left: 4px;
+    font-size: var(--f2);
+  }
 
   .botao-whatsapp span {
     display: none;
@@ -293,9 +288,9 @@ nav a:hover::after {
 
   .botao-whatsapp {
     gap: 0;
-    padding: 0.5rem; 
+    padding: 0.5rem;
   }
-  
+
   .botao-whatsapp span::after {
     display: none;
   }
@@ -303,7 +298,6 @@ nav a:hover::after {
     width: 0;
   }
 }
-
 
 @media (max-width: 1000px) {
   .header {
@@ -316,20 +310,20 @@ nav a:hover::after {
   .header__hamburger {
     display: flex;
   }
-  
+
   .mobile-menu {
     display: block;
   }
 
   .botao-whatsapp span {
-    display: none; 
+    display: none;
   }
 
   .botao-whatsapp {
     gap: 0;
     padding: 0.5rem;
   }
-  
+
   .botao-whatsapp span::after {
     display: none;
   }

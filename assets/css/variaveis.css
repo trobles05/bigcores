@@ -8,6 +8,7 @@
   --cor-azul-bb: #ABC3F8;
   --cor-laranja: #FF6B00;
   --cor-vermelho: #CD0A1A;
+  --cor-cinza: #8c8c8c;
   --cor-cinza-claro: #F5F5F5;
   --cor-cinza-escuro: #333333;
   --cor-verde: #00BB2D; 
@@ -15,11 +16,11 @@
   
   --degrade-azul: linear-gradient(
     to right,
-    #0E556B 6%,
+    var(--cor-azul-marinho) 6%,
     #37B5DB 42%,
     #68DCFF 50%,
     #058DB6 68%,
-    #0E556B 87%
+    var(--cor-azul-marinho) 87%
   );
 
   --font-principal: "Poppins", Arial, sans-serif;

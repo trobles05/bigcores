@@ -1,42 +1,52 @@
 <template>
   <section class="hero-section">
     <div class="hero-container">
-      <img 
-        :src="bannerLoja" 
+      <img
+        :src="bannerLoja"
         alt="Interior da loja de tintas Big Cores"
         class="hero-image"
       />
       <div class="hero-content">
         <h1 class="hero-title">Fale com um Especialista</h1>
         <p class="hero-subtitle">
-          Tem dúvidas sobre qual produto usar ou quer solicitar um
-          orçamento detalhado? Entre em contato conosco. Será um
-          prazer ajudar a sua construtora a economizar com
-          qualidade.
+          Tem dúvidas sobre qual produto usar ou quer solicitar um orçamento
+          detalhado? Entre em contato conosco. Será um prazer ajudar a sua
+          construtora a economizar com qualidade.
         </p>
-        <a 
+        <a
           href="https://wa.me/5541992433140?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista."
-          target="_blank" 
+          target="_blank"
           rel="noopener noreferrer"
           class="hero-button"
         >
-          <img :src="whatsappIcone" alt="Ícone do WhatsApp" class="whatsapp-icon" />
+          <img
+            :src="whatsappIcone"
+            alt="Ícone do WhatsApp"
+            class="whatsapp-icon"
+          />
           Solicitar Orçamento
         </a>
       </div>
-      
+
       <div class="bottom-banner">
-        <img :src="logisticaIcone" alt="Ícone de logística" class="logistica-icon" />
-        <span>Moradores de Curitiba e RM - Frete grátis a partir de R$ 100,00!</span>
+        <img
+          :src="logisticaIcone"
+          alt="Ícone de logística"
+          class="logistica-icon"
+        />
+        <span
+          >Moradores de Curitiba e RM - Frete grátis a partir de R$
+          100,00!</span
+        >
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import bannerLoja from '~/assets/images/bannerLoja.png';
-import whatsappIcone from '~/assets/images/whatsappIcone.png';
-import logisticaIcone from '~/assets/images/logistica2Icone.png';
+import bannerLoja from "~/assets/images/bannerLoja.png";
+import whatsappIcone from "~/assets/images/whatsappIcone.png";
+import logisticaIcone from "~/assets/images/logistica2Icone.png";
 </script>
 
 <style scoped>
@@ -80,14 +90,14 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
 }
 
 .hero-title {
-  font-size:  var(--f5);
+  font-size: var(--f5);
   font-weight: var(--bold);
   margin-bottom: 28px;
   line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size:  var(--f3);
+  font-size: var(--f3);
   line-height: 1.6;
   margin-bottom: 36px;
   opacity: 0.95;
@@ -148,46 +158,45 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
 
 @media (max-width: 1000px) {
   .hero-section {
-    padding: 2rem 1.5rem; 
-    margin-top: 30px; 
+    padding: 2rem 1.5rem;
+    margin-top: 30px;
   }
 
   .hero-container {
     aspect-ratio: 4 / 3;
-    overflow: visible; 
+    overflow: visible;
   }
-
 
   .hero-image {
-    border-radius: 20px; 
+    border-radius: 20px;
   }
-  
+
   .hero-content {
     max-width: 100%;
     align-items: center;
     text-align: center;
-    padding: 8% 5%; 
+    padding: 8% 5%;
   }
 
   .hero-title {
     font-size: var(--f4);
     line-height: 1.3;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
   }
 
   .hero-subtitle {
     font-size: var(--f1);
     line-height: 1.5;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
   }
 
   .hero-button {
     padding: 10px 16px;
-    font-size: var(--f1); 
+    font-size: var(--f1);
     justify-content: center;
   }
-  
-  .whatsapp-icon{
+
+  .whatsapp-icon {
     width: 18px;
   }
 
@@ -199,11 +208,11 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
     width: 90%;
     padding: 0.8rem 1rem;
     border-radius: 20px;
-    bottom: -30px; 
+    bottom: -30px;
   }
 
   .bottom-banner span {
-    font-size: var(--f1); 
+    font-size: var(--f1);
     text-align: center;
     line-height: 1.4;
   }
@@ -219,36 +228,21 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
     margin-top: 20px;
   }
 
-  /* --- CORREÇÃO PRINCIPAL AQUI --- */
   .hero-container {
-    /* O container se torna o card azul */
     background-color: var(--cor-azul-escuro);
     border-radius: 16px;
-    padding: 1.5rem 1rem; /* Adiciona o padding aqui */
-    
-    /* Reseta o aspect-ratio para a altura ser automática */
-    aspect-ratio: auto; 
-    overflow: visible; /* Garante que o banner de baixo apareça */
-  }
-
-  /* Esconde os elementos que não precisamos mais */
-  .hero-container::before,
-  .hero-image {
-    display: none;
+    padding: 1.5rem 1rem;
+    aspect-ratio: auto;
+    overflow: visible;
   }
 
   .hero-content {
-    /* Reseta o padding (foi para o container) */
-    padding: 0; 
-    /* Reseta a altura para ser automática */
-    height: auto; 
-    
-    /* Mantém a centralização */
+    padding: 0;
+    height: auto;
     max-width: 100%;
     align-items: center;
     text-align: center;
   }
-  /* --- FIM DA CORREÇÃO --- */
 
   .hero-title {
     font-size: 1.25rem;
@@ -275,7 +269,6 @@ import logisticaIcone from '~/assets/images/logistica2Icone.png';
     width: 16px;
   }
 
-  /* O banner de baixo continua funcionando */
   .bottom-banner {
     width: 92%;
     padding: 0.625rem 0.75rem;

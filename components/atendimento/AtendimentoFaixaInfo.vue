@@ -10,7 +10,7 @@
           </p>
         </div>
       </div>
-      
+
       <div class="info-card paint-card">
         <div class="paint-icon-wrapper">
           <img
@@ -42,7 +42,10 @@
         <p class="stats-label">Clientes satisfeitos</p>
       </div>
       <div class="stats-card">
-        <p class="stats-number">Mais de <br> <span class="orange">{{ formattedCores }}</span></p>
+        <p class="stats-number">
+          Mais de <br />
+          <span class="orange">{{ formattedCores }}</span>
+        </p>
         <p class="stats-label">Variedades de cor</p>
       </div>
       <div class="stats-card">
@@ -50,7 +53,9 @@
         <p class="stats-label">Lojas físicas</p>
       </div>
       <div class="stats-card">
-        <p class="stats-number">Mais de <span class="orange">{{ formattedAnos }} anos</span></p>
+        <p class="stats-number">
+          Mais de <span class="orange">{{ formattedAnos }} anos</span>
+        </p>
         <p class="stats-label">No mercado</p>
       </div>
     </div>
@@ -58,9 +63,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue';
-import presenteIcone from '~/assets/images/presenteIcone.png';
-import rolotintaIcone from '~/assets/images/rolotintaIcone.svg';
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import presenteIcone from "~/assets/images/presenteIcone.png";
+import rolotintaIcone from "~/assets/images/rolotintaIcone.svg";
 
 const statsSectionRef = ref(null);
 
@@ -69,8 +74,12 @@ const cores = ref(0);
 const lojas = ref(0);
 const anos = ref(0);
 
-const formattedClientes = computed(() => Math.round(clientes.value).toLocaleString('pt-BR'));
-const formattedCores = computed(() => Math.round(cores.value).toLocaleString('pt-BR'));
+const formattedClientes = computed(() =>
+  Math.round(clientes.value).toLocaleString("pt-BR")
+);
+const formattedCores = computed(() =>
+  Math.round(cores.value).toLocaleString("pt-BR")
+);
 const formattedLojas = computed(() => Math.round(lojas.value));
 const formattedAnos = computed(() => Math.round(anos.value));
 
@@ -82,16 +91,16 @@ function animateCount(targetRef, targetValue, duration = 2000) {
     if (!startTimestamp) startTimestamp = timestamp;
     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
     const easedProgress = easeOutCubic(progress);
-    
+
     targetRef.value = easedProgress * targetValue;
-    
+
     if (progress < 1) {
       requestAnimationFrame(step);
     } else {
       targetRef.value = targetValue;
     }
   };
-  
+
   requestAnimationFrame(step);
 }
 
@@ -207,7 +216,6 @@ onUnmounted(() => {
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   max-width: 100%;
-
 }
 
 .stats-card {
@@ -251,9 +259,9 @@ onUnmounted(() => {
 
 .paint-icon-wrapper {
   position: relative;
-  flex-shrink: 0; 
+  flex-shrink: 0;
   width: 48px;
-  height: 128px; 
+  height: 128px;
   display: flex;
   align-items: flex-start;
 }
@@ -270,10 +278,10 @@ onUnmounted(() => {
 }
 
 .paint-icon-wrapper::before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
-  top: 24px; 
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
   width: 60px;
@@ -282,151 +290,299 @@ onUnmounted(() => {
 }
 
 @keyframes roller-move-down {
-  0%   { transform: translateY(0); }
-  1.5%, 3.5% { transform: translateY(80px); }
-  5%   { transform: translateY(0); }
-  10%  { transform: translateY(0); }
-  11.5%, 13.5% { transform: translateY(80px); }
-  15%  { transform: translateY(0); }
-  20%  { transform: translateY(0); }
-  21.5%, 23.5% { transform: translateY(80px); }
-  25%  { transform: translateY(0); }
-  30%  { transform: translateY(0); }
-  31.5%, 33.5% { transform: translateY(80px); }
-  35%  { transform: translateY(0); }
-  40%  { transform: translateY(0); }
-  41.5%, 43.5% { transform: translateY(80px); }
-  45%  { transform: translateY(0); }
-  50%  { transform: translateY(0); }
-  51.5%, 53.5% { transform: translateY(80px); }
-  55%  { transform: translateY(0); }
-  60%  { transform: translateY(0); }
-  61.5%, 63.5% { transform: translateY(80px); }
-  65%  { transform: translateY(0); }
-  70%  { transform: translateY(0); }
-  71.5%, 73.5% { transform: translateY(80px); }
-  75%  { transform: translateY(0); }
-  80%  { transform: translateY(0); }
-  81.5%, 83.5% { transform: translateY(80px); }
-  85%  { transform: translateY(0); }
-  90%  { transform: translateY(0); }
-  91.5%, 93.5% { transform: translateY(80px); }
-  95%, 100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  1.5%,
+  3.5% {
+    transform: translateY(80px);
+  }
+  5% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(0);
+  }
+  11.5%,
+  13.5% {
+    transform: translateY(80px);
+  }
+  15% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(0);
+  }
+  21.5%,
+  23.5% {
+    transform: translateY(80px);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  31.5%,
+  33.5% {
+    transform: translateY(80px);
+  }
+  35% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  41.5%,
+  43.5% {
+    transform: translateY(80px);
+  }
+  45% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  51.5%,
+  53.5% {
+    transform: translateY(80px);
+  }
+  55% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  61.5%,
+  63.5% {
+    transform: translateY(80px);
+  }
+  65% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(0);
+  }
+  71.5%,
+  73.5% {
+    transform: translateY(80px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(0);
+  }
+  81.5%,
+  83.5% {
+    transform: translateY(80px);
+  }
+  85% {
+    transform: translateY(0);
+  }
+  90% {
+    transform: translateY(0);
+  }
+  91.5%,
+  93.5% {
+    transform: translateY(80px);
+  }
+  95%,
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes paint-stripe-grow {
-  0%   { height: 0; background-color: #223359; }
-  1.5%, 3.5% { height: 80px; background-color: #223359; }
-  5%   { height: 0; background-color: #223359; }
-  10%  { height: 0; background-color: #0069AE; }
-  11.5%, 13.5% { height: 80px; background-color: #0069AE; }
-  15%  { height: 0; background-color: #0069AE; }
-  20%  { height: 0; background-color: #058DB6; }
-  21.5%, 23.5% { height: 80px; background-color: #058DB6; }
-  25%  { height: 0; background-color: #058DB6; }
-  30%  { height: 0; background-color: #FF6B00; }
-  31.5%, 33.5% { height: 80px; background-color: #FF6B00; }
-  35%  { height: 0; background-color: #FF6B00; }
-  40%  { height: 0; background-color: #32A98B; }
-  41.5%, 43.5% { height: 80px; background-color: #32A98B; }
-  45%  { height: 0; background-color: #32A98B; }
-  50%  { height: 0; background-color: #75BA41; }
-  51.5%, 53.5% { height: 80px; background-color: #75BA41; }
-  55%  { height: 0; background-color: #75BA41; }
-  60%  { height: 0; background-color: #A5C60D; }
-  61.5%, 63.5% { height: 80px; background-color: #A5C60D; }
-  65%  { height: 0; background-color: #A5C60D; }
-  70%  { height: 0; background-color: #FFEC00; }
-  71.5%, 73.5% { height: 80px; background-color: #FFEC00; }
-  75%  { height: 0; background-color: #FFEC00; }
-  80%  { height: 0; background-color: #F8A400; }
-  81.5%, 83.5% { height: 80px; background-color: #F8A400; }
-  85%  { height: 0; background-color: #F8A400; }
-  90%  { height: 0; background-color: #CD0A1A; }
-  91.5%, 93.5% { height: 80px; background-color: #CD0A1A; }
-  95%, 100% { height: 0; background-color: #CD0A1A; }
+  0% {
+    height: 0;
+    background-color: #223359;
+  }
+  1.5%,
+  3.5% {
+    height: 80px;
+    background-color: #223359;
+  }
+  5% {
+    height: 0;
+    background-color: #223359;
+  }
+  10% {
+    height: 0;
+    background-color: #0069ae;
+  }
+  11.5%,
+  13.5% {
+    height: 80px;
+    background-color: #0069ae;
+  }
+  15% {
+    height: 0;
+    background-color: #0069ae;
+  }
+  20% {
+    height: 0;
+    background-color: #058db6;
+  }
+  21.5%,
+  23.5% {
+    height: 80px;
+    background-color: #058db6;
+  }
+  25% {
+    height: 0;
+    background-color: #058db6;
+  }
+  30% {
+    height: 0;
+    background-color: #ff6b00;
+  }
+  31.5%,
+  33.5% {
+    height: 80px;
+    background-color: #ff6b00;
+  }
+  35% {
+    height: 0;
+    background-color: #ff6b00;
+  }
+  40% {
+    height: 0;
+    background-color: #32a98b;
+  }
+  41.5%,
+  43.5% {
+    height: 80px;
+    background-color: #32a98b;
+  }
+  45% {
+    height: 0;
+    background-color: #32a98b;
+  }
+  50% {
+    height: 0;
+    background-color: #75ba41;
+  }
+  51.5%,
+  53.5% {
+    height: 80px;
+    background-color: #75ba41;
+  }
+  55% {
+    height: 0;
+    background-color: #75ba41;
+  }
+  60% {
+    height: 0;
+    background-color: #a5c60d;
+  }
+  61.5%,
+  63.5% {
+    height: 80px;
+    background-color: #a5c60d;
+  }
+  65% {
+    height: 0;
+    background-color: #a5c60d;
+  }
+  70% {
+    height: 0;
+    background-color: #ffec00;
+  }
+  71.5%,
+  73.5% {
+    height: 80px;
+    background-color: #ffec00;
+  }
+  75% {
+    height: 0;
+    background-color: #ffec00;
+  }
+  80% {
+    height: 0;
+    background-color: #f8a400;
+  }
+  81.5%,
+  83.5% {
+    height: 80px;
+    background-color: #f8a400;
+  }
+  85% {
+    height: 0;
+    background-color: #f8a400;
+  }
+  90% {
+    height: 0;
+    background-color: #cd0a1a;
+  }
+  91.5%,
+  93.5% {
+    height: 80px;
+    background-color: #cd0a1a;
+  }
+  95%,
+  100% {
+    height: 0;
+    background-color: #cd0a1a;
+  }
 }
 
 @media (max-width: 1200px) {
-  /* 1. Transforma o stats-wrapper em um carrossel horizontal */
   .stats-wrapper {
-    display: flex; /* Muda de grid para flex */
-    overflow-x: auto; /* Habilita o scroll horizontal */
+    display: flex;
+    overflow-x: auto;
     scroll-behavior: smooth;
     cursor: grab;
-    user-select: none; /* Melhora a experiência de "arrastar" */
-    gap: 20px; /* Espaçamento entre os cards */
+    user-select: none;
+    gap: 20px;
 
-    /* * AJUSTE DA MARGEM/PADDING:
-     * O padding do .wrapper-section no desktop é 160px.
-     * Usamos -160px de margem para "puxar" o scroll para as bordas.
-     * Usamos 160px de padding (left/right) para "empurrar" 
-     * o primeiro card de volta ao alinhamento.
-    */
-    margin: 0 10px; 
-    padding: 1.5rem 10px; /* 1.5rem top/bottom, 160px left/right */
-
-    /* Esconde a barra de scroll */
-    scrollbar-width: none; /* Firefox */
+    margin: 0 10px;
+    padding: 1.5rem 10px;
+    scrollbar-width: none;
   }
 
-  /* Esconde a barra de scroll no Chrome, Safari, etc. */
   .stats-wrapper::-webkit-scrollbar {
     display: none;
   }
 
-  /* 2. Ajusta os cards de estatísticas para o carrossel */
   .stats-card {
-    flex-shrink: 0; /* Impede que os cards encolham */
-    width: 180px; /* Define uma largura fixa */
-    max-width: none; /* Remove o max-width do desktop */
-    justify-self: auto; /* Remove a propriedade de grid */
+    flex-shrink: 0;
+    width: 180px;
+    max-width: none;
+    justify-self: auto;
     padding: 1.5rem;
   }
 
   .stats-label {
-    font-size: var(--f1); /* Fonte menor para caber */
+    font-size: var(--f1);
   }
 }
 
-/*
-* ===============================================
-* @MEDIA QUERY PARA RESPONSIVO (1000px)
-* ===============================================
-*/
 @media (max-width: 1000px) {
-  /* 1. Ajusta o padding principal da seção */
   .wrapper-section {
-    padding: 4rem 1.5rem; /* Padding horizontal passa a ser 1.5rem */
+    padding: 4rem 1.5rem;
   }
 
-  /* 2. Empilha os cards de informação */
   .info-wrapper {
-    grid-template-columns: 1fr; /* Muda de 2 colunas para 1 */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  /* 3. Ajusta o padding e fontes dos info-cards */
   .info-card {
     padding: 2.5rem 1.5rem;
   }
 
   .info-title {
-    font-size: var(--f3); /* Reduz um pouco a fonte do título */
+    font-size: var(--f3);
   }
 
   .info-subtitle {
-    font-size: var(--f1); /* Garante que o subtítulo seja legível */
+    font-size: var(--f1);
   }
 
-  /* 4. Ajusta o carrossel para o novo padding */
   .stats-wrapper {
-    /* * AQUI ESTÁ A CORREÇÃO PRINCIPAL:
-     * 1. REMOVIDO o 'justify-content: center;' que causava o bug.
-     * 2. Ajustado o margin/padding para o novo padding da tela (1.5rem).
-    */
-    margin: 0 -1.5rem;  /* Puxa para as bordas (1.5rem) */
-    padding: 1.5rem;     /* Empurra o conteúdo de volta (1.5rem em todos os lados) */
+    margin: 0 -1.5rem;
+    padding: 1.5rem;
   }
 }
 </style>
