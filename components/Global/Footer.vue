@@ -266,4 +266,19 @@ const isExternal = (path) => /^https?:\/\//.test(path);
     }
   }
 }
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .cta-button:hover {
+    transform: none;
+  }
+  
+  .footer-column ul a:hover {
+    color: var(--cor-cinza-claro);
+  }
+  
+  .footer-column ul a:hover::after {
+    width: 0;
+  }
+}
 </style>

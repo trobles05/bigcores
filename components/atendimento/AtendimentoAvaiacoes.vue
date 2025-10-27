@@ -517,4 +517,17 @@ onUnmounted(() => {
     font-size: 2.25rem;
   }
 }
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .star-rating-input label:hover,
+  .star-rating-input label:hover ~ label {
+    color: #d1d5db;
+  }
+  
+  .submit-btn:hover {
+    background: var(--cor-laranja);
+    transform: none;
+  }
+}
 </style>

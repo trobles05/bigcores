@@ -11,7 +11,7 @@
       <div class="hero-content">
         <h1 class="hero-title animate-fade-in-up">Quem Somos</h1>
         <p class="hero-subtitle animate-fade-in-up delay-2">
-          Mais de 28 anos colorindo histórias
+          Mais de 30 anos colorindo histórias
         </p>
         <div class="hero-line animate-fade-in-up delay-3"></div>
       </div>
@@ -40,7 +40,7 @@
                 especializadas no segmento imobiliário, automotivo e industrial.
               </p>
               <p>
-                Ao longo desses mais de 28 anos, nos orgulhamos de ter
+                Ao longo desses mais de 30 anos, nos orgulhamos de ter
                 construído uma história pautada na
                 <strong class="highlight-text"
                   >ética, responsabilidade e respeito</strong
@@ -303,7 +303,7 @@ const animateCounters = () => {
     step++;
     const progress = step / steps;
     counters.value = {
-      anos: Math.floor(28 * progress),
+      anos: Math.floor(30 * progress),
       lojas: Math.floor(7 * progress),
       clientes: Math.floor(100000 * progress),
     };
@@ -979,7 +979,8 @@ onUnmounted(() => {
   }
 }
 
-@media (hover: none) {
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
   .visual-card:hover {
     transform: rotate(0);
   }

@@ -18,7 +18,6 @@ const linksDeInformacoesEstaticos = [
     text: "Segurança",
     path: "https://www.bigcorestintas.com.br/help.ehc#Seguranca",
   },
-  { text: "Quem somos", path: "/quem-somos" },
 ];
 
 const linksDeAtendimentoEstaticos = [

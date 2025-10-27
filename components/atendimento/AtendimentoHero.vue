@@ -14,7 +14,7 @@
           construtora a economizar com qualidade.
         </p>
         <a
-          href="https://wa.me/5541992433140?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista."
+          href="https://wa.me/554192433140?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista."
           target="_blank"
           rel="noopener noreferrer"
           class="hero-button"
@@ -284,6 +284,15 @@ import logisticaIcone from "~/assets/images/logistica2Icone.png";
 
   .logistica-icon {
     width: 20px;
+  }
+}
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .hero-button:hover {
+    background-color: var(--cor-verde);
+    transform: none;
+    box-shadow: none;
   }
 }
 </style>

@@ -585,4 +585,11 @@ onUnmounted(() => {
     padding: 1.5rem;
   }
 }
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .info-subtitle .link-loja:hover {
+    opacity: 1;
+  }
+}
 </style>

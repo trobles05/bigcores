@@ -123,55 +123,55 @@ const lojas = ref([
   {
     title: "MATRIZ",
     address:
-      "Rua Almirante Alexandrino, 1823, Afonso Pena - São José dos Pinhais - PR, 83045-210",
+      "R. Alm. Alexandrino, 1923 - Afonso Pena, São José dos Pinhais - PR, 83045-210",
     image: matrizImg,
-    googleMapsLink: `${mapsBaseUrl}Rua+Almirante+Alexandrino,+1823,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-210`,
+    googleMapsLink: `${mapsBaseUrl}R.+Alm.+Alexandrino,+1923+-+Afonso+Pena,+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-210`,
     whatsappLink: whatsappBaseUrl,
   },
   {
     title: "FILIAL I",
     address:
-      "Rua Joinville, 2767, São Pedro - São José dos Pinhais - PR, 83020-540",
+      "R. Joinville, 2197 - São Pedro, São José dos Pinhais - PR, 83005-550",
     image: filial1Img,
-    googleMapsLink: `${mapsBaseUrl}Rua+Joinville,+2767,+S%C3%A3o+Pedro+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83020-540`,
+    googleMapsLink: `${mapsBaseUrl}R.+Joinville,+2197+-+S%C3%A3o+Pedro,+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83005-550`,
     whatsappLink: whatsappBaseUrl,
   },
   {
     title: "FILIAL II",
     address:
-      "Av. Senador Salgado Filho, 6367, Uberaba - Curitiba - PR, 81580-000",
+      "Av. Sen. Salgado Filho, 6387 - Uberaba, Curitiba - PR, 81580-000",
     image: filial2Img,
-    googleMapsLink: `${mapsBaseUrl}Av.+Senador+Salgado+Filho,+6367,+Uberaba+-+Curitiba+-+PR,+81580-000`,
+    googleMapsLink: `${mapsBaseUrl}Av.+Sen.+Salgado+Filho,+6387+-+Uberaba,+Curitiba+-+PR,+81580-000`,
     whatsappLink: whatsappBaseUrl,
   },
   {
     title: "FILIAL III",
     address:
-      "Av. Rui Barbosa, 5820, Afonso Pena - São José dos Pinhais - PR, 83045-350",
+      "Av. Pres. Kennedy, 3945 - Portão, Curitiba - PR, 80610-010",
     image: filial3Img,
-    googleMapsLink: `${mapsBaseUrl}Av.+Rui+Barbosa,+5820,+Afonso+Pena+-+S%C3%A3o+Jos%C3%A9+dos+Pinhais+-+PR,+83045-350`,
+    googleMapsLink: `${mapsBaseUrl}Av.+Pres.+Kennedy,+3945+-+Port%C3%A3o,+Curitiba+-+PR,+80610-010`,
     whatsappLink: whatsappBaseUrl,
   },
   {
     title: "FILIAL IV",
     address:
-      "R. Pastor Carlos Frank, 617 (esquina com Sítio Cercado), Boqueirão - Curitiba - PR, 81650-170",
+      "R. Mariano Torres, 597 - Centro, Curitiba - PR, 80060-120",
     image: filial4Img,
-    googleMapsLink: `${mapsBaseUrl}R.+Pastor+Carlos+Frank,+617+(esquina+com+S%C3%ADtio+Cercado),+Boqueir%C3%A3o+-+Curitiba+-+PR,+81650-170`,
+    googleMapsLink: `${mapsBaseUrl}R.+Mariano+Torres,+597+-+Centro,+Curitiba+-+PR,+80060-120`,
     whatsappLink: whatsappBaseUrl,
   },
   {
     title: "FILIAL V",
-    address: "Av. Wenceslau Braz, 2510, Lindoia - Curitiba - PR, 81010-000",
+    address: "Av. Anita Garibaldi, 2610 - São Lourenço, Curitiba - PR, 82200-550",
     image: filial5Img,
-    googleMapsLink: `${mapsBaseUrl}Av.+Wenceslau+Braz,+2510,+Lindoia+-+Curitiba+-+PR,+81010-000`,
+    googleMapsLink: `${mapsBaseUrl}Av.+Anita+Garibaldi,+2610+-+S%C3%A3o+Louren%C3%A7o,+Curitiba+-+PR,+82200-550`,
     whatsappLink: whatsappBaseUrl,
   },
   {
     title: "FILIAL VI",
-    address: "Rodovia da Uva, 1184, Roça Grande - Colombo - PR, 83402-000",
+    address: "Rod. da Uva, 1194 - Loja 01 - Roça Grande, Colombo - PR, 83402-000",
     image: filial6Img,
-    googleMapsLink: `${mapsBaseUrl}Rodovia+da+Uva,+1184,+Ro%C3%A7a+Grande+-+Colombo+-+PR,+83402-000`,
+    googleMapsLink: `${mapsBaseUrl}Rod.+da+Uva,+1194+-+Loja+01+-+Ro%C3%A7a+Grande,+Colombo+-+PR,+83402-000`,
     whatsappLink: whatsappBaseUrl,
   },
 ]);
@@ -476,6 +476,24 @@ const nextLoja = computed(() => {
   .text-prev-leave-to {
     opacity: 0;
     transform: translateX(40px);
+  }
+}
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .nav-icon-wrapper:hover {
+    opacity: 0.6;
+    transform: none;
+  }
+  
+  .nav-arrow:hover {
+    transform: none;
+  }
+  
+  .slide-button:hover {
+    background-color: var(--cor-laranja);
+    transform: none;
+    box-shadow: none;
   }
 }
 </style>

@@ -369,4 +369,22 @@ const nextItem = computed(() => {
     transform: translateX(40px);
   }
 }
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .nav-icon-wrapper:hover {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .nav-arrow:hover {
+    transform: none;
+  }
+  
+  .slide-button:hover {
+    background-color: var(--cor-laranja);
+    transform: none;
+    box-shadow: none;
+  }
+}
 </style>

@@ -3,7 +3,7 @@
     <Header :navLinks="navLinks" />
 
     <NuxtPage />
-
+    <GlobalBotaoWhatsapp />
     <Footer
       :atalhosLinks="atalhosLinks"
       :informacoesLinks="informacoesLinks"

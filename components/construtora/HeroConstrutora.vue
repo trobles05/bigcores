@@ -17,7 +17,7 @@
           faturamento direto na fábrica. A melhor tinta, pelo melhor preço.
         </p>
         <a
-          href="https://wa.me/5541992433140?text=Ol%C3%A1!%20Tenho%20interesse%20em%20comprar%20tintas."
+          href="https://wa.me/554192546682?text=Ol%C3%A1!%20Tenho%20interesse%20em%20comprar%20tintas."
           target="_blank"
           rel="noopener noreferrer"
           class="hero-button"
@@ -188,6 +188,15 @@ import whatsappIcon from "~/assets/images/whatsappIcone.png";
   }
   .whatsapp-icon {
     width: 18px;
+  }
+}
+
+/* Desabilitar hovers em dispositivos móveis */
+@media (hover: none) and (pointer: coarse) {
+  .hero-button:hover {
+    background-color: var(--cor-verde);
+    transform: none;
+    box-shadow: none;
   }
 }
 </style>
