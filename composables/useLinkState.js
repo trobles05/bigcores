@@ -22,7 +22,7 @@ const linksDeInformacoesEstaticos = [
 ];
 
 const linksDeAtendimentoEstaticos = [
-  { text: "E-mail", path: "mailto:contato@bigcores.com" },
+  { text: "ecommerce@bigcorestintas.com.br", path: "mailto:ecommerce@bigcorestintas.com.br" },
   { text: "WhatsApp", path: "https://wa.me/5541992433140" },
   { text: "Telefone", path: "tel:+5541992433140" },
   { text: "Endereço", path: "/endereco" },

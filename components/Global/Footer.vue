@@ -81,31 +81,37 @@
 </template>
 
 <script setup>
+import { useRouter, useRoute } from "vue-router"; 
 import logo from "~/assets/images/logoCompleta.svg";
 import whatsappIcon from "~/assets/images/whatsappIcone.png";
 import instagramIcon from "~/assets/images/instagramIcone.png";
 import facebookIcon from "~/assets/images/facebookIcone.png";
 
+const router = useRouter();
+const route = useRoute();
+
 defineProps({
-  atalhosLinks: {
-    type: Array,
-    default: () => [],
-  },
-  informacoesLinks: {
-    type: Array,
-    default: () => [],
-  },
-  atendimentoLinks: {
-    type: Array,
-    default: () => [],
-  },
+ atalhosLinks: {
+ type: Array,
+ default: () => [],
+ },
+ informacoesLinks: {
+ type: Array,
+ default: () => [],
+ },
+ atendimentoLinks: {
+ type: Array,
+ default: () => [],
+ },
 });
 
 const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  router.push(route.path);
+  
+ window.scrollTo({
+ top: 0,
+ behavior: "smooth",
+ });
 };
 
 const isExternal = (path) => /^https?:\/\//.test(path);
