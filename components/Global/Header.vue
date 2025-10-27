@@ -70,24 +70,28 @@ const router = useRouter();
 const route = useRoute();
 
 defineProps({
-  navLinks: {
-    type: Array,
-    required: true,
-    default: () => [],
-  },
+ navLinks: {
+ type: Array,
+ required: true,
+ default: () => [],
+ },
 });
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  isMobileMenuOpen.value = false;
+  router.push(route.path);
+
+ window.scrollTo({ top: 0, behavior: "smooth" });
+
+ isMobileMenuOpen.value = false;
 };
 
 const isMobileMenuOpen = ref(false);
 
 const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+ isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 </script>
+
 <style scoped>
 .header__logo a {
   cursor: pointer;
