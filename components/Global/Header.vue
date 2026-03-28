@@ -1,377 +1,200 @@
 <template>
-  <header class="header">
-    <div class="header__logo">
-      <a href="#" @click.prevent="scrollToTop" aria-label="Voltar ao topo">
-        <img :src="logo" alt="Logo completa da Big Cores" />
-      </a>
+  <header class="w-full">
+    <div class="header-top">
+      <div class="container">
+        <ul class="top-links">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-svg">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            Entrega rápida
+          </li>
+          
+          <li class="separator">|</li>
+          
+          <li>
+            <img src="~/assets/images/Blogo.svg" alt="Ícone Clube Big Cores" class="icon-img" />
+            Clube Big Cores Tintas
+          </li>
+          
+          <li class="separator">|</li>
+          
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-svg">
+              <path d="M8 6V4c0-2.2 1.8-4 4-4s4 1.8 4 4v2h5v16H3V6h5zm2 0h4V4c0-1.1-.9-2-2-2s-2 .9-2 2v2z"/>
+            </svg>
+            Quem somos
+          </li>
+          
+          <li class="separator">|</li>
+          
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Nossas lojas
+          </li>
+          
+          <li class="separator">|</li>
+          
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-svg">
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+            Fale conosco
+          </li>
+        </ul>
+      </div>
     </div>
 
-    <div class="header__menu">
-      <nav>
-        <NuxtLink v-for="link in navLinks" :key="link.path" :to="link.path">
-          {{ link.text }}
-        </NuxtLink>
-      </nav>
-    </div>
+    <div class="header-main">
+      <div class="container main-content">
+        
+        <div class="logo">
+          <img src="~/assets/images/logoCompleta.svg" alt="Big Cores Tintas" class="logo-img" />
+        </div>
 
-    <div class="header__botoes">
-      <a
-        :href="whatsappLink"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="botao-whatsapp"
-      >
-        <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
-        <span>Atendimento</span>
-      </a>
-      
-      <a
-        href="https://www.bigcorestintas.com.br/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="botao-loja"
-      >
-       Loja online
-      </a>
+        <nav class="nav-links">
+          <a href="#exclusividade">Exclusividade</a>
+          <a href="#bigcores">Big Cores</a>
+          <a href="#endereco">Endereço</a>
+          <a href="#sobrenos">Sobre Nós</a>
+        </nav>
 
-      <button
-        class="header__hamburger"
-        @click="toggleMobileMenu"
-        :class="{ 'is-active': isMobileMenuOpen }"
-        aria-label="Abrir menu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+        <div class="actions">
+          <a href="#atendimento" class="btn-atendimento">
+          </a>
+          <a href="#loja" class="btn-loja">
+            Loja online
+          </a>
+        </div>
+
+      </div>
     </div>
   </header>
-
-  <div class="mobile-menu" :class="{ 'is-open': isMobileMenuOpen }">
-    <nav>
-      <NuxtLink
-        v-for="link in navLinks"
-        :key="link.path"
-        :to="link.path"
-        @click="toggleMobileMenu"
-      >
-        {{ link.text }}
-      </NuxtLink>
-    </nav>
-  </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
-import logo from "~/assets/images/logoCompleta.svg";
-import whatsappIcon from "~/assets/images/whatsappIcone.png";
-
-// 1. Importar o composable
-import { useWhatsapp } from '~/composables/useWhatsapp';
-
-const router = useRouter();
-const route = useRoute();
-
-// 2. Pegar o link dinâmico
-const { whatsappLink } = useWhatsapp();
-
-defineProps({
-  navLinks: {
-    type: Array,
-    required: true,
-    default: () => [],
-  },
-});
-
-const scrollToTop = () => {
-  router.push(route.path);
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  isMobileMenuOpen.value = false;
-};
-
-const isMobileMenuOpen = ref(false);
-
-const toggleMobileMenu = () => {
-  isMobileMenuOpen.value = !isMobileMenuOpen.value;
-};
-</script>
-
 <style scoped>
-
-.header__logo a {
-  cursor: pointer;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* O SEGREDO DO GRID: O Container */
+.container {
+  max-width: 1200px;
   width: 100%;
-  z-index: 1000;
-  font-family: var(--font-primaria);
-  background-color: var(--cor-azul-escuro);
-  color: var(--cor-branco);
-  padding: 20px 120px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.header__logo {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
+/* --- Estilos do Top Header --- */
+.header-top {
+  background-color: var(--cor-branco);
+  border-bottom: 1px solid var(--cor-branco-escuro);
+  padding: 8px 0;
 }
 
-.header__logo img {
-  height: 40px;
-}
-
-.header__menu {
-  flex: 0 1 auto;
-  white-space: nowrap;
-  min-width: 0; 
-}
-
-nav a {
-  position: relative;
-  color: var(--cor-branco);
-  text-decoration: none;
-  font-size: var(--f3);
-  font-weight: var(--regular);
-  margin-left: 0.5rem;
-  padding: 0 10px 6px 0;
-  font-family: var(--font-secundaria);
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: var(--cor-laranja);
-  transition: width 0.3s ease-in-out;
-}
-
-nav a:hover::after {
-  width: 90%;
-}
-.header__botoes {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex: 1;
-  justify-content: flex-end; 
-}
-
-.botao-whatsapp {
-  position: relative;
+.top-links {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
-  color: var(--cor-branco);
-  text-decoration: none;
-  font-weight: var(--regular);
-  font-size: var(--f2);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-}
-
-.botao-whatsapp span {
-  position: relative;
-}
-
-.botao-whatsapp span::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--cor-verde);
-  transition: width 0.3s ease-in-out;
-}
-
-.botao-whatsapp:hover span::after {
-  width: 100%;
-}
-
-.botao-whatsapp img {
-  width: 24px;
-}
-
-.botao-loja {
-  background: var(--cor-azul-bb);
-  color: var(--cor-azul-escuro);
-  padding: 0.5rem 1rem;
-  border-radius: 26px;
-  text-decoration: none;
-  font-weight: var(--bold);
-  font-size: var(--f2);
-  transition: background-color 0.3s;
-  margin-left: 6px;
-  white-space: nowrap;
-}
-
-.botao-loja:hover {
-  background-color: var(--cor-azul-escuro);
-  border: solid 1px var(--cor-azul-bb);
-  color: var(--cor-branco-escuro);
-}
-
-.header__hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
   padding: 0;
-  z-index: 1001;
+  font-size: 13px;
+  color: var(--cor-azul-escuro); /* Utilizando a sua variável */
+  font-weight: 500;
 }
 
-.header__hamburger span {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: var(--cor-branco);
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out;
-}
-
-.header__hamburger.is-active span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
-}
-.header__hamburger.is-active span:nth-child(2) {
-  opacity: 0;
-}
-.header__hamburger.is-active span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
-}
-
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--cor-azul-escuro);
-  z-index: 999;
-  padding: 2rem;
-  box-sizing: border-box;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.mobile-menu.is-open {
-  transform: translateX(0);
-}
-
-.mobile-menu nav {
+.top-links li {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
-.mobile-menu nav a {
-  font-size: var(--f4);
-  font-weight: var(--bold);
+.top-links li:hover {
+  opacity: 0.8;
+}
+
+/* Configuração dos SVGs e da imagem do logo */
+.icon-svg {
+  width: 16px;
+  height: 16px;
+  color: var(--cor-azul-escuro);
+}
+
+.icon-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.separator {
+  color: var(--cor-branco-escuro);
+  cursor: default !important;
+}
+
+.separator:hover {
+  opacity: 1 !important;
+}
+
+/* --- Estilos do Main Header --- */
+.header-main {
+  background-color: var(--cor-azul-escuro); /* Mantendo a variável aqui também */
+  padding: 16px 0;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
   color: var(--cor-branco);
   text-decoration: none;
-  padding: 10px 0;
-}
-.mobile-menu nav a:hover {
-  color: var(--cor-laranja);
+  font-size: 16px;
+  transition: opacity 0.2s;
 }
 
-@media (max-width: 1400px) {
-  nav a {
-    margin-left: 4px;
-    font-size: var(--f2);
-  }
-
-  .botao-whatsapp span {
-    display: none;
-  }
-
-  .botao-whatsapp {
-    gap: 0;
-    padding: 0.5rem;
-  }
-
-  .botao-whatsapp span::after {
-    display: none;
-  }
-  .botao-whatsapp:hover span::after {
-    width: 0;
-  }
+.nav-links a:hover {
+  opacity: 0.8;
 }
 
-@media (max-width: 1000px) {
-  .header {
-    padding: 15px 20px;
-  }
-
-  .header__menu {
-    display: none;
-  }
-  .header__hamburger {
-    display: flex;
-  }
-
-  .mobile-menu {
-    display: block;
-  }
-
-  .botao-whatsapp span {
-    display: none;
-  }
-
-  .botao-whatsapp {
-    gap: 0;
-    padding: 0.5rem;
-  }
-
-  .botao-whatsapp span::after {
-    display: none;
-  }
-  .botao-whatsapp:hover span::after {
-    width: 0;
-  }
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-/* Desabilitar hovers em dispositivos móveis */
-@media (hover: none) and (pointer: coarse) {
-  nav a:hover {
-    color: var(--cor-branco);
-  }
-  
-  .botao-whatsapp:hover {
-    background-color: var(--cor-laranja);
-    transform: none;
-  }
-  
-  .botao-whatsapp:hover span::after {
-    width: 0;
-  }
-  
-  .botao-loja:hover {
-    background-color: var(--cor-azul-bb);
-    border: none;
-    color: var(--cor-azul-escuro);
-  }
-  
-  .mobile-menu nav a:hover {
-    color: var(--cor-branco);
-  }
+.btn-atendimento {
+  color: var(--cor-branco);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.btn-loja {
+  background-color: var(--cor-azul-bb);
+  color: var(--cor-azul-escuro);
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btn-loja:hover {
+  opacity: 0.9;
 }
 </style>

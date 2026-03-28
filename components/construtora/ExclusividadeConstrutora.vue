@@ -1,255 +1,204 @@
 <template>
-  <section id="secaoexclusividade" class="exclusividade-section">
-    <div class="container">
-      <h2 class="section-titulo">EXCLUSIVIDADE PARA GRANDES PROJETOS</h2>
-      <p class="section-subtitulo">
-        Benefícios que fazem a diferença no seu projeto
-      </p>
-    </div>
+  <section class="benefits">
+    <div class="grid">
 
-    <div
-      class="exclusividade-scroll"
-      ref="scrollContainer"
-      @mousedown="startDrag"
-      @mousemove="onDrag"
-      @mouseup="stopDrag"
-      @mouseleave="stopDrag"
-      @touchstart="startDrag"
-      @touchmove="onDrag"
-      @touchend="stopDrag"
-    >
-      <div
-        v-for="(card, index) in cards"
-        :key="index"
-        class="exclusividade-card"
-      >
-        <img :src="card.icon" :alt="card.alt" class="card-icon" />
-        <h3 class="card-titulo">{{ card.titulo }}</h3>
-        <p class="card-descricao">{{ card.descricao }}</p>
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="icon">
+          <img :src="iconEconomia" alt="Economia" />
+        </div>
+        <h3>Significant Economy</h3>
+        <p>
+          Acesso a tabelas de faturamento direto de fábrica, eliminando intermediários e reduzindo custos operacionais em até 40%.
+        </p>
       </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="icon">
+          <img :src="iconLogistica" alt="Logística" />
+        </div>
+        <h3>Efficient Logistics</h3>
+        <p>
+          Entrega programada diretamente no canteiro de obras, garantindo o cronograma e evitando estoques desnecessários.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="icon">
+          <img :src="iconAtendimento" alt="Processo" />
+        </div>
+        <h3>Simplified Process</h3>
+        <p>
+          Gestão centralizada de pedidos com faturamento facilitado e condições de crédito exclusivas para grandes projetos.
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card">
+        <div class="icon">
+          <img :src="iconSuporte" alt="Suporte" />
+        </div>
+        <h3>Dedicated Technical Support</h3>
+        <p>
+          Visitas técnicas in loco para especificação de produtos e acompanhamento de aplicação em todas as fases.
+        </p>
+      </div>
+
+      <!-- Card destaque -->
+      <div class="card highlight">
+        <div class="icon highlight-icon">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="white"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    width="26"
+    height="26"
+  >
+    <path d="M3 9l3-4h12l3 4-9 10-9-10z"/>
+    <path d="M6 5l6 14 6-14"/>
+    <path d="M3 9h18"/>
+  </svg>
+</div>
+        <div>
+          <h3>Quality that Adds Value</h3>
+          <p>
+            Trabalhamos com a linha Premium da Coral, garantindo durabilidade extrema e acabamento superior que valoriza o m² do seu empreendimento final.
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import iconEconomia from "~/assets/images/porcentagemIcone.png";
 import iconLogistica from "~/assets/images/processoIcone.png";
 import iconSuporte from "~/assets/images/suporteIcone.png";
 import iconQualidade from "~/assets/images/logisticaIcone.png";
 import iconAtendimento from "~/assets/images/qualidadeIcone.png";
-
-const cards = [
-  {
-    icon: iconEconomia,
-    alt: "Ícone de Porcentagem",
-    titulo: "Economia Significativa",
-    descricao:
-      "Descontos que podem chegar a 40% em grandes volumes, reduzindo significativamente seus custos.",
-  },
-  {
-    icon: iconQualidade,
-    alt: "Ícone de Selo de Qualidade",
-    titulo: "Logística Eficiente",
-    descricao:
-      "Entrega direta da fábrica para sua obra, com agendamento flexível conforme suas necessidades.",
-  },
-  {
-    icon: iconLogistica,
-    alt: "Ícone de Caminhão",
-    titulo: "Processo Simplificado",
-    descricao: "Faturamento direto da AkzoNobel para obras novas e repintura.",
-  },
-  {
-    icon: iconSuporte,
-    alt: "Ícone de Capacete de Obra",
-    titulo: "Suporte Técnico Dedicado",
-    descricao:
-      "Conte com nossa equipe de especialistas para auxiliar na especificação de produtos e suporte total para os desafios da sua obra.",
-  },
-  {
-    icon: iconAtendimento,
-    alt: "Ícone de Atendimento",
-    titulo: "Qualidade que Valoriza",
-    descricao:
-      "Garanta um acabamento superior com a marca líder de mercado. A qualidade Coral eleva a percepção de valor do seu empreendimento.",
-  },
-];
-
-const scrollContainer = ref(null);
-let isDown = false;
-let startX;
-let scrollLeft;
-
-function startDrag(e) {
-  isDown = true;
-  startX = e.pageX || e.touches[0].pageX;
-  scrollLeft = scrollContainer.value.scrollLeft;
-}
-
-function onDrag(e) {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX || e.touches[0].pageX;
-  const walk = (x - startX) * 1.2;
-  scrollContainer.value.scrollLeft = scrollLeft - walk;
-}
-
-function stopDrag() {
-  isDown = false;
-}
 </script>
 
 <style scoped>
-.exclusividade-section {
-  padding: 5rem 0;
-  background: linear-gradient(143deg, #f9fafc 30%, #ffffff 100%);
-  overflow: hidden;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 120px;
-  text-align: left;
-}
-
-.section-titulo {
-  font-size: var(--f5);
-  color: var(--cor-azul-escuro);
-  font-weight: var(--bold);
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.section-titulo::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 120px;
-  height: 4px;
-  background-color: var(--cor-laranja);
-}
-
-.section-subtitulo {
-  font-size: var(--f2);
-  color: var(--cor-preto);
-  margin-top: 1rem;
-  line-height: 1.6;
-}
-
-.exclusividade-scroll {
-  display: flex;
-  gap: 80px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  cursor: grab;
-  padding: 6rem 4rem;
-  user-select: none;
-  scrollbar-width: none;
-  margin-left: 120px;
-  padding: 3rem 2rem 3rem 0;
-}
-
-.exclusividade-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.exclusividade-card {
-  flex: 0 0 320px;
+.benefits {
+  margin-top: 2.5rem;
+  padding: 60px 0;
   background: var(--cor-branco);
-  border-radius: 26px;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  text-align: left;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  font-family: var(--font-principal);
 }
 
-.exclusividade-card:hover {
-  transform: scale(1.05) rotate3d(1, 1, 0, 3deg);
-  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.15);
+.grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-.card-icon {
-  height: 40px;
-  margin-bottom: 1.5rem;
+/* CARD */
+.card {
+  background: var(--cor-cinza-claro);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  min-height: 180px;
 }
 
-.card-titulo {
+/* ÍCONE */
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #eef2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* TEXTO */
+.card h3 {
   font-size: var(--f2);
   font-weight: var(--bold);
-  color: var(--cor-azul-escuro);
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.card-titulo::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-  width: 70px;
-  height: 3px;
-  background-color: var(--cor-laranja);
-}
-
-.card-descricao {
-  font-size: var(--f1);
   color: var(--cor-preto);
-  opacity: 0.8;
-  line-height: 1.6;
 }
 
-@media (hover: none) {
-  .exclusividade-card:hover {
-    transform: none;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08);
+.card p {
+  font-size: var(--f1);
+  color: var(--cor-cinza);
+  line-height: 1.5;
+}
+
+/* DESTAQUE */
+.highlight {
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
+
+  background: #0f2a4f;
+  color: var(--cor-branco);
+
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+
+  padding: 32px;
+  border-radius: 12px;
+}
+
+.highlight h3 {
+  color: var(--cor-branco);
+}
+
+.highlight p {
+  color: #c7d3e0;
+}
+
+/* ÍCONE DESTAQUE */
+.highlight-icon {
+  background: var(--cor-azul-marinho);
+  border-radius: 16%;
+  width: 66px;
+  height: 46px;
+}
+
+.highlight-icon img {
+  width: 26px;
+  height: 26px;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .exclusividade-scroll {
-    cursor: default;
+  .highlight {
+    grid-column: span 2;
   }
 }
 
-@media (max-width: 1000px) {
-  .container {
-    margin: 0 1.5rem;
-    padding: 0;
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 
-  .section-titulo {
-    font-size: var(--f4);
-  }
-
-  .exclusividade-scroll {
-    margin-left: 0;
-    padding: 2rem 1.5rem;
-    gap: 20px;
-  }
-
-  .exclusividade-card {
-    flex: 0 0 80%;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    margin: 0 1rem;
-  }
-
-  .exclusividade-scroll {
+  .highlight {
+    grid-column: span 1;
     flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-    cursor: default;
-
-    padding: 2rem 0;
-    gap: 1.5rem;
-  }
-
-  .exclusividade-card {
-    flex-basis: auto;
-    width: 90%;
   }
 }
 </style>

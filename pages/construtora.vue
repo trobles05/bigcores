@@ -1,7 +1,6 @@
 <template>
   <div>
     <HeroConstrutora />
-    <FaixaDesconto />
     <ExclusividadeConstrutora id="exclusividade" />
     <PorQueEscolher id="bigcores" />
   </div>
@@ -11,7 +10,6 @@
 import { ref, onMounted, onUnmounted, nextTick } from "vue";
 import { useLinkState } from "~/composables/useLinkState";
 import HeroConstrutora from "~/components/construtora/HeroConstrutora.vue";
-import FaixaDesconto from "~/components/construtora/FaixaDesconto.vue";
 import ExclusividadeConstrutora from "~/components/construtora/ExclusividadeConstrutora.vue";
 import PorQueEscolher from "~/components/construtora/PorQueEscolher.vue";
 

@@ -1,284 +1,268 @@
 <template>
-  <div>
-    <section class="cta-section">
-      <div class="container cta-content">
-        <h2>NÃO PAGUE MAIS POR TINTAS DE QUALIDADE!</h2>
-        <p>
-          Solicite agora mesmo seu orçamento com desconto especial para
-          profissionais.
+  <footer id="contato" class="footer">
+    <div class="container footer-grid">
+
+      <div class="footer-column brand">
+        <img :src="logo" alt="Big Cores Tintas" class="footer-logo" />
+
+        <p class="footer-text">
+          Mais cor, mais economia,<br />
+          mais você.
         </p>
-        <a
-          href="https://wa.me/5541992433140?text=Tudo%20bem?%20No%20que%20posso%20ajudar%20você"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta-button"
-        >
-          <img :src="whatsappIcon" alt="Ícone do WhatsApp" />
-          <span>Fale com um atendente</span>
-        </a>
-      </div>
-    </section>
 
-    <footer id="contato" class="footer">
-      <div class="container footer-grid">
-        <div class="footer-column">
-          <img :src="logo" alt="Big Cores Tintas" class="footer-logo" />
-          <div class="social-icons">
-            <a href="#"><img :src="instagramIcon" alt="Instagram" /></a>
-            <a href="#"><img :src="facebookIcon" alt="Facebook" /></a>
-          </div>
-        </div>
-
-        <div class="footer-column">
-          <h3>Atalhos</h3>
-          <ul>
-            <li>
-              <a href="#" @click.prevent="scrollToTop">Voltar ao topo</a>
-            </li>
-            <li v-for="link in atalhosLinks" :key="link.path">
-              <NuxtLink :to="link.path">{{ link.text }}</NuxtLink>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Informações</h3>
-          <ul>
-            <li v-for="link in informacoesLinks" :key="link.path">
-              <template v-if="isExternal(link.path)">
-                <a
-                  :href="link.path"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >{{ link.text }}</a
-                >
-              </template>
-              <template v-else>
-                <NuxtLink :to="link.path">{{ link.text }}</NuxtLink>
-              </template>
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Atendimento</h3>
-          <ul>
-            <li v-for="link in atendimentoLinks" :key="link.path">
-              <NuxtLink :to="link.path">{{ link.text }}</NuxtLink>
-            </li>
-          </ul>
+        <div class="social-icons">
+          <a href="#"><img :src="instagramIcon" alt="Instagram" /></a>
+          <a href="#"><img :src="facebookIcon" alt="Facebook" /></a>
+          <a href="#"><img :src="youtubeIcon" alt="YouTube" /></a>
+          <a href="#"><img :src="pinterestIcon" alt="Pinterest" /></a>
         </div>
       </div>
 
-      <div class="footer-copyright">
-        <p>
-          Copyright © 2025 Big Cores Tintas CNPJ 04.281.757/0001-90 - Todos os
-          Direitos Reservados.
+      <div class="footer-column">
+        <h3>MINHA CONTA</h3>
+        <ul>
+          <li><a href="#">Carrinho de compras</a></li>
+          <li><a href="#">Meus pedidos</a></li>
+          <li><a href="#">Cadastro</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>DEPARTAMENTOS</h3>
+        <ul>
+          <li><a href="#">Linha imobiliária</a></li>
+          <li><a href="#">Linha automotiva</a></li>
+          <li><a href="#">Linha industrial</a></li>
+          <li><a href="#">Ferramentas</a></li>
+          <li><a href="#">Acessórios</a></li>
+          <li><a href="#">Complementos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>INSTITUCIONAL</h3>
+        <ul>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Política de reembolso</a></li>
+          <li><a href="#">Quem somos</a></li>
+          <li><a href="#">Política de entrega</a></li>
+          <li><a href="#">Nossas lojas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>ATENDIMENTO</h3>
+        <ul class="contact">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="contact-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            sac@bigcorestintas.com.br
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="contact-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-1.382 1.842a15.216 15.216 0 01-3.65-3.65l1.842-1.382a1.125 1.125 0 00.417-1.173L16.273 6.75a1.125 1.125 0 00-1.091-.852H13.5A2.25 2.25 0 0011.25 8.25v2.25a2.25 2.25 0 002.25 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.055.902-.417 1.173l-1.842 1.382a15.216 15.216 0 01-3.65 3.65l-1.382-1.842a1.125 1.125 0 00-1.173-.417l-4.423 1.106a1.125 1.125 0 00-.852 1.091V6.75z" />
+            </svg>
+            (41) 3382-1864
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="contact-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+            </svg>
+            (41) 9 9243-3140
+          </li>
+        </ul>
+
+        <p class="hours">
+          <strong>HORÁRIO DE ATENDIMENTO:</strong><br />
+          Segunda à sexta-feira: 08h às 18h.<br />
+          Sábados: 08h às 12h.
         </p>
       </div>
-    </footer>
-  </div>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom container">
+      <p>
+        Copyright © 2026 Big Cores Tintas CNPJ 04.261.757/0001-90
+      </p>
+
+      <p>
+        Rua Almirante Alexandrino, nº 1923 - São José dos Pinhais - PR
+      </p>
+    </div>
+  </footer>
 </template>
 
 <script setup>
 import { useRouter, useRoute } from "vue-router"; 
 import logo from "~/assets/images/logoCompleta.svg";
+// Mantidos os ícones originais
 import whatsappIcon from "~/assets/images/whatsappIcone.png";
 import instagramIcon from "~/assets/images/instagramIcone.png";
 import facebookIcon from "~/assets/images/facebookIcone.png";
+// Adicionados os imports dos novos ícones (certifique-se de que os arquivos existem em assets/images)
+import youtubeIcon from "~/assets/images/youtubeIcone.png";
+import pinterestIcon from "~/assets/images/pinterestIcone.png";
 
 const router = useRouter();
 const route = useRoute();
 
 defineProps({
- atalhosLinks: {
- type: Array,
- default: () => [],
- },
- informacoesLinks: {
- type: Array,
- default: () => [],
- },
- atendimentoLinks: {
- type: Array,
- default: () => [],
- },
+  atalhosLinks: {
+    type: Array,
+    default: () => [],
+  },
+  informacoesLinks: {
+    type: Array,
+    default: () => [],
+  },
+  atendimentoLinks: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 const scrollToTop = () => {
   router.push(route.path);
   
- window.scrollTo({
- top: 0,
- behavior: "smooth",
- });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 };
 
 const isExternal = (path) => /^https?:\/\//.test(path);
 </script>
 
 <style scoped>
-.cta-section {
-  font-family: var(--font-secundaria);
-  position: relative;
-  background-color: var(--cor-azul-escuro);
-  color: var(--cor-branco);
-  text-align: center;
-  padding: 8rem 1rem 4rem 1rem;
-  margin-top: -5vw;
-  clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 100%);
-}
-
-.cta-content h2 {
-  font-size: var(--f5);
-  font-weight: var(--bold);
-  margin-bottom: 0.5rem;
-  font-family: var(--font-primaria);
-}
-
-.cta-content p {
-  font-size: var(--f2);
-  margin-bottom: 2rem;
-  color: var(--cor-cinza-claro);
-}
-
-.cta-button {
-  font-family: var(--font-secundaria);
-  background-color: var(--cor-verde);
-  color: var(--cor-branco);
-  padding: 0.8rem 1.5rem;
-  border-radius: 26px;
-  text-decoration: none;
-  font-weight: var(--regular);
-  font-size: var(--f2);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  transition: transform 0.2s ease;
-}
-
-.cta-button:hover {
-  transform: scale(1.05);
-}
-
-.cta-button img {
-  height: 1.2em;
-}
-
 .footer {
-  background-color: var(--cor-azul-escuro);
-  color: var(--cor-cinza-claro);
-  padding: 120px;
-  border-top: 1px solid var(--cor-cinza-claro);
+  background: #2b3f63;
+  color: #c7d3e0;
+  /* AQUI FOI AJUSTADO: Margin/Padding lateral de 60px pro lados */
+  padding: 80px 60px 40px;
+  font-family: var(--font-principal);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
+/* GRID */
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  padding-bottom: 3rem;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 40px;
 }
 
+/* LOGO */
+.footer-logo {
+  width: 140px;
+  margin-bottom: 20px;
+}
+
+.footer-text {
+  font-size: var(--f1);
+  margin-bottom: 20px;
+  color: var(--cor-branco);
+}
+
+/* SOCIAL */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap; /* Permite quebrar linha se houver muitos ícones */
+}
+
+.social-icons img {
+  width: 24px; /* Aumentei levemente para dar melhor leitura */
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.social-icons img:hover {
+  opacity: 1;
+}
+
+/* TÍTULOS */
 .footer-column h3 {
   color: var(--cor-branco);
-  font-size: var(--f2);
-  margin-bottom: 1rem;
+  font-size: var(--f1);
   font-weight: var(--bold);
+  margin-bottom: 16px;
 }
 
+/* LISTAS */
 .footer-column ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .footer-column ul li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 10px;
+  font-size: var(--f1);
 }
 
 .footer-column ul a {
-  position: relative;
-  color: var(--cor-cinza-claro);
+  color: #c7d3e0;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
-  padding-bottom: 4px;
-  cursor: pointer;
-}
-
-.footer-column ul a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: var(--cor-branco);
-  transition: width 0.3s ease-in-out;
+  transition: 0.2s;
 }
 
 .footer-column ul a:hover {
   color: var(--cor-branco);
 }
 
-.footer-column ul a:hover::after {
-  width: 90%;
-}
-
-.footer-logo {
-  max-width: 150px;
-  margin-bottom: 1.5rem;
-}
-
-.social-icons {
+/* CONTATO */
+.contact li {
   display: flex;
-  gap: 1rem;
+  align-items: center; /* V-align text with icon */
+  gap: 12px;
+  margin-bottom: 12px; /* Consistency in list item spacing */
 }
 
-.social-icons img {
-  height: 24px;
+.contact-icon {
+  width: 18px;
+  height: 18px;
+  color: #c7d3e0; /* Inherit text color */
+  flex-shrink: 0; /* Don't shrink icon */
 }
 
-.footer-copyright {
-  text-align: center;
-  padding: 1rem;
+/* HORÁRIO */
+.hours {
+  margin-top: 16px;
   font-size: var(--f0);
-  border-top: 1px solid var(--cor-branco-escuro);
+  line-height: 1.6;
 }
 
-@media (max-width: 1400px) {
+/* DIVISÓRIA */
+.footer-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 40px 0;
+}
+
+/* FOOTER FINAL */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--f0);
+  color: #c7d3e0;
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
   .footer {
-    padding: 60px;
+    padding: 60px 20px 40px; /* Reduz o respiro no mobile */
   }
 
-  .footer-copyright {
-    line-height: 1.8;
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  @media (max-width: 600px) {
-    .cta-section {
-      margin-top: -12vw;
-    }
-  }
-}
-
-/* Desabilitar hovers em dispositivos móveis */
-@media (hover: none) and (pointer: coarse) {
-  .cta-button:hover {
-    transform: none;
-  }
-  
-  .footer-column ul a:hover {
-    color: var(--cor-cinza-claro);
-  }
-  
-  .footer-column ul a:hover::after {
-    width: 0;
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
 }
 </style>
