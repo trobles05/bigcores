@@ -1,8 +1,8 @@
 <template>
-  <section id="secaoporque" class="porque-escolher-section">
+  <section id="secaoporque" ref="sectionRef" class="porque-escolher-section">
     <div class="container">
       <h1>
-        Por qeue escoler a  <br />
+        Por que escolher a <br />
         <span class="highlight">Big Cores tintas</span> para sua obra
       </h1>
 
@@ -58,10 +58,39 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue'
 import iconParceria from "~/assets/images/parceriaICone.png";
 import iconAssessoria from "~/assets/images/acessoriaIcone.png";
 import iconVariedade from "~/assets/images/variedadeIcone.png";
 import iconSuporte from "~/assets/images/suporteIcone.png";
+
+const sectionRef = ref(null)
+
+onMounted(() => {
+  const section = sectionRef.value
+  if (!section) return
+
+  const cards = section.querySelectorAll('.benefit-card')
+  const title = section.querySelector('h1')
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.1 }
+  )
+
+  if (title) observer.observe(title)
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${i * 120}ms`
+    observer.observe(card)
+  })
+})
 </script>
 
 <style scoped>
@@ -77,12 +106,6 @@ import iconSuporte from "~/assets/images/suporteIcone.png";
 }
 
 /* TÍTULO */
-.title {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-/* H1 */
 h1 {
   font-size: var(--f5);
   font-weight: var(--bold);
@@ -90,6 +113,16 @@ h1 {
   text-align: center;
   margin-bottom: 60px;
   line-height: 1.2;
+
+  /* Animação */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+h1.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* EFEITO DE TEXTO SELECIONADO */
@@ -106,16 +139,13 @@ h1 {
   right: -8px;
   top: 50%;
   height: 65%;
-
   background: linear-gradient(
     to right,
     var(--cor-azul-claro),
     var(--cor-azul-marinho)
   );
-
   z-index: -1;
   border-radius: 6px;
-
   transform: rotate(-2deg) skewX(-5deg);
   opacity: 0.9;
 }
@@ -128,7 +158,7 @@ h1 {
   gap: 60px;
 }
 
-/* LINHA CENTRAL (mais clean) */
+/* LINHA CENTRAL */
 .content-grid::before {
   content: "";
   position: absolute;
@@ -159,20 +189,27 @@ h1 {
   background: var(--cor-cinza-claro);
   padding: 28px;
   border-radius: 12px;
-
   display: flex;
   flex-direction: column;
   gap: 12px;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.5s ease, box-shadow 0.25s ease;
+
+  /* Animação */
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.benefit-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .benefit-card:hover {
   transform: translateY(-4px);
 }
 
-/* CONECTOR MAIS MODERNO */
+/* CONECTOR */
 .benefit-card::before {
   content: "";
   position: absolute;
@@ -184,7 +221,6 @@ h1 {
   opacity: 0.7;
 }
 
-/* bolinha na linha (detalhe premium) */
 .benefit-card::after {
   content: "";
   position: absolute;
@@ -196,28 +232,17 @@ h1 {
   border-radius: 50%;
 }
 
-/* POSIÇÃO */
-.grid-column:first-child .benefit-card::before {
-  right: -18px;
-}
-.grid-column:first-child .benefit-card::after {
-  right: -27px;
-}
+.grid-column:first-child .benefit-card::before { right: -18px; }
+.grid-column:first-child .benefit-card::after  { right: -27px; }
+.grid-column:last-child  .benefit-card::before { left: -18px;  }
+.grid-column:last-child  .benefit-card::after  { left: -27px;  }
 
-.grid-column:last-child .benefit-card::before {
-  left: -18px;
-}
-.grid-column:last-child .benefit-card::after {
-  left: -27px;
-}
-
-/* ÍCONE PADRÃO */
+/* ÍCONE */
 .icon-box {
   width: 44px;
   height: 44px;
   border-radius: 10px;
   background: #eef2f7;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -248,10 +273,7 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .content-grid::before {
-    display: none;
-  }
-
+  .content-grid::before,
   .benefit-card::before,
   .benefit-card::after {
     display: none;

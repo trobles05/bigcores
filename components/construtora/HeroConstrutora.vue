@@ -92,7 +92,6 @@ import lojaFundo from "~/assets/images/lojaFundo.png";
 
 <style scoped>
 .hero-section { 
-  margin-top: 4rem;
   width: 100%;
   padding: 30px 0;
 }

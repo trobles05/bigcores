@@ -2,36 +2,41 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  ssr: false, // modo SPA, ideal para HostGator
+  ssr: false, // modo SPA
+
   css: [
     '~/assets/css/variaveis.css',
     '~/assets/css/normalizar.css',
     '~/assets/css/fontes.css',
     '~/assets/css/index.css'
   ],
+
   nitro: {
     prerender: {
       crawler: false,
       routes: [
-        '/', 
-        '/construtora', 
-        '/atendimento', 
-        '/endereco', 
+        '/',
+        '/construtora',
+        '/atendimento',
+        '/endereco',
         '/sobre-nos'
       ]
     }
   },
+
   app: {
-    baseURL: '/', // mantém assim para subdomínio (importante!)
-    
-    // --- CÓDIGO DO FAVICON ADICIONADO AQUI ---
+    baseURL: '/',
+
     head: {
+      titleTemplate: '%s - Big Cores Tintas',
+
       link: [
-        // Certifique-se de que o nome do arquivo "logo-big-cores.svg" 
-        // está correto e que ele está na pasta "public/"
-        { rel: 'icon', type: 'image/svg+xml', href: '/Blogo.svg' }
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/logoB.png'
+        }
       ]
     }
-    // --- FIM DA ADIÇÃO ---
   }
 })

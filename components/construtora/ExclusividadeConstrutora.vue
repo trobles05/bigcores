@@ -7,9 +7,9 @@
         <div class="icon">
           <img :src="iconEconomia" alt="Economia" />
         </div>
-        <h3>Significant Economy</h3>
+        <h3>Economia significativa</h3>
         <p>
-          Acesso a tabelas de faturamento direto de fábrica, eliminando intermediários e reduzindo custos operacionais em até 40%.
+          Acesso a tabelas de faturamento direto de fábrica, eliminando intermediários.
         </p>
       </div>
 
@@ -18,9 +18,9 @@
         <div class="icon">
           <img :src="iconLogistica" alt="Logística" />
         </div>
-        <h3>Efficient Logistics</h3>
+        <h3>Logística Personalizada</h3>
         <p>
-          Entrega programada diretamente no canteiro de obras, garantindo o cronograma e evitando estoques desnecessários.
+          Receba os materiais direto na obra, no momento que você precisar, respeitando seu cronograma.
         </p>
       </div>
 
@@ -29,7 +29,7 @@
         <div class="icon">
           <img :src="iconAtendimento" alt="Processo" />
         </div>
-        <h3>Simplified Process</h3>
+        <h3>Processo simplificado</h3>
         <p>
           Gestão centralizada de pedidos com faturamento facilitado e condições de crédito exclusivas para grandes projetos.
         </p>
@@ -40,7 +40,7 @@
         <div class="icon">
           <img :src="iconSuporte" alt="Suporte" />
         </div>
-        <h3>Dedicated Technical Support</h3>
+        <h3>Suporte técnico especializado</h3>
         <p>
           Visitas técnicas in loco para especificação de produtos e acompanhamento de aplicação em todas as fases.
         </p>
@@ -49,26 +49,26 @@
       <!-- Card destaque -->
       <div class="card highlight">
         <div class="icon highlight-icon">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="white"
-    stroke-width="1.8"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    width="26"
-    height="26"
-  >
-    <path d="M3 9l3-4h12l3 4-9 10-9-10z"/>
-    <path d="M6 5l6 14 6-14"/>
-    <path d="M3 9h18"/>
-  </svg>
-</div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="26"
+            height="26"
+          >
+            <path d="M3 9l3-4h12l3 4-9 10-9-10z"/>
+            <path d="M6 5l6 14 6-14"/>
+            <path d="M3 9h18"/>
+          </svg>
+        </div>
         <div>
-          <h3>Quality that Adds Value</h3>
+          <h3>Qualidade que agrega valor</h3>
           <p>
-            Trabalhamos com a linha Premium da Coral, garantindo durabilidade extrema e acabamento superior que valoriza o m² do seu empreendimento final.
+            Trabalhamos com Coral e outras marcas de excelência, garantindo qualidade, durabilidade e acabamento superior para valorizar cada m² do seu empreendimento.
           </p>
         </div>
       </div>
@@ -78,16 +78,36 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import iconEconomia from "~/assets/images/porcentagemIcone.png";
 import iconLogistica from "~/assets/images/processoIcone.png";
 import iconSuporte from "~/assets/images/suporteIcone.png";
 import iconQualidade from "~/assets/images/logisticaIcone.png";
 import iconAtendimento from "~/assets/images/qualidadeIcone.png";
+
+onMounted(() => {
+  const cards = document.querySelectorAll('.card')
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`
+    observer.observe(card)
+  })
+})
 </script>
 
 <style scoped>
 .benefits {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   padding: 60px 0;
   background: var(--cor-branco);
   font-family: var(--font-principal);
@@ -111,6 +131,16 @@ import iconAtendimento from "~/assets/images/qualidadeIcone.png";
   gap: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.04);
   min-height: 180px;
+
+  /* Animação */
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ÍCONE */
