@@ -3,6 +3,9 @@
     <HeroConstrutora />
     <ExclusividadeConstrutora id="exclusividade" />
     <PorQueEscolher id="bigcores" />
+   
+    <Atelice />
+    
   </div>
 </template>
 
@@ -13,41 +16,29 @@ import HeroConstrutora from "~/components/construtora/HeroConstrutora.vue";
 import ExclusividadeConstrutora from "~/components/construtora/ExclusividadeConstrutora.vue";
 import PorQueEscolher from "~/components/construtora/PorQueEscolher.vue";
 
-const { setPageLinks } = useLinkState();
+import CtaFinal from "~/components/construtora/CtaFinal.vue";
+import Atelice from "~/components/construtora/Atelice.vue";
 
+const { setPageLinks, clearLinks } = useLinkState();
+
+// Menu focado apenas nos diferenciais da página
 const linksDaConstrutora = ref([
-  { text: "Exclusividade", path: "/construtora#exclusividade" },
-  { text: "Big Cores", path: "/construtora#bigcores" },
-  { text: "Endereço", path: "/endereco" },
-  { text: "Sobre Nós", path: "/sobre-nos" },
-]);
-
-const linksDeInformacoes = ref([
-  { text: "Central de ajuda", path: "/ajuda" },
-  { text: "Política de reembolso", path: "/politica-reembolso" },
-  { text: "Entrega", path: "/entrega" },
-  { text: "Segurança", path: "/seguranca" },
-  { text: "Quem somos", path: "/sobre-nos" },
-]);
-
-const linksDeAtendimento = ref([
-  { text: "E-mail", path: "mailto:contato@bigcores.com" },
-  { text: "WhatsApp", path: "https://wa.me/5541992433140" },
-  { text: "Endereço", path: "/endereco" },
+  { text: "Exclusividade", path: "#exclusividade" },
+  { text: "Big Cores", path: "#bigcores" },
 ]);
 
 onMounted(() => {
   nextTick(() => {
+    // Define os links para o Header dinâmico
     setPageLinks({
       nav: linksDaConstrutora.value,
       atalhos: linksDaConstrutora.value,
-      info: linksDeInformacoes.value,
-      atendimento: linksDeAtendimento.value,
     });
   });
 });
 
 onUnmounted(() => {
-  setPageLinks({ nav: [], atalhos: [], info: [], atendimento: [] });
+  // Limpa o estado global ao sair da página
+  clearLinks();
 });
 </script>

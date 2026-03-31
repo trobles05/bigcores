@@ -1,55 +1,98 @@
 <template>
   <section class="categorias-section">
-    <div class="seletor-wrapper">
-      <div class="nav-icon-wrapper prev-icon" @click="prevSlide">
-        <Transition name="fade" mode="out-in">
-          <img
-            :src="prevItem.icon"
-            :key="prevItem.title"
-            alt="Categoria anterior"
-          />
-        </Transition>
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nossas Categorias</h2>
+        <p class="section-subtitle">
+          Soluções completas do preparo ao acabamento
+        </p>
       </div>
 
-      <div class="slide-card-wrapper">
-        <div class="slide-card">
-          <div class="slide-content">
-            <Transition :name="transitionNameIcon" mode="out-in">
-              <div class="slide-icon-cluster" :key="currentItem.title">
-                <div class="nav-arrow" @click="prevSlide">&lt;</div>
-                <img
-                  :src="currentItem.icon"
-                  :alt="currentItem.title"
-                  class="slide-icon-main"
-                />
-                <div class="nav-arrow" @click="nextSlide">&gt;</div>
-              </div>
-            </Transition>
+      <div class="seletor-wrapper">
+        <div class="nav-preview prev-preview desktop-only" @click="prevSlide">
+          <Transition name="fade" mode="out-in">
+            <img :src="prevItem.icon" :key="prevItem.title" alt="Anterior" />
+          </Transition>
+        </div>
 
-            <Transition :name="transitionNameText" mode="out-in">
-              <div class="slide-text" :key="currentItem.title">
-                <h3 class="slide-title">{{ currentItem.title }}</h3>
-                <p class="slide-description">{{ currentItem.description }}</p>
-                <NuxtLink
-                  :to="currentItem.link"
-                  target="_blank"
-                  class="slide-button"
-                  >Ver Produto</NuxtLink
-                >
-              </div>
-            </Transition>
+        <div class="slide-card-wrapper">
+          <button
+            class="nav-arrow-btn left"
+            @click="prevSlide"
+            aria-label="Anterior"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="slide-card">
+            <div class="slide-content">
+              <Transition :name="transitionNameIcon" mode="out-in">
+                <div class="slide-icon-container" :key="currentItem.title">
+                  <div class="icon-blob-bg"></div>
+                  <img
+                    :src="currentItem.icon"
+                    :alt="currentItem.title"
+                    class="slide-icon-main"
+                  />
+                </div>
+              </Transition>
+
+              <Transition :name="transitionNameText" mode="out-in">
+                <div class="slide-text" :key="currentItem.title">
+                  <h3 class="slide-title">{{ currentItem.title }}</h3>
+                  <p class="slide-description">{{ currentItem.description }}</p>
+                  <NuxtLink
+                    :to="currentItem.link"
+                    target="_blank"
+                    class="slide-button"
+                  >
+                    Explorar Linha <span class="arrow">→</span>
+                  </NuxtLink>
+                </div>
+              </Transition>
+            </div>
+          </div>
+
+          <button
+            class="nav-arrow-btn right"
+            @click="nextSlide"
+            aria-label="Próximo"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="slide-indicators">
+            <span
+              v-for="(slide, index) in slides"
+              :key="index"
+              class="dot"
+              :class="{ active: currentIndex === index }"
+              @click="currentIndex = index"
+            ></span>
           </div>
         </div>
-      </div>
 
-      <div class="nav-icon-wrapper next-icon" @click="nextSlide">
-        <Transition name="fade" mode="out-in">
-          <img
-            :src="nextItem.icon"
-            :key="nextItem.title"
-            alt="Próxima categoria"
-          />
-        </Transition>
+        <div class="nav-preview next-preview desktop-only invisible"></div>
       </div>
     </div>
   </section>
@@ -57,7 +100,6 @@
 
 <script setup>
 import { ref, computed } from "vue";
-
 import casaIcone from "~/assets/images/homeIcone.svg";
 import carroIcone from "~/assets/images/carIcone.svg";
 import fabricaIcone from "~/assets/images/industriaIcone.svg";
@@ -66,29 +108,28 @@ const slides = ref([
   {
     title: "Linha Residencial",
     description:
-      "Ampla variedade de tintas para ambientes internos e externos, incluindo opções decorativas e impermeabilizantes.",
+      "Ampla variedade de tintas para ambientes internos e externos, incluindo opções decorativas e impermeabilizantes de alto padrão.",
     icon: casaIcone,
-    link: "https://www.bigcorestintas.com.br/categorias/tintas-17399234",
+    link: "https://www.bigcorestintas.com.br/linha-imobiliaria",
   },
   {
-    title: "Linha Automotivo",
+    title: "Linha Automotiva",
     description:
-      "Linha dedicada para o seu veículo, com produtos para preparação, pintura e polimento de alta qualidade.",
+      "Tecnologia de ponta para o seu veículo, com produtos para preparação, pintura e polimento com brilho impecável.",
     icon: carroIcone,
-    link: "https://www.bigcorestintas.com.br/prod,catid,383738,tintas-automotivas",
+    link: "https://www.bigcorestintas.com.br/linha-automotiva",
   },
   {
     title: "Linha Industrial",
     description:
-      "Soluções técnicas de alto desempenho para a proteção contra corrosão de superfícies industriais e frotas.",
+      "Soluções técnicas de alto desempenho para proteção contra corrosão e revestimentos de superfícies industriais e frotas.",
     icon: fabricaIcone,
-    link: "/industrial",
+    link: "https://www.bigcorestintas.com.br/linha-industrial",
   },
 ]);
 
 const currentIndex = ref(0);
 const totalSlides = slides.value.length;
-
 const transitionNameIcon = ref("icon-next");
 const transitionNameText = ref("text-next");
 
@@ -104,287 +145,261 @@ const prevSlide = () => {
 };
 
 const currentItem = computed(() => slides.value[currentIndex.value]);
-
-const prevItem = computed(() => {
-  const nextIndex = (currentIndex.value + 1) % totalSlides;
-  return slides.value[nextIndex];
-});
-
-const nextItem = computed(() => {
-  const prevIndex = (currentIndex.value - 1 + totalSlides) % totalSlides;
-  return slides.value[prevIndex];
-});
+// Pega o item anterior para o preview da esquerda
+const prevItem = computed(
+  () => slides.value[(currentIndex.value - 1 + totalSlides) % totalSlides],
+);
 </script>
 
 <style scoped>
 .categorias-section {
   width: 100%;
-  padding: 100px 40px;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  box-sizing: border-box;
+  padding: 80px 0;
+  background-color: #fbfbfb;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor-azul-escuro);
+  margin-bottom: 10px;
+}
+.section-subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
 }
 
 .seletor-wrapper {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
-  max-width: 100%;
-  margin: 0 auto;
 }
 
-.nav-icon-wrapper {
-  opacity: 0.4;
+/* Previews Laterais */
+.nav-preview {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  opacity: 0.15;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 0.3s;
 }
-.nav-icon-wrapper:hover {
-  opacity: 0.8;
-  transform: scale(1.1);
+.nav-preview:hover {
+  opacity: 0.4;
 }
-.nav-icon-wrapper img {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
+.nav-preview img {
+  width: 60px;
+  filter: grayscale(1);
 }
-.prev-icon {
-  justify-self: end;
-}
-.next-icon {
-  display: none;
+.invisible {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .slide-card-wrapper {
-  grid-column: 2 / 3;
-  width: 100%;
-  max-width: 1140px;
+  position: relative;
+  flex: 1;
+  max-width: 950px;
+  display: flex;
+  align-items: center;
+}
+
+/* SETAS DE NAVEGAÇÃO */
+.nav-arrow-btn {
+  position: absolute;
+  z-index: 10;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--cor-azul-escuro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.nav-arrow-btn:hover {
+  background: var(--cor-azul-escuro);
+  color: white;
+  transform: scale(1.1);
+}
+
+.nav-arrow-btn.left {
+  left: -22px;
+}
+.nav-arrow-btn.right {
+  right: -22px;
 }
 
 .slide-card {
-  background: #f6f6f6;
-  border-radius: 26px;
-  border-top: 4px solid var(--cor-azul-bb);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  padding: 2.5rem 2rem;
-  box-sizing: border-box;
-  overflow: hidden;
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 60px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+  width: 100%;
 }
 
 .slide-content {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 16rem;
+  gap: 60px;
 }
 
-.slide-icon-cluster {
+.slide-icon-container {
+  flex-shrink: 0;
+  width: 250px;
+  height: 250px;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  flex-shrink: 0;
+  justify-content: center;
 }
 
-.nav-arrow {
-  font-size: var(--f6);
-  font-weight: bold;
-  color: var(--cor-laranja);
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.2s;
-}
-.nav-arrow:hover {
-  transform: scale(1.2);
+.icon-blob-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(74, 144, 226, 0.1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
 }
 
 .slide-icon-main {
-  width: 240px;
-  object-fit: contain;
+  width: 200px;
+  z-index: 1;
 }
 
 .slide-text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  text-align: left;
-  max-width: 60%;
 }
-
 .slide-title {
-  font-size: var(--f5);
-  font-weight: var(--bold);
+  font-size: 2.2rem;
+  font-weight: 800;
   color: var(--cor-azul-escuro);
-  margin: 16px 0 16px 0;
+  margin-bottom: 15px;
 }
-
 .slide-description {
-  font-size: var(--f2);
-  color: var(--cor-cinza-escuro);
-  margin: 0 0 26px 0;
+  font-size: 1.1rem;
+  color: #64748b;
   line-height: 1.6;
+  margin-bottom: 30px;
 }
 
 .slide-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   background-color: var(--cor-laranja);
-  color: var(--cor-branco);
-  padding: 1rem 1.4rem;
-  border-radius: 26px;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 700;
   text-decoration: none;
-  font-weight: var(--bold);
-  font-size: var(--f2);
-  transition: background-color 0.3s;
-}
-.slide-button:hover {
-  background-color: #ff8000;
-  transform: translateY(-1.5px);
-  box-shadow: 0 4px 10px rgba(255, 122, 0, 0.3);
+  transition: all 0.3s;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s ease-in-out;
+.slide-button .arrow {
+  transition: transform 0.3s;
 }
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.slide-button:hover .arrow {
+  transform: translateX(5px);
 }
 
-.icon-next-enter-active,
-.icon-next-leave-active,
-.icon-prev-enter-active,
-.icon-prev-leave-active {
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+/* INDICADORES */
+.slide-indicators {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
 }
 
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dot.active {
+  width: 24px;
+  background: var(--cor-laranja);
+  border-radius: 10px;
+}
+
+/* TRANSITIONS */
 .icon-next-enter-from {
   opacity: 0;
-  transform: translateX(-60px) scale(0.9);
+  transform: translateX(40px);
 }
 .icon-next-leave-to {
   opacity: 0;
-  transform: translateX(60px) scale(0.9);
+  transform: translateX(-40px);
 }
-
 .icon-prev-enter-from {
   opacity: 0;
-  transform: translateX(60px) scale(0.9);
+  transform: translateX(-40px);
 }
 .icon-prev-leave-to {
   opacity: 0;
-  transform: translateX(-60px) scale(0.9);
-}
-
-.text-next-enter-active,
-.text-next-leave-active,
-.text-prev-enter-active,
-.text-prev-leave-active {
-  transition: all 0.45s ease-in-out;
-}
-
-.text-next-enter-from {
-  opacity: 0;
-  transform: translateX(-40px);
-}
-.text-next-leave-to {
-  opacity: 0;
   transform: translateX(40px);
 }
 
-.text-prev-enter-from {
-  opacity: 0;
-  transform: translateX(40px);
-}
-.text-prev-leave-to {
-  opacity: 0;
-  transform: translateX(-40px);
-}
-
-@media (max-width: 1000px) {
-  .categorias-section {
-    padding: 4rem 1.5rem;
-  }
-
-  .seletor-wrapper {
-    display: block;
-  }
-
-  .nav-icon-wrapper.prev-icon,
-  .nav-icon-wrapper.next-icon {
+@media (max-width: 992px) {
+  .desktop-only {
     display: none;
   }
-
-  .slide-card-wrapper {
-    grid-column: auto;
-    max-width: 100%;
+  .nav-arrow-btn {
+    width: 40px;
+    height: 40px;
   }
-
+  .nav-arrow-btn.left {
+    left: 10px;
+  }
+  .nav-arrow-btn.right {
+    right: 10px;
+  }
   .slide-card {
-    padding: 2rem 1.5rem;
+    padding: 40px 20px;
   }
-
   .slide-content {
     flex-direction: column;
-    gap: 2rem;
-  }
-
-  .slide-text {
-    max-width: 100%;
-    align-items: center;
     text-align: center;
+    gap: 30px;
   }
-
-  .slide-icon-main {
+  .slide-text {
+    align-items: center;
+  }
+  .slide-icon-container {
     width: 180px;
+    height: 180px;
   }
-
-  .slide-icon-cluster {
-    gap: 1.5rem;
+  .slide-icon-main {
+    width: 140px;
   }
-
   .slide-title {
-    font-size: var(--f4);
-  }
-
-  .slide-description {
-    font-size: var(--f2);
-  }
-
-  .slide-button {
-    font-size: var(--f2);
-  }
-  .text-next-enter-from {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  .text-next-leave-to {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  .text-prev-enter-from {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  .text-prev-leave-to {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-}
-
-/* Desabilitar hovers em dispositivos móveis */
-@media (hover: none) and (pointer: coarse) {
-  .nav-icon-wrapper:hover {
-    opacity: 1;
-    transform: none;
-  }
-  
-  .nav-arrow:hover {
-    transform: none;
-  }
-  
-  .slide-button:hover {
-    background-color: var(--cor-laranja);
-    transform: none;
-    box-shadow: none;
+    font-size: 1.6rem;
   }
 }
 </style>

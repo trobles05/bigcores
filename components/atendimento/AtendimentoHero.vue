@@ -1,43 +1,51 @@
 <template>
   <section class="hero-section">
-    <div class="hero-container">
-      <img
-        :src="bannerLoja"
-        alt="Interior da loja de tintas Big Cores"
-        class="hero-image"
-      />
-      <div class="hero-content">
-        <h1 class="hero-title">Fale com um Especialista</h1>
-        <p class="hero-subtitle">
-          Tem dúvidas sobre qual produto usar ou quer solicitar um orçamento
-          detalhado? Entre em contato conosco. Será um prazer ajudar a sua
-          construtora a economizar com qualidade.
-        </p>
-        <a
-          href="https://wa.me/554192433140?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista."
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hero-button"
-        >
-          <img
-            :src="whatsappIcone"
-            alt="Ícone do WhatsApp"
-            class="whatsapp-icon"
-          />
-          Solicitar Orçamento
-        </a>
-      </div>
-
-      <div class="bottom-banner">
+    <div class="container">
+      <div class="hero-wrapper">
         <img
-          :src="logisticaIcone"
-          alt="Ícone de logística"
-          class="logistica-icon"
+          :src="bannerLoja"
+          alt="Interior da loja de tintas Big Cores"
+          class="hero-image"
         />
-        <span
-          >Moradores de Curitiba e RM - Frete grátis a partir de R$
-          100,00!</span
-        >
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+          <span class="hero-tag">Atendimento Exclusivo</span>
+          <h1 class="hero-title">
+            Fale com um <br class="desktop-only" />
+            Especialista
+          </h1>
+          <p class="hero-subtitle">
+            Tem dúvidas sobre produtos ou quer um orçamento detalhado? Nossa
+            equipe técnica atende construtoras e clientes do e-commerce com
+            agilidade e qualidade.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              href="https://wa.me/554192433140?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hero-button main-btn"
+            >
+              <img :src="whatsappIcone" alt="WhatsApp" class="whatsapp-icon" />
+              Solicitar Orçamento
+            </a>
+
+          
+          </div>
+        </div>
+
+        <div class="bottom-banner">
+          <div class="banner-inner">
+            <img :src="logisticaIcone" alt="Logística" class="logistica-icon" />
+            <p>
+              Moradores de <strong>Curitiba e RM</strong> - Frete grátis a
+              partir de <strong>R$ 100,00!</strong>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -45,23 +53,32 @@
 
 <script setup>
 import bannerLoja from "~/assets/images/bannerLoja.png";
-import whatsappIcone from "~/assets/images/whatsappIcone.png";
+import whatsappIcone from "~/assets/images/whatsapp.png";
 import logisticaIcone from "~/assets/images/logistica2Icone.png";
 </script>
 
 <style scoped>
 .hero-section {
   width: 100%;
-  padding: 4.16vw 8.33vw;
-  margin-top: 60px;
+  padding: 60px 0;
+  background-color: var(--cor-branco);
 }
 
-.hero-container {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 1200 / 600;
-  border-radius: 26px;
+  min-height: 550px; /* Aumentado levemente para caber os botões */
+  border-radius: 30px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .hero-image {
@@ -71,228 +88,162 @@ import logisticaIcone from "~/assets/images/logistica2Icone.png";
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 26px;
   z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(26, 43, 76, 0.95) 0%,
+    rgba(26, 43, 76, 0.4) 100%
+  );
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 5%;
-  color: var(--cor-branco);
+  padding: 60px;
   max-width: 700px;
-  box-sizing: border-box;
+  color: var(--cor-branco);
+}
+
+.hero-tag {
+  display: inline-block;
+  background-color: rgba(227, 147, 50, 0.2);
+  color: #f1caaf;
+  border: 1px solid #e39332;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .hero-title {
-  font-size: var(--f5);
-  font-weight: var(--bold);
-  margin-bottom: 28px;
-  line-height: 1.2;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
 .hero-subtitle {
-  font-size: var(--f3);
+  font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 36px;
-  opacity: 0.95;
+  margin-bottom: 35px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.whatsapp-icon {
-  width: 28px;
+/* --- AJUSTE NAS ACTIONS --- */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .hero-button {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background-color: var(--cor-verde);
-  color: var(--cor-branco);
-  border: none;
-  padding: 12px 20px;
-  border-radius: 26px;
-  font-size: var(--f2);
-  font-weight: var(--bold);
-  cursor: pointer;
+  padding: 14px 28px;
+  border-radius: 12px; /* Estilo mais moderno */
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
   transition: all 0.3s ease;
-  width: fit-content;
 }
+
+.main-btn {
+  background-color: #25d366;
+  color: white;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
 
 .hero-button:hover {
-  background-color: #1da851;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px var(--cor-verde-escuro);
+  transform: translateY(-3px);
+  filter: brightness(1.1);
 }
 
+.whatsapp-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* --- BANNER INFERIOR --- */
 .bottom-banner {
-  position: relative;
-  margin-top: 20px;
-  width: 100%;
-  border-radius: 26px;
-  background-color: var(--cor-azul-escuro);
-  color: var(--cor-branco);
-  padding: 1rem;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  z-index: 3;
+  max-width: 380px;
+}
+
+.banner-inner {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-sizing: border-box;
-  z-index: 2;
-  text-align: center;
+  gap: 12px;
+  color: white;
 }
 
 .logistica-icon {
-  width: 28px;
+  width: 30px;
   height: auto;
 }
-
-.bottom-banner span {
-  font-size: var(--f1);
-  font-weight: var(--regular);
+.banner-inner p {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.4;
 }
 
-@media (max-width: 1000px) {
-  .hero-section {
-    padding: 2rem 1.5rem;
-    margin-top: 30px;
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1024px) {
+  .hero-wrapper {
+    min-height: auto;
+    flex-direction: column;
   }
-
-  .hero-container {
-    aspect-ratio: 4 / 3;
-    overflow: visible;
-  }
-
-  .hero-image {
-    border-radius: 20px;
-  }
-
-  .hero-content {
+  .bottom-banner {
+    position: relative;
+    bottom: 0;
+    right: 0;
     max-width: 100%;
-    align-items: center;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
     text-align: center;
-    padding: 8% 5%;
+    padding: 40px 20px;
   }
-
-  .hero-title {
-    font-size: var(--f4);
-    line-height: 1.3;
-    margin-bottom: 1rem;
+  .hero-actions {
+    justify-content: center;
+    width: 100%;
   }
-
-  .hero-subtitle {
-    font-size: var(--f1);
-    line-height: 1.5;
-    margin-bottom: 1rem;
-  }
-
   .hero-button {
-    padding: 10px 16px;
-    font-size: var(--f1);
+    width: 100%;
     justify-content: center;
   }
-
-  .whatsapp-icon {
-    width: 18px;
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(26, 43, 76, 0.9) 0%,
+      rgba(26, 43, 76, 1) 100%
+    );
   }
-
-  .bottom-banner {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 90%;
-    padding: 0.8rem 1rem;
-    border-radius: 20px;
-    bottom: -30px;
-  }
-
-  .bottom-banner span {
-    font-size: var(--f1);
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .logistica-icon {
-    width: 24px;
-  }
-}
-
-@media (max-width: 360px) {
-  .hero-section {
-    padding: 1.5rem 1rem;
-    margin-top: 20px;
-  }
-
-  .hero-container {
-    background-color: var(--cor-azul-escuro);
-    border-radius: 16px;
-    padding: 1.5rem 1rem;
-    aspect-ratio: auto;
-    overflow: visible;
-  }
-
-  .hero-content {
-    padding: 0;
-    height: auto;
-    max-width: 100%;
-    align-items: center;
-    text-align: center;
-  }
-
-  .hero-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-  }
-
-  .hero-subtitle {
-    font-size: 0.75rem;
-    line-height: 1.4;
-    margin-bottom: 0.875rem;
-  }
-
-  .hero-button {
-    padding: 8px 12px;
-    font-size: 0.75rem;
-    gap: 6px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .whatsapp-icon {
-    width: 16px;
-  }
-
-  .bottom-banner {
-    width: 92%;
-    padding: 0.625rem 0.75rem;
-    border-radius: 16px;
-    bottom: -25px;
-    gap: 0.375rem;
-  }
-
-  .bottom-banner span {
-    font-size: 0.625rem;
-    line-height: 1.3;
-  }
-
-  .logistica-icon {
-    width: 20px;
-  }
-}
-
-/* Desabilitar hovers em dispositivos móveis */
-@media (hover: none) and (pointer: coarse) {
-  .hero-button:hover {
-    background-color: var(--cor-verde);
-    transform: none;
-    box-shadow: none;
+  .banner-inner {
+    background: #1a2b4c;
   }
 }
 </style>

@@ -1,23 +1,28 @@
 import { useState } from "#app";
 
-// Links estáticos para o footer
+// Links estáticos que NÃO mudam entre as landing pages (Footer)
 const linksDeInformacoesEstaticos = [
   {
-    text: "Central de ajuda",
-    path: "https://www.bigcorestintas.com.br/help.ehc",
+    text: "Política de privacidade",
+    path: "https://www.bigcorestintas.com.br/seguranca",
   },
   {
     text: "Política de reembolso",
-    path: "https://www.bigcorestintas.com.br/help.ehc#Cancelamentos",
+    path: "https://www.bigcorestintas.com.br/politica-de-reembolso",
   },
   {
-    text: "Entrega",
-    path: "https://www.bigcorestintas.com.br/help.ehc#Entregas",
+    text: "Quem somos",
+    path: "https://www.bigcorestintas.com.br/quem-somos",
   },
   {
-    text: "Segurança",
-    path: "https://www.bigcorestintas.com.br/help.ehc#Seguranca",
+    text: "Política de entrega",
+    path: "https://www.bigcorestintas.com.br/central-de-ajuda",
   },
+  {
+    text: "Nossas lojas",
+    path: "https://www.bigcorestintas.com.br/nossas-lojas",
+  },
+
 ];
 
 const linksDeAtendimentoEstaticos = [
@@ -28,9 +33,13 @@ const linksDeAtendimentoEstaticos = [
 ];
 
 export const useLinkState = () => {
-  // Criamos "gavetas" globais para guardar as listas de links
+  // Gaveta para os links do MENU SUPERIOR (Header) - Dinâmico
   const navLinks = useState("navLinks", () => []);
+  
+  // Gaveta para atalhos extras (opcional)
   const atalhosLinks = useState("atalhosLinks", () => []);
+  
+  // Gavetas fixas para o Footer
   const informacoesLinks = useState(
     "informacoesLinks",
     () => linksDeInformacoesEstaticos
@@ -40,9 +49,23 @@ export const useLinkState = () => {
     () => linksDeAtendimentoEstaticos
   );
 
+  /**
+   * Define os links da página atual.
+   * @param {Array} nav - Links para o Header (Exclusividade, Big Cores, etc)
+   * @param {Array} atalhos - Links para outras áreas se necessário
+   */
   const setPageLinks = ({ nav, atalhos }) => {
-    if (nav) navLinks.value = nav;
-    if (atalhos) atalhosLinks.value = atalhos;
+    navLinks.value = nav || [];
+    atalhosLinks.value = atalhos || [];
+  };
+
+  /**
+   * Limpa os links ao sair da página para evitar que links 
+   * de uma landing page apareçam na outra por erro de cache.
+   */
+  const clearLinks = () => {
+    navLinks.value = [];
+    atalhosLinks.value = [];
   };
 
   return {
@@ -51,5 +74,6 @@ export const useLinkState = () => {
     informacoesLinks,
     atendimentoLinks,
     setPageLinks,
+    clearLinks
   };
 };

@@ -2,7 +2,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const NUMERO_CONSTRUTORA = '554192546682' 
-const NUMERO_OUTRAS_PAGINAS = '554184729241' 
+const NUMERO_OUTRAS_PAGINAS = '5541992433140' 
 
 export const useWhatsapp = () => {
   const route = useRoute()
