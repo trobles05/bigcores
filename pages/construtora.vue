@@ -15,8 +15,6 @@ import { useLinkState } from "~/composables/useLinkState";
 import HeroConstrutora from "~/components/construtora/HeroConstrutora.vue";
 import ExclusividadeConstrutora from "~/components/construtora/ExclusividadeConstrutora.vue";
 import PorQueEscolher from "~/components/construtora/PorQueEscolher.vue";
-
-import CtaFinal from "~/components/construtora/CtaFinal.vue";
 import Atelice from "~/components/construtora/Atelice.vue";
 
 const { setPageLinks, clearLinks } = useLinkState();

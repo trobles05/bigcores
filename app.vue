@@ -18,8 +18,6 @@ useHead({
       '/': 'Home',
       '/construtora': 'Construtora',
       '/atendimento': 'Atendimento',
-      '/endereco': 'Endereço',
-      '/sobre-nos': 'Sobre Nós'
     }
 
     return map[route.path] || 'Big Cores Tintas'

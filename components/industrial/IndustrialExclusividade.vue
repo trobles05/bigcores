@@ -6,9 +6,10 @@
           <div class="icon">
             <img :src="iconEconomia" alt="Economia" />
           </div>
-          <h3>Economia significativa</h3>
+          <h3>Faturamento Direto</h3>
           <p>
-            Acesso a tabelas de faturamento direto de fábrica, eliminando intermediários.
+            Acesso a tabelas corporativas direto de fábrica Weg, garantindo o
+            melhor custo-benefício para seu volume.
           </p>
         </div>
 
@@ -16,9 +17,10 @@
           <div class="icon">
             <img :src="iconLogistica" alt="Logística" />
           </div>
-          <h3>Logística Personalizada</h3>
+          <h3>Logística Just-in-Time</h3>
           <p>
-            Receba os materiais direto na obra, no momento que você precisar, respeitando seu cronograma.
+            Entrega programada em Curitiba e Região Metropolitana para manter
+            seu estoque de manutenção sempre abastecido.
           </p>
         </div>
 
@@ -26,9 +28,10 @@
           <div class="icon">
             <img :src="iconAtendimento" alt="Processo" />
           </div>
-          <h3>Processo simplificado</h3>
+          <h3>Gestão de Contas PJ</h3>
           <p>
-            Gestão centralizada de pedidos com faturamento facilitado e condições de crédito exclusivas.
+            Condições de crédito exclusivas para empresas, com faturamento
+            facilitado e gestão centralizada de pedidos.
           </p>
         </div>
 
@@ -36,9 +39,10 @@
           <div class="icon">
             <img :src="iconSuporte" alt="Suporte" />
           </div>
-          <h3>Suporte técnico especializado</h3>
+          <h3>Especificação e Laudos</h3>
           <p>
-            Visitas técnicas in loco para especificação de produtos e acompanhamento de aplicação.
+            Acompanhamento técnico para emissão de especificações de pintura e
+            suporte na aplicação em ambientes críticos.
           </p>
         </div>
 
@@ -61,59 +65,74 @@
             </svg>
           </div>
           <div class="highlight-content">
-            <h3>Qualidade que agrega valor</h3>
+            <h3>Tecnologia WEG de Alta Performance</h3>
             <p>
-              Trabalhamos com Coral e outras marcas de excelência, garantindo durabilidade e acabamento superior para valorizar seu empreendimento.
+              Referência em tintas  WEG e soluções em Pintura
+              Eletrostática (Pó). Entregamos o equilíbrio perfeito entre
+              proteção anticorrosiva de alta performance e acabamento industrial
+              superior.
             </p>
-            <a 
-              href="https://wa.me/554192546682?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20os%20produtos%20Coral%20para%20meu%20projeto." 
-              target="_blank" 
+            <a
+              href="https://wa.me/5541988051330?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20linha%20industrial%20da%20WEG."
+              target="_blank"
               class="cta-minimal"
             >
-              Falar com especialista
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow">
-                <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+              Solicitar Catálogo Técnico
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="arrow"
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted } from "vue";
 import iconEconomia from "~/assets/images/porcentagemIcone.png";
 import iconLogistica from "~/assets/images/processoIcone.png";
 import iconSuporte from "~/assets/images/suporteIcone.png";
 import iconAtendimento from "~/assets/images/qualidadeIcone.png";
 
 onMounted(() => {
-  const cards = document.querySelectorAll('.card')
+  const cards = document.querySelectorAll(".card");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
-          observer.unobserve(entry.target)
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
         }
-      })
+      });
     },
-    { threshold: 0.1 }
-  )
+    { threshold: 0.1 },
+  );
   cards.forEach((card, i) => {
-    card.style.transitionDelay = `${i * 100}ms`
-    observer.observe(card)
-  })
-})
+    card.style.transitionDelay = `${i * 100}ms`;
+    observer.observe(card);
+  });
+});
 </script>
 
 <style scoped>
 .benefits {
   padding: 80px 0;
   background: var(--cor-branco);
+  font-family: var(--font-principal);
 }
 
 .container {
@@ -128,19 +147,19 @@ onMounted(() => {
   gap: 24px;
 }
 
-/* CARD BASE */
 .card {
-  background: #f8fafc;
+  background: var(--cor-cinza-claro);
   border-radius: 16px;
   padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card.visible {
@@ -152,11 +171,11 @@ onMounted(() => {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: #fff;
+  background: var(--cor-branco);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .icon img {
@@ -165,22 +184,22 @@ onMounted(() => {
 }
 
 .card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1a2b4c;
+  font-size: var(--f3);
+  font-weight: var(--bold);
+  color: var(--cor-azul-escuro);
   line-height: 1.2;
 }
 
 .card p {
-  font-size: 0.95rem;
-  color: #64748b;
+  font-size: var(--f1);
+  color: var(--cor-cinza-escuro);
   line-height: 1.6;
 }
 
-/* CARD DESTAQUE (HIGHLIGHT) */
+/* CARD DESTAQUE INDUSTRIAL */
 .highlight {
   grid-column: span 2;
-  background: var(--cor-azul-escuro);
+  background: var(--cor-azul-escuro); /* Ajustado para seu preto oficial */
   flex-direction: row;
   align-items: flex-start;
   gap: 24px;
@@ -200,32 +219,31 @@ onMounted(() => {
   flex: 1;
 }
 
-.highlight h3 { color: #fff; }
-.highlight p { color: #cbd5e1; }
+.highlight h3 {
+  color: var(--cor-branco);
+}
+.highlight p {
+  color: var(--cor-branco-escuro);
+}
 
-/* CTA MINIMALISTA */
 .cta-minimal {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #fff;
+  color: var(--cor-branco);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: var(--bold);
+  font-size: var(--f1);
   margin-top: 8px;
   padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--cor-branco-escuro);
   transition: all 0.3s ease;
   width: fit-content;
 }
 
-.cta-minimal .arrow {
-  transition: transform 0.3s ease;
-}
-
 .cta-minimal:hover {
-  color: #e39332; /* Laranja Big Cores */
-  border-bottom-color: #e39332;
+  color: var(--cor-laranja);
+  border-bottom-color: var(--cor-laranja);
 }
 
 .cta-minimal:hover .arrow {
@@ -234,20 +252,26 @@ onMounted(() => {
 
 /* --- RESPONSIVIDADE --- */
 @media (max-width: 1024px) {
-  .benefits { padding: 60px 0; }
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .highlight { grid-column: span 2; }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .card { padding: 24px; }
-  .highlight { flex-direction: column; gap: 16px; }
+  .highlight {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
-  .highlight { grid-column: span 1; }
-  .card h3 { font-size: 1.15rem; }
-  .card p { font-size: 0.9rem; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .highlight {
+    grid-column: span 1;
+  }
+  .card h3 {
+    font-size: var(--f2);
+  }
 }
 </style>

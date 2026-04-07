@@ -15,11 +15,9 @@ export default defineNuxtConfig({
     prerender: {
       crawler: false,
       routes: [
-        '/',
         '/construtora',
         '/atendimento',
-        '/endereco',
-        '/sobre-nos'
+        '/industrial'
       ]
     }
   },
